@@ -178,3 +178,30 @@ promoCode }` (HMAC-SHA256 with `AUTH_SECRET`, `lib/cookies.ts`), so guests need 
   Payouts keep only the last four digits of the account number.
 - **Analytics** renders a CSS bar chart of daily revenue, top products, and median fulfillment
   time for a 7 / 30 / 90 day range chosen with `analytics-date-range`.
+
+## Milestone 6: chat
+
+- **Transport.** `POST /api/chat` streams plain text (`text/plain`, chunked) and returns the
+  conversation id and the assistant message id in `x-conversation-id` / `x-message-id` response
+  headers before the first byte, so the client can attach ratings to the stored message. The
+  reply is persisted onto the conversation when the stream closes.
+- **Provider.** `lib/chat/provider.ts` exposes one `ChatProvider` interface with two
+  implementations. With `ANTHROPIC_API_KEY` set it uses `@anthropic-ai/sdk`'s beta tool runner
+  (`claude-opus-5-5`, effort `low`, streaming, Zod-typed tools with eager input streaming) and
+  stops on `refusal` or a truncated tool call. Otherwise the scripted provider picks a reply by
+  keyword, fills it with real catalog or sales data through the same tool functions, and emits it
+  a few words at a time to look like a token stream.
+- **Tools.** `search_catalog`, `get_product`, and `summarize_store_sales` are plain async
+  functions in `lib/chat/tools.ts` with Zod input schemas; the Claude provider wraps them with
+  `betaZodTool`, the scripted provider calls them directly. The merchant tool only sees the
+  signed-in merchant's store; the merchant persona is rejected (403) for anyone else.
+- **Persona from layout.** `StorefrontChrome` mounts `<ChatPanel persona="shopper" />`, the admin
+  layout mounts `<ChatPanel persona="merchant" />`; both sit inside the `AssistantProvider` that
+  `assistant-toggle`, `admin-ask-assistant`, and `/help` drive.
+- **Conversation ownership.** Signed-in users' conversations carry `userId` (and `storeId` for
+  merchants); anonymous conversations have neither and can be continued by anyone holding the id.
+  Ratings on a conversation with a `userId` require that user. One rating per message; a new
+  rating replaces the old one.
+- **Retry** re-sends the history up to the failed or disliked assistant reply, dropping it.
+- **Links.** The panel turns bare `/products/{slug}` paths in replies into links; the system prompt
+  asks the model for that form instead of Markdown.

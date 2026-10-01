@@ -1,0 +1,117 @@
+import Anthropic from "@anthropic-ai/sdk";
+import { betaZodTool } from "@anthropic-ai/sdk/helpers/beta/zod";
+import type { ChatMessage, Persona } from "@/lib/db/schema";
+import { SYSTEM_PROMPTS } from "./prompts";
+import { scriptedReply, simulateTokenStream } from "./scripted";
+import {
+  GetProductInput,
+  getProduct,
+  SearchCatalogInput,
+  searchCatalog,
+  SummarizeStoreSalesInput,
+  summarizeStoreSales,
+  TOOL_DESCRIPTIONS,
+  type ToolContext,
+} from "./tools";
+
+export interface ChatRequest {
+  persona: Persona;
+  messages: Pick<ChatMessage, "role" | "content">[];
+  context: ToolContext;
+}
+
+export interface ChatProvider {
+  readonly name: "claude" | "scripted";
+  stream(request: ChatRequest): AsyncIterable<string>;
+}
+
+const MODEL = "claude-opus-5-5";
+
+function buildTools(persona: Persona, context: ToolContext) {
+  const shopperTools = [
+    {
+      ...betaZodTool({
+        name: "search_catalog",
+        description: TOOL_DESCRIPTIONS.search_catalog,
+        inputSchema: SearchCatalogInput,
+        run: async (input) => JSON.stringify(await searchCatalog(input)),
+      }),
+      eager_input_streaming: true,
+    },
+    {
+      ...betaZodTool({
+        name: "get_product",
+        description: TOOL_DESCRIPTIONS.get_product,
+        inputSchema: GetProductInput,
+        run: async (input) => JSON.stringify(await getProduct(input)),
+      }),
+      eager_input_streaming: true,
+    },
+  ];
+  if (persona === "shopper") return shopperTools;
+  return [
+    ...shopperTools,
+    {
+      ...betaZodTool({
+        name: "summarize_store_sales",
+        description: TOOL_DESCRIPTIONS.summarize_store_sales,
+        inputSchema: SummarizeStoreSalesInput,
+        run: async (input) => JSON.stringify(await summarizeStoreSales(input, context)),
+      }),
+      eager_input_streaming: true,
+    },
+  ];
+}
+
+export function createClaudeProvider(client: Anthropic = new Anthropic()): ChatProvider {
+  return {
+    name: "claude",
+    async *stream({ persona, messages, context }) {
+      const runner = client.beta.messages.toolRunner({
+        model: MODEL,
+        max_tokens: 4096,
+        system: SYSTEM_PROMPTS[persona],
+        output_config: { effort: "low" },
+        tools: buildTools(persona, context),
+        messages: messages.map((message) => ({ role: message.role, content: message.content })),
+        stream: true,
+      });
+
+      for await (const messageStream of runner) {
+        for await (const event of messageStream) {
+          if (event.type === "content_block_delta" && event.delta.type === "text_delta") {
+            yield event.delta.text;
+          }
+        }
+        const message = await messageStream.finalMessage();
+        if (message.stop_reason === "refusal") {
+          yield "\n\nI can't help with that one, but I'm glad to talk plants or sales.";
+          return;
+        }
+        if (
+          message.stop_reason === "max_tokens" &&
+          message.content.some((block) => block.type === "tool_use")
+        ) {
+          yield "\n\nThat answer ran long; try asking a narrower question.";
+          return;
+        }
+      }
+    },
+  };
+}
+
+export function createScriptedProvider(delayMs = 18): ChatProvider {
+  return {
+    name: "scripted",
+    async *stream({ persona, messages, context }) {
+      const last = [...messages].reverse().find((message) => message.role === "user");
+      const reply = await scriptedReply(persona, last?.content ?? "", context);
+      yield* simulateTokenStream(reply, delayMs);
+    },
+  };
+}
+
+/** Claude when a key is configured, scripted replies otherwise so the demo costs nothing. */
+export function getChatProvider(): ChatProvider {
+  return process.env.ANTHROPIC_API_KEY ? createClaudeProvider() : createScriptedProvider();
+}

@@ -323,12 +323,82 @@ Running 4 tests using 3 workers
 
 ## 6. Chat
 
-- [ ] `components/chat/*`, `useChat`
-- [ ] `app/api/chat/route.ts` streaming, persona from layout
-- [ ] `lib/chat/` prompts, tools, provider (Claude when keyed, scripted otherwise)
-- [ ] Ratings endpoint
-- [ ] Smoke: open panel, send a suggestion, rate the reply
-- [ ] Gates passed and quoted
+- [x] `components/chat/*`, `useChat` (`messages`, `input`, `status`, `submit`, `rate`, `retry`)
+- [x] `app/api/chat/route.ts` streaming, persona from layout
+- [x] `lib/chat/` prompts, tools, provider (Claude when keyed, scripted otherwise)
+- [x] Ratings endpoint (`/api/chat/feedback`)
+- [x] Smoke: open panel, send a suggestion, rate the reply (plus `/help` opens it by default)
+- [x] Gates passed and quoted
+
+### Summary
+
+Shipped the assistant: a slide-in panel mounted by the storefront chrome (shopper) and the admin
+layout (merchant), suggested prompts per persona, a streaming chat route that stores conversations
+and replies, a ratings route, and `lib/chat/` with two system prompts, three Zod-typed tools, and
+a provider that uses the Anthropic SDK tool runner when `ANTHROPIC_API_KEY` is set and scripted
+keyword replies filled with real catalog and sales data otherwise. After the gate run a stray
+"Controller is already closed" log from a client disconnect was fixed by guarding the stream.
+Open question: the live Claude path is wired but could not be exercised here without an API key.
+
+```
+$ pnpm typecheck
+Generating route types...
+✓ Types generated successfully
+
+$ pnpm lint
+(no output: 0 problems)
+
+$ pnpm test
+ Test Files  18 passed (18)
+      Tests  78 passed (78)
+
+$ pnpm build
+✓ Compiled successfully in 2.1s
+  Finished TypeScript in 2.7s ...
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /account
+├ ƒ /account/orders
+├ ƒ /account/orders/[orderNumber]
+├ ƒ /admin
+├ ƒ /admin/analytics
+├ ƒ /admin/customers
+├ ƒ /admin/customers/[id]
+├ ƒ /admin/orders
+├ ƒ /admin/orders/[id]
+├ ƒ /admin/orders/export
+├ ƒ /admin/products
+├ ƒ /admin/products/[id]
+├ ƒ /admin/products/new
+├ ƒ /admin/promos
+├ ƒ /admin/promos/[id]
+├ ƒ /admin/settings
+├ ƒ /admin/settings/[section]
+├ ƒ /api/auth/[...nextauth]
+├ ƒ /api/chat
+├ ƒ /api/chat/feedback
+├ ƒ /cart
+├ ƒ /checkout
+├ ƒ /help
+├ ƒ /orders/[orderNumber]/confirmation
+├ ƒ /products
+├ ƒ /products/[slug]
+├ ƒ /promo/[code]
+├ ƒ /sign-in
+└ ƒ /stores/[slug]
+ƒ Proxy (Middleware)
+
+$ pnpm e2e:smoke
+Running 6 tests using 4 workers
+  ✓  3 [smoke] › e2e/smoke/chat.spec.ts:3:5 › shopper opens the assistant, sends a suggestion, and rates the reply (3.3s)
+  ✓  5 [smoke] › e2e/smoke/chat.spec.ts:27:5 › help page opens the assistant by default (513ms)
+  ✓  2 [smoke] › e2e/smoke/storefront.spec.ts:3:5 › anonymous shopper browses, adds to cart, and checks out as a guest (4.0s)
+  ✓  4 [smoke] › e2e/smoke/account.spec.ts:3:5 › signed-in shopper updates their profile, adds an address, and reorders (4.3s)
+  ✓  1 [smoke] › e2e/smoke/admin.spec.ts:3:5 › merchant creates and publishes a product, then fulfills an order (5.2s)
+  ✓  6 [smoke] › e2e/smoke/storefront.spec.ts:42:5 › promo link applies a code and the cart survives signing in (1.9s)
+  6 passed (7.9s)
+```
 
 ## 7. Analytics wrapper
 

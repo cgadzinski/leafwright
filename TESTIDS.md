@@ -21,3 +21,4 @@
 | `promo-{code\|type\|value\|starts-at\|ends-at\|active}`                | Promo detail         | Promo form fields                                                                       |
 | `settings-store-save`, `settings-invite-role`, `settings-payout-save`  | Settings             | Submit buttons and the invite role select                                               |
 | `analytics-upgrade`                                                    | Analytics (flag off) | Upsell link to billing                                                                  |
+| `chat-panel`, `chat-close`                                             | Assistant panel      | Panel container and close button                                                        |

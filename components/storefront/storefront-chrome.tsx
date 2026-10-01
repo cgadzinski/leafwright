@@ -1,4 +1,5 @@
 import { AssistantProvider } from "@/components/assistant/assistant-provider";
+import { ChatPanel } from "@/components/chat/chat-panel";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 
@@ -11,6 +12,7 @@ export function StorefrontChrome({ children }: { children: React.ReactNode }) {
         {children}
         <SiteFooter />
       </div>
+      <ChatPanel persona="shopper" />
     </AssistantProvider>
   );
 }

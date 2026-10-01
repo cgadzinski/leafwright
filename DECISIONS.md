@@ -87,3 +87,39 @@ Newest at the bottom.
   `signIn("credentials", …)` and maps `AuthError` to one generic message. Only same-origin paths
   are honored as `callbackUrl` (`lib/auth/callback-url.ts`).
 - **Local env.** `.env.local` (gitignored) holds `AUTH_SECRET` and `DEMO_PASSWORD` for `pnpm dev`.
+
+## Milestone 3: storefront
+
+- **Anonymous cart in the cookie itself.** The signed `lw_cart` cookie carries `{ id, lines,
+promoCode }` (HMAC-SHA256 with `AUTH_SECRET`, `lib/cookies.ts`), so guests need no server
+  state. Signed-in users' carts live in the `carts` collection keyed by `userId`. At sign-in the
+  action verifies credentials, merges the cookie cart into the stored cart, deletes the cookie,
+  then hands off to Auth.js.
+- **Server Actions per route folder.** `cart/actions.ts` (add, update line, remove, apply/remove
+  promo), `checkout/actions.ts` (`placeOrder`), `stores/[slug]/actions.ts` (`followStore`),
+  `sign-in/actions.ts`. Non-action helpers (schemas, `saveAddress`) live under `lib/orders/` so a
+  `"use server"` file exports only actions.
+- **Catalog filtering on the client.** `/products` loads every published product on the server
+  and a client view reads `?category=`, `?sort=`, `?q=` with `useSearchParams` (SPEC §3), filters
+  and sorts in memory, and rewrites the URL from the two shadcn selects.
+- **Quick add** uses the first variant and quantity 1 and only refreshes the cart badge; the PDP
+  add shows an inline "Added …" status via `useActionState`.
+- **Save for later** (`pdp-save`) keeps slugs in `localStorage`; there is no saved-items entity in
+  SPEC §9 and the control is slated for removal in backlog #3.
+- **Checkout address needs a state.** SPEC §4 lists name, address 1/2, city, postal, phone; a US
+  address also needs a region, so `checkout-region` was added and recorded in `TESTIDS.md`. Guests
+  get a `checkout-sign-in` link; the save-address checkbox is shown to signed-in users only.
+- **Orders are created as `paid`.** There is no payment provider (SPEC §15); a Luhn-valid card with
+  an unexpired `MM/YY` and 3–4 digit code is accepted and the order skips `placed`.
+- **Inventory and promo usage** are decremented/incremented in `placeOrder`; the cart is cleared
+  and the user lands on the first order's confirmation. Sibling orders from the same checkout are
+  linked from the confirmation.
+- **Guest access to confirmations.** A signed `lw_orders` cookie remembers up to 20 order numbers
+  placed in this browser. Signed-in buyers and the order's merchants can always view it.
+- **Promo landing is a page, not a route handler.** `/promo/[code]` renders a client component
+  that calls the `applyPromoCode` action on mount and then replaces the URL with `/products`.
+  Server components cannot set cookies, and the client hop is where the analytics call will live.
+- **Bot marker.** `placeOrder` stamps `source` from the `lw_source` cookie (`bot` when present),
+  read by `lib/request-source.ts`. The traffic bot sets that cookie on its contexts.
+- **Assistant toggle** is wired to an `AssistantProvider` context now so the header control exists;
+  the panel itself arrives in milestone 6, and `/help` opens it on mount.

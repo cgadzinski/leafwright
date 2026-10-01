@@ -4,7 +4,8 @@ import { AuthError } from "next-auth";
 import { z } from "zod";
 import { signIn } from "@/auth";
 import { safeCallbackUrl } from "@/lib/auth/callback-url";
-import { CredentialsSchema } from "@/lib/auth/credentials";
+import { authenticate, CredentialsSchema } from "@/lib/auth/credentials";
+import { mergeAnonymousCart } from "@/lib/cart/server";
 
 export interface SignInState {
   error?: string;
@@ -25,6 +26,10 @@ export async function signInAction(_prev: SignInState, formData: FormData): Prom
   if (!parsed.success) {
     return { error: parsed.error.issues[0]?.message ?? "Check your details.", values: { email } };
   }
+
+  const user = await authenticate(parsed.data);
+  if (!user) return { error: "That email and password don't match.", values: { email } };
+  await mergeAnonymousCart(user.id);
 
   try {
     await signIn("credentials", {

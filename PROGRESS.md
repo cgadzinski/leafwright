@@ -127,14 +127,62 @@ Route (app)
 
 ## 3. Storefront
 
-- [ ] Routes 1–10 with every control in SPEC §4
-- [ ] Anonymous cookie cart merging at sign-in
-- [ ] Guest checkout
-- [ ] Server Actions for all storefront mutations
-- [ ] `/promo/[code]` auto-apply
-- [ ] Confirmation page
-- [ ] Smoke: anonymous browse → add to cart → guest checkout → confirmation
-- [ ] Gates passed and quoted
+- [x] Routes 1–10 with every control in SPEC §4 (`pdp-save` stores to localStorage; see `DECISIONS.md`)
+- [x] Anonymous cookie cart merging at sign-in
+- [x] Guest checkout
+- [x] Server Actions for all storefront mutations (`addToCart`, `removeFromCart`, `updateCartLine`, `applyPromo`, `placeOrder`, `followStore`)
+- [x] `/promo/[code]` auto-apply
+- [x] Confirmation page
+- [x] Smoke: anonymous browse → add to cart → guest checkout → confirmation (plus promo link + cart merge at sign-in)
+- [x] Gates passed and quoted
+
+### Summary
+
+Shipped the storefront: global chrome (logo, shop, search, cart badge, assistant toggle, sign-in /
+user menu / sign-out, admin link for merchants), home with category tiles, featured products, promo
+banner and nurseries, client-filtered catalog with quick add, product detail with pot size,
+quantity, tabs, save for later and store link, store page with follow, cart with line controls and
+promo form, guest or signed-in checkout with Luhn-checked card, order confirmation with guest
+access, promo landing, and help. Two Playwright smoke tests cover the guest purchase funnel and the
+promo link plus cart merge at sign-in. Open questions: `checkout-region` was added beyond SPEC §4
+(a US address needs a state); product photos remain SVG art.
+
+```
+$ pnpm typecheck
+Generating route types...
+✓ Types generated successfully
+
+$ pnpm lint
+(no output: 0 problems)
+
+$ pnpm test
+ Test Files  11 passed (11)
+      Tests  57 passed (57)
+
+$ pnpm build
+✓ Compiled successfully in 541ms
+  Finished TypeScript in 1423ms ...
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /api/auth/[...nextauth]
+├ ƒ /cart
+├ ƒ /checkout
+├ ƒ /help
+├ ƒ /orders/[orderNumber]/confirmation
+├ ƒ /products
+├ ƒ /products/[slug]
+├ ƒ /promo/[code]
+├ ƒ /sign-in
+└ ƒ /stores/[slug]
+ƒ Proxy (Middleware)
+
+$ pnpm e2e:smoke
+Running 2 tests using 1 worker
+  ✓  1 [smoke] › e2e/smoke/storefront.spec.ts:3:5 › anonymous shopper browses, adds to cart, and checks out as a guest (2.8s)
+  ✓  2 [smoke] › e2e/smoke/storefront.spec.ts:42:5 › promo link applies a code and the cart survives signing in (2.0s)
+  2 passed (6.6s)
+```
 
 ## 4. Account
 

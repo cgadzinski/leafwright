@@ -42,6 +42,7 @@ export default async function ProductPage({ params }: PageProps<"/products/[slug
           src={product.images[0] ?? meta.image}
           alt={product.name}
           sizes="(min-width: 768px) 50vw, 100vw"
+          priority
         />
         <div>
           <Badge variant="secondary">{meta.label}</Badge>

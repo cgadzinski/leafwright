@@ -63,5 +63,5 @@ test("promo link applies a code and the cart survives signing in", async ({ page
   await expect(page.getByRole("status")).toContainText("FERN15 applied");
 
   await page.getByTestId(`cart-remove-${slug}`).click();
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("empty");
+  await expect(page.getByTestId(`cart-qty-${slug}`)).toHaveCount(0);
 });

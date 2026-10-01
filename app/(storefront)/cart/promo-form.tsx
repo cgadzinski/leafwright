@@ -39,7 +39,7 @@ export function PromoForm({
         </p>
       ) : null}
       {appliedCode ? (
-        <p
+        <div
           role="status"
           className="mt-2 flex items-center justify-between text-sm text-emerald-700"
         >
@@ -56,7 +56,7 @@ export function PromoForm({
               Remove
             </button>
           </form>
-        </p>
+        </div>
       ) : state.message ? (
         <p role="status" className="mt-2 text-sm text-emerald-700">
           {state.message}

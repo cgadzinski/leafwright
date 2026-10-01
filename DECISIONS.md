@@ -123,3 +123,20 @@ promoCode }` (HMAC-SHA256 with `AUTH_SECRET`, `lib/cookies.ts`), so guests need 
   read by `lib/request-source.ts`. The traffic bot sets that cookie on its contexts.
 - **Assistant toggle** is wired to an `AssistantProvider` context now so the header control exists;
   the panel itself arrives in milestone 6, and `/help` opens it on mount.
+
+## Milestone 4: account
+
+- **Shared chrome.** `(account)` reuses the storefront header, footer, and assistant context via
+  `components/storefront/storefront-chrome.tsx`, with a small Profile / Orders sub-nav.
+- **Order history includes guest orders.** `ordersForUser` returns orders with the user's
+  `customerId` plus guest orders placed under the same email, which is what the help page promises.
+- **Refund request is a note.** `Order` in SPEC §9 has no refund-request field, so
+  `requestRefund` appends a note beginning "Refund requested by customer:" with the reason. The
+  merchant order page surfaces it and the merchant's `refundOrder` action settles it. One request
+  per order; refunded orders cannot request again.
+- **Reorder** adds every still-published line to the cart (falling back to the first variant if the
+  ordered pot size is gone) and redirects to `/cart`; it fails softly when nothing is available.
+- **Profile** edits name and phone; email is read-only because it is the sign-in identity.
+- **Addresses** can be added, removed, and made default from the profile; the first address a
+  user saves becomes the default. Address inputs got `account-address-{field}` test ids
+  (`TESTIDS.md`).

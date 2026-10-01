@@ -186,10 +186,59 @@ Running 2 tests using 1 worker
 
 ## 4. Account
 
-- [ ] Routes 11–13
-- [ ] Profile save, addresses
-- [ ] Reorder, refund request
-- [ ] Gates passed and quoted
+- [x] Routes 11–13
+- [x] Profile save, addresses (add, remove, make default)
+- [x] Reorder, refund request
+- [x] Gates passed and quoted
+
+### Summary
+
+Shipped the account area under the shared storefront chrome: profile form, saved addresses with
+add / remove / default, order history that also lists guest orders under the same email, and order
+detail with reorder (back to `/cart`) and refund request (recorded as a customer note; see
+`DECISIONS.md`). Added an account smoke test; smoke tests now use distinct seeded shoppers so they
+do not share cart state on one server.
+
+```
+$ pnpm typecheck
+Generating route types...
+✓ Types generated successfully
+
+$ pnpm lint
+(no output: 0 problems)
+
+$ pnpm test
+ Test Files  12 passed (12)
+      Tests  59 passed (59)
+
+$ pnpm build
+✓ Compiled successfully in 536ms
+  Finished TypeScript in 989ms ...
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /account
+├ ƒ /account/orders
+├ ƒ /account/orders/[orderNumber]
+├ ƒ /api/auth/[...nextauth]
+├ ƒ /cart
+├ ƒ /checkout
+├ ƒ /help
+├ ƒ /orders/[orderNumber]/confirmation
+├ ƒ /products
+├ ƒ /products/[slug]
+├ ƒ /promo/[code]
+├ ƒ /sign-in
+└ ƒ /stores/[slug]
+ƒ Proxy (Middleware)
+
+$ pnpm e2e:smoke
+Running 3 tests using 2 workers
+  ✓  2 [smoke] › e2e/smoke/account.spec.ts:3:5 › signed-in shopper updates their profile, adds an address, and reorders (1.5s)
+  ✓  1 [smoke] › e2e/smoke/storefront.spec.ts:3:5 › anonymous shopper browses, adds to cart, and checks out as a guest (2.4s)
+  ✓  3 [smoke] › e2e/smoke/storefront.spec.ts:42:5 › promo link applies a code and the cart survives signing in (1.5s)
+  3 passed (5.6s)
+```
 
 ## 5. Admin
 

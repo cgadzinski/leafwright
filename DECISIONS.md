@@ -251,3 +251,17 @@ $CRON_SECRET`. Without the secret the route only works outside production. `CRON
   them a 14-day TTL.
 - **Schedule.** `0 6-23/2 * * 1-5` and `0 6-23/4 * * 0,6`, with a `concurrency` group so runs
   do not overlap. Nothing blocks third-party scripts.
+
+## Milestone 9: deploy readiness
+
+- **KV adapter is an overlay, not a copy.** `lib/db/kv.ts` never writes the seed to Redis. Reads
+  merge the committed JSON with `lw:{collection}:{id}` records (runtime wins) and skip ids in
+  `lw:{collection}:removed`. This keeps "seed data does not expire" trivially true, needs no
+  import step, and makes a fresh Upstash database usable on the first request. Bot records are
+  written with `EX` so Redis expires them; expired ids are pruned from the id set lazily on list.
+- **Adapter choice** happens once per process in `lib/db/index.ts`: KV when both
+  `KV_REST_API_URL` and `KV_REST_API_TOKEN` are set, memory otherwise. The KV adapter is covered by
+  unit tests against a fake client; it was not exercised against a real Upstash database here.
+- **`vercel.json`** carries only the nightly cron. Next.js needs no other Vercel configuration.
+- **README** documents local setup, every environment variable (including the two added beyond
+  SPEC §12: `NEXT_PUBLIC_ANALYTICS_ENDPOINT` and `CRON_SECRET`), deploy steps, and the bot.

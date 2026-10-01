@@ -1,5 +1,6 @@
 import { nextOrderNumber } from "@/lib/commerce/order-number";
 import type { Adapter, PutOptions } from "./adapter";
+import { createKvAdapter, kvConfigured } from "./kv";
 import { createMemoryAdapter } from "./memory";
 import {
   COLLECTIONS,
@@ -26,8 +27,9 @@ export const BOT_RECORD_TTL_SECONDS = 14 * 24 * 60 * 60;
 
 let adapter: Adapter | undefined;
 
+/** Upstash Redis when `KV_REST_API_URL` / `KV_REST_API_TOKEN` are set, otherwise process memory. */
 function getAdapter(): Adapter {
-  if (!adapter) adapter = createMemoryAdapter();
+  if (!adapter) adapter = kvConfigured() ? createKvAdapter() : createMemoryAdapter();
   return adapter;
 }
 

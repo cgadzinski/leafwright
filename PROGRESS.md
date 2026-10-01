@@ -523,8 +523,91 @@ Running 6 tests using 4 workers
 
 ## 9. Deploy readiness
 
-- [ ] KV adapter behind `KV_REST_API_URL`
-- [ ] `vercel.json` if needed
-- [ ] `README.md`: local setup, env table, deploy steps, running the bot
-- [ ] Final full gate run
-- [ ] Manual steps listed
+- [x] KV adapter behind `KV_REST_API_URL` (`lib/db/kv.ts`, overlay on the committed seed, TTL for bot records)
+- [x] `vercel.json` (nightly cron for the bot-product archive route)
+- [x] `README.md`: local setup, env table, deploy steps, running the bot
+- [x] Final full gate run
+- [x] Manual steps listed
+
+### Summary
+
+Shipped the Upstash Redis adapter with unit tests against a fake client, adapter selection by
+environment, and the README. All nine milestones are complete; every gate passes on a fresh
+server and Prettier reports every file formatted. Open questions: the KV adapter has not been run
+against a real Upstash database; the live Claude path has not been run without an API key; two
+environment variables beyond SPEC §12 were added (`NEXT_PUBLIC_ANALYTICS_ENDPOINT`, `CRON_SECRET`).
+
+```
+$ pnpm typecheck
+Generating route types...
+✓ Types generated successfully
+
+$ pnpm lint
+(no output: 0 problems)
+
+$ pnpm test
+ Test Files  22 passed (22)
+      Tests  91 passed (91)
+
+$ pnpm build
+✓ Compiled successfully in 1062ms
+  Finished TypeScript in 2.1s ...
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /account
+├ ƒ /account/orders
+├ ƒ /account/orders/[orderNumber]
+├ ƒ /admin
+├ ƒ /admin/analytics
+├ ƒ /admin/customers
+├ ƒ /admin/customers/[id]
+├ ƒ /admin/orders
+├ ƒ /admin/orders/[id]
+├ ƒ /admin/orders/export
+├ ƒ /admin/products
+├ ƒ /admin/products/[id]
+├ ƒ /admin/products/new
+├ ƒ /admin/promos
+├ ƒ /admin/promos/[id]
+├ ƒ /admin/settings
+├ ƒ /admin/settings/[section]
+├ ƒ /api/auth/[...nextauth]
+├ ƒ /api/chat
+├ ƒ /api/chat/feedback
+├ ƒ /api/jobs/archive-bot-products
+├ ƒ /cart
+├ ƒ /checkout
+├ ƒ /help
+├ ƒ /orders/[orderNumber]/confirmation
+├ ƒ /products
+├ ƒ /products/[slug]
+├ ƒ /promo/[code]
+├ ƒ /sign-in
+└ ƒ /stores/[slug]
+ƒ Proxy (Middleware)
+
+$ pnpm e2e:smoke
+Running 6 tests using 4 workers
+  ✓  1 [smoke] › e2e/smoke/chat.spec.ts:3:5 › shopper opens the assistant, sends a suggestion, and rates the reply (2.7s)
+  ✓  5 [smoke] › e2e/smoke/chat.spec.ts:27:5 › help page opens the assistant by default (412ms)
+  ✓  2 [smoke] › e2e/smoke/account.spec.ts:3:5 › signed-in shopper updates their profile, adds an address, and reorders (3.4s)
+  ✓  3 [smoke] › e2e/smoke/storefront.spec.ts:3:5 › anonymous shopper browses, adds to cart, and checks out as a guest (3.5s)
+  ✓  4 [smoke] › e2e/smoke/admin.spec.ts:3:5 › merchant creates and publishes a product, then fulfills an order (4.0s)
+  ✓  6 [smoke] › e2e/smoke/storefront.spec.ts:42:5 › promo link applies a code and the cart survives signing in (1.7s)
+  6 passed (7.2s)
+```
+
+## Manual steps left for a human
+
+1. **Create the GitHub repository** `pendo-io/leafwright`, add it as `origin`, and push `main`.
+   Add the repository secret `DEMO_PASSWORD` and, optionally, the variable `TRAFFIC_BASE_URL`.
+2. **Create the Vercel project** from the repository and set the environment variables:
+   `AUTH_SECRET`, `DEMO_PASSWORD`, `KV_REST_API_URL`, `KV_REST_API_TOKEN`, `CRON_SECRET`, and
+   optionally `ANTHROPIC_API_KEY`, `NEXT_PUBLIC_ANALYTICS_WRITE_KEY`,
+   `NEXT_PUBLIC_ANALYTICS_ENDPOINT`. Deploy; `vercel.json` registers the nightly cron.
+3. **Create the Upstash Redis database** and copy its REST URL and token into the Vercel
+   project (step 2). Nothing needs importing; the seed is read from the repository.
+4. **Enable the Actions cron**: scheduled workflows are inactive until the repository has a
+   default branch on GitHub; confirm `.github/workflows/traffic.yml` is enabled under Actions and
+   trigger one `workflow_dispatch` run with `sessions` = `1` to confirm it reaches the deploy.

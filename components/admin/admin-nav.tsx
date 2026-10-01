@@ -22,14 +22,17 @@ export function AdminNav() {
 
   const linkClass = (active: boolean) =>
     cn(
-      "flex items-center gap-2 rounded-md px-3 py-2 text-sm",
+      "flex shrink-0 items-center gap-2 rounded-md px-3 py-2 text-sm whitespace-nowrap",
       active
         ? "bg-accent text-accent-foreground font-medium"
         : "text-muted-foreground hover:bg-accent/60",
     );
 
   return (
-    <nav className="flex flex-col gap-1" aria-label="Admin">
+    <nav
+      className="-mx-1 flex flex-row gap-1 overflow-x-auto px-1 md:mx-0 md:flex-col md:px-0"
+      aria-label="Admin"
+    >
       {ITEMS.map((item) => {
         const base = "match" in item ? item.match : item.href;
         const active =

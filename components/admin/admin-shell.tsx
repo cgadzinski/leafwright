@@ -49,8 +49,8 @@ export function AdminShell({
           </div>
         </div>
       </header>
-      <div className="mx-auto flex w-full max-w-7xl flex-1 gap-8 px-4 py-6">
-        <aside className="hidden w-52 shrink-0 md:block">
+      <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-6 px-4 py-6 md:flex-row md:gap-8">
+        <aside className="w-full md:w-52 md:shrink-0">
           <AdminNav />
         </aside>
         <div className="min-w-0 flex-1">{children}</div>

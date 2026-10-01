@@ -18,7 +18,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "e2e:smoke": "playwright test --config e2e/playwright.config.ts --project=smoke",
-    "seed": "tsx scripts/seed.ts"
+    "seed": "tsx scripts/seed.ts",
+    "traffic": "playwright test --config e2e/traffic/playwright.config.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.131.0",

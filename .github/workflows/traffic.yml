@@ -1,0 +1,52 @@
+name: Traffic
+
+on:
+  schedule:
+    # Every two hours 06:00–23:00 UTC on weekdays.
+    - cron: "0 6-23/2 * * 1-5"
+    # Every four hours 06:00–23:00 UTC on weekends.
+    - cron: "0 6-23/4 * * 0,6"
+  workflow_dispatch:
+    inputs:
+      sessions:
+        description: "Multiplier for the per-run session counts (1 = 10–16 shoppers and 3–5 merchants)"
+        required: false
+        default: "1"
+        type: string
+
+concurrency:
+  group: traffic
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  visit:
+    name: Shopper and merchant sessions
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      BASE_URL: ${{ vars.TRAFFIC_BASE_URL || 'https://leafwright.vercel.app' }}
+      SESSIONS: ${{ inputs.sessions || '1' }}
+      DEMO_PASSWORD: ${{ secrets.DEMO_PASSWORD }}
+      CI: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Run sessions
+        run: pnpm traffic
+      - name: Upload traces for failed sessions
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: traffic-traces-${{ github.run_number }}
+          path: test-results/traffic
+          if-no-files-found: ignore
+          retention-days: 7

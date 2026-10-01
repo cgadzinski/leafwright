@@ -444,11 +444,82 @@ Running 6 tests using 4 workers
 
 ## 8. Traffic bot
 
-- [ ] `e2e/traffic/` scenarios, rotation, pacing, entry points, viewports, percentages
-- [ ] `.github/workflows/traffic.yml` cron plus `workflow_dispatch` with `sessions`
-- [ ] `source: "bot"` on bot-created records; nightly archive job
-- [ ] Local dry run with `sessions=3`, result quoted
-- [ ] Gates passed and quoted
+- [x] `e2e/traffic/` scenarios, rotation, pacing, entry points, viewports, percentages (`config.ts`, `plan.ts`, `scenarios/`)
+- [x] `.github/workflows/traffic.yml` cron plus `workflow_dispatch` with `sessions`
+- [x] `source: "bot"` on bot-created records; nightly archive job (`/api/jobs/archive-bot-products` via Vercel Cron)
+- [x] Local dry run with `sessions=3`, result quoted
+- [x] Gates passed and quoted
+
+### Summary
+
+Shipped the traffic bot as its own Playwright project (`pnpm traffic`): a seeded, deterministic
+session plan with the SPEC §12 percentages, viewports, entry points, and pacing; shopper and
+merchant scenarios including chat with ratings, guest and signed-in purchases, abandonment at
+payment, order fulfillment, product drafts and publishes, and the every-tenth-run extras; per-session
+traces kept only on failure; the Actions cron schedule with a `sessions` multiplier input; the
+`lw_source=bot` cookie that stamps `source: "bot"`; and the nightly archive route plus Vercel cron.
+Dry runs surfaced four fixes: the open chat panel covered page controls after a reply (scenario
+now closes it), the admin nav was unreachable below `md` (now a horizontal bar on small screens),
+mobile device emulation broke hit-testing (viewports are sizes only), and sold-out products
+disabled add-to-cart (scenario moves on). Verified afterwards that the newest paid Fernhollow
+order renders as "automated" in the admin and that the archive route answers. Open questions:
+repeated bot purchases deplete inventory over time with a persistent store (no restock job is in
+the spec); `CRON_SECRET` is an added env var for the archive route.
+
+Dry run against `pnpm dev` (port 3100) with the multiplier at 3:
+
+```
+$ SESSIONS=3 BASE_URL=http://localhost:3100 TRAFFIC_SEED=dry-run-2026-10-01-d TRAFFIC_RUN_NUMBER=40 pnpm traffic
+Running 39 tests using 5 workers
+  39 passed (3.6m)
+
+Session outcomes (from the per-session log lines):
+  12 browsed and left
+   9 checked the dashboard
+   7 placed order
+   5 left with items in the cart
+   4 bounced at the sign-in prompt
+   3 opened 3 orders, fulfilled 0
+   2 left at the payment step
+   1 saved draft
+   1 opened 3 orders, fulfilled 1
+   1 followed the assistant's link to a product
+   1 edited a promo
+   1 chatted and rated down
+   1 asked the assistant and rated up
+   1 abandoned the product form
+```
+
+Earlier dry runs with other seeds: 56/60, 59/60, 47/51, and 56/60 before the four fixes above.
+
+```
+$ pnpm typecheck
+Generating route types...
+✓ Types generated successfully
+
+$ pnpm lint
+(no output: 0 problems)
+
+$ pnpm test
+ Test Files  21 passed (21)
+      Tests  87 passed (87)
+
+$ pnpm build
+✓ Compiled successfully in 1156ms
+  Finished TypeScript in 2.6s ...
+├ ƒ /api/jobs/archive-bot-products
+ƒ Proxy (Middleware)
+
+$ pnpm e2e:smoke
+Running 6 tests using 4 workers
+  ✓  3 [smoke] › e2e/smoke/chat.spec.ts:3:5 › shopper opens the assistant, sends a suggestion, and rates the reply (2.7s)
+  ✓  5 [smoke] › e2e/smoke/chat.spec.ts:27:5 › help page opens the assistant by default (352ms)
+  ✓  2 [smoke] › e2e/smoke/account.spec.ts:3:5 › signed-in shopper updates their profile, adds an address, and reorders (3.4s)
+  ✓  4 [smoke] › e2e/smoke/storefront.spec.ts:3:5 › anonymous shopper browses, adds to cart, and checks out as a guest (3.5s)
+  ✓  1 [smoke] › e2e/smoke/admin.spec.ts:3:5 › merchant creates and publishes a product, then fulfills an order (3.9s)
+  ✓  6 [smoke] › e2e/smoke/storefront.spec.ts:42:5 › promo link applies a code and the cart survives signing in (1.7s)
+  6 passed (7.0s)
+```
 
 ## 9. Deploy readiness
 

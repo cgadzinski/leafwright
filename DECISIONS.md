@@ -220,3 +220,34 @@ promoCode }` (HMAC-SHA256 with `AUTH_SECRET`, `lib/cookies.ts`), so guests need 
   (`source: "cart"`) and from the promo landing (`source: "link"`); "Orders Exported" fires in
   the CSV route handler with the filters and row count. `analytics.page()` exists but nothing
   calls it, matching SPEC §5's "the team never got around to the rest".
+
+## Milestone 8: traffic bot
+
+- **Layout.** `e2e/traffic/` is its own Playwright config (`pnpm traffic`): `config.ts` holds
+  the SPEC §12 percentages, viewports, entry points, and pacing; `plan.ts` turns a seed into a
+  deterministic list of sessions; `scenarios/` drive the browser; `traffic.spec.ts` registers one
+  Playwright test per session so sessions are independent and failures are reported per session.
+- **Determinism.** A run seed (`TRAFFIC_SEED`, defaulting to the UTC hour plus the Actions run id)
+  feeds a small PRNG. The config fixes the seed into `process.env` once so every worker builds the
+  same plan. Each session gets its own sub-seed so a failing session can be replayed.
+- **`sessions` is a multiplier** as SPEC §12 says: the workflow input (and the `SESSIONS` env var
+  locally) scales the 10–16 shopper and 3–5 merchant ranges. `SESSIONS=3` locally therefore runs
+  roughly 40–60 sessions.
+- **Visitor rotation.** Shoppers rotate as a 15-wide window over the 40-person pool that slides
+  six places a day, so everyone appears within a week. Merchant sessions walk a fixed store cycle
+  with Fernhollow (pro) twice per five sessions; within a store the owner and two staff alternate
+  by run number. Beyond the seeded shoppers, purchases use a fixed list of guest emails.
+- **Every tenth run** (`GITHUB_RUN_NUMBER % 10 === 0`, or `TRAFFIC_RUN_NUMBER` locally) one
+  merchant session also exports orders, edits a promo's end date, or visits billing, rotating.
+- **Bot marker.** Each context sets the `lw_source=bot` cookie before navigating, so
+  `placeOrder`, `saveProduct`, and the chat route stamp `source: "bot"`.
+- **Traces only on failure.** Contexts are created by hand (for viewport and cookie), so tracing
+  is started per session and the trace is kept and attached only when the session throws. The
+  workflow uploads `test-results/traffic` only when the job fails.
+- **Nightly archive.** `GET /api/jobs/archive-bot-products` archives bot products older than
+  seven days; Vercel Cron (`vercel.json`, 03:15 UTC) calls it with `Authorization: Bearer
+$CRON_SECRET`. Without the secret the route only works outside production. `CRON_SECRET` is an
+  addition to SPEC §12's env list. Bot orders and conversations need no job: the KV adapter gives
+  them a 14-day TTL.
+- **Schedule.** `0 6-23/2 * * 1-5` and `0 6-23/4 * * 0,6`, with a `concurrency` group so runs
+  do not overlap. Nothing blocks third-party scripts.

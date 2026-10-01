@@ -205,3 +205,18 @@ promoCode }` (HMAC-SHA256 with `AUTH_SECRET`, `lib/cookies.ts`), so guests need 
 - **Retry** re-sends the history up to the failed or disliked assistant reply, dropping it.
 - **Links.** The panel turns bare `/products/{slug}` paths in replies into links; the system prompt
   asks the model for that form instead of Markdown.
+
+## Milestone 7: analytics wrapper
+
+- **Shape.** `lib/analytics.ts` exports `analytics.track(event, properties)` and
+  `analytics.page(name?, properties)`. Both no-op unless `NEXT_PUBLIC_ANALYTICS_WRITE_KEY` is set.
+  No third-party SDK is installed.
+- **Delivery.** With a key, events are sent as JSON (`writeKey`, `type`, `event`, `properties`,
+  `timestamp`, `context`) to `NEXT_PUBLIC_ANALYTICS_ENDPOINT` via `sendBeacon` in the browser or
+  `fetch` on the server. That endpoint variable is an addition to SPEC §12's env list; it is
+  optional, and when it is absent events are queued on `globalThis` and logged at debug level.
+- **Call sites, and only these three.** "Products Searched" fires in the header search form on
+  submit; "Promo Applied" fires on the client after `applyPromo` succeeds from the cart form
+  (`source: "cart"`) and from the promo landing (`source: "link"`); "Orders Exported" fires in
+  the CSV route handler with the filters and row count. `analytics.page()` exists but nothing
+  calls it, matching SPEC §5's "the team never got around to the rest".

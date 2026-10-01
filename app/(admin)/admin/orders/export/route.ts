@@ -1,4 +1,5 @@
 import { ordersToCsv } from "@/lib/admin/csv";
+import { analytics } from "@/lib/analytics";
 import { filterRange, parseOrderFilters } from "@/lib/admin/order-filters";
 import { currentMerchant } from "@/lib/auth/merchant";
 import { db } from "@/lib/db";
@@ -17,6 +18,14 @@ export async function GET(request: Request): Promise<Response> {
   const csv = ordersToCsv(orders, (order) =>
     order.customerId ? (users.get(order.customerId) ?? "") : (order.guestEmail ?? ""),
   );
+
+  analytics.track("Orders Exported", {
+    storeId: merchant.store.id,
+    status: filters.status ?? null,
+    from: filters.from ?? null,
+    to: filters.to ?? null,
+    count: orders.length,
+  });
 
   const stamp = new Date().toISOString().slice(0, 10);
   return new Response(csv, {

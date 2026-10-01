@@ -402,9 +402,45 @@ Running 6 tests using 4 workers
 
 ## 7. Analytics wrapper
 
-- [ ] `lib/analytics.ts`
-- [ ] Three call sites from SPEC §5, nothing else
-- [ ] Gates passed and quoted
+- [x] `lib/analytics.ts` (`track`, `page`; no-op without `NEXT_PUBLIC_ANALYTICS_WRITE_KEY`)
+- [x] Three call sites from SPEC §5, nothing else ("Promo Applied" ×2 triggers, "Products Searched", "Orders Exported")
+- [x] Gates passed and quoted
+
+### Summary
+
+Shipped the in-house wrapper with unit tests for no-op, queued, and posted modes, and wired the
+three SPEC §5 events: search submit, promo applied (cart form and promo link), and the CSV export
+route handler. `grep analytics.track` across `app/`, `components/`, and `lib/` returns exactly
+those four lines. Open question: `NEXT_PUBLIC_ANALYTICS_ENDPOINT` was added as an optional
+variable so a keyed deploy has somewhere to send events (see `DECISIONS.md`).
+
+```
+$ pnpm typecheck
+Generating route types...
+✓ Types generated successfully
+
+$ pnpm lint
+(no output: 0 problems)
+
+$ pnpm test
+ Test Files  19 passed (19)
+      Tests  81 passed (81)
+
+$ pnpm build
+✓ Compiled successfully in 1013ms
+  Finished TypeScript in 1746ms ...
+ƒ Proxy (Middleware)
+
+$ pnpm e2e:smoke
+Running 6 tests using 4 workers
+  ✓  3 [smoke] › e2e/smoke/chat.spec.ts:3:5 › shopper opens the assistant, sends a suggestion, and rates the reply (2.8s)
+  ✓  5 [smoke] › e2e/smoke/chat.spec.ts:27:5 › help page opens the assistant by default (534ms)
+  ✓  2 [smoke] › e2e/smoke/account.spec.ts:3:5 › signed-in shopper updates their profile, adds an address, and reorders (3.6s)
+  ✓  4 [smoke] › e2e/smoke/storefront.spec.ts:3:5 › anonymous shopper browses, adds to cart, and checks out as a guest (4.2s)
+  ✓  1 [smoke] › e2e/smoke/admin.spec.ts:3:5 › merchant creates and publishes a product, then fulfills an order (4.4s)
+  ✓  6 [smoke] › e2e/smoke/storefront.spec.ts:42:5 › promo link applies a code and the cart survives signing in (1.8s)
+  6 passed (8.9s)
+```
 
 ## 8. Traffic bot
 

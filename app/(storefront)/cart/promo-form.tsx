@@ -4,6 +4,7 @@ import { useActionState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { analytics } from "@/lib/analytics";
 import { applyPromo, removePromo, type CartActionState } from "./actions";
 
 export function PromoForm({
@@ -13,7 +14,20 @@ export function PromoForm({
   appliedCode?: string;
   appliedDescription?: string;
 }) {
-  const [state, action, pending] = useActionState<CartActionState, FormData>(applyPromo, {});
+  const [state, action, pending] = useActionState<CartActionState, FormData>(
+    async (prev, formData) => {
+      const result = await applyPromo(prev, formData);
+      if (result.ok)
+        analytics.track("Promo Applied", {
+          code: String(formData.get("code") ?? "")
+            .trim()
+            .toUpperCase(),
+          source: "cart",
+        });
+      return result;
+    },
+    {},
+  );
 
   return (
     <div className="mt-4">

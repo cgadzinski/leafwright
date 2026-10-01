@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { analytics } from "@/lib/analytics";
 
 export function SearchForm() {
   const router = useRouter();
@@ -18,6 +19,7 @@ export function SearchForm() {
       onSubmit={(event) => {
         event.preventDefault();
         const trimmed = query.trim();
+        if (trimmed) analytics.track("Products Searched", { query: trimmed });
         router.push(trimmed ? `/products?q=${encodeURIComponent(trimmed)}` : "/products");
       }}
     >

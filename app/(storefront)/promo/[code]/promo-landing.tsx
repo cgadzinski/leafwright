@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { analytics } from "@/lib/analytics";
 import { applyPromoCode, type CartActionState } from "../../cart/actions";
 
 export function PromoLanding({ code }: { code: string }) {
@@ -16,7 +17,10 @@ export function PromoLanding({ code }: { code: string }) {
     started.current = true;
     applyPromoCode(code).then((state) => {
       setResult(state);
-      if (state.ok) router.replace("/products");
+      if (state.ok) {
+        analytics.track("Promo Applied", { code, source: "link" });
+        router.replace("/products");
+      }
     });
   }, [code, router]);
 

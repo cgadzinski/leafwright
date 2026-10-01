@@ -140,3 +140,41 @@ promoCode }` (HMAC-SHA256 with `AUTH_SECRET`, `lib/cookies.ts`), so guests need 
 - **Addresses** can be added, removed, and made default from the profile; the first address a
   user saves becomes the default. Address inputs got `account-address-{field}` test ids
   (`TESTIDS.md`).
+
+## Milestone 5: admin
+
+- **Merchant guard in the layout.** `requireMerchant()` (`lib/auth/merchant.ts`) runs in the
+  `(admin)` layout and every admin page, on top of `proxy.ts`, and loads the store fresh from
+  the data layer. Actions use `currentMerchant()` which returns null instead of redirecting.
+- **Flags.** `lib/flags.config.ts` holds `FLAGS` and the in-memory flag table with a
+  `contextEvaluator` that turns `merchant-analytics` on when `plan === "pro"`. `lib/flags.ts`
+  configures the web SDK; `lib/flags.server.ts` the server SDK. `FlagsProvider` registers the
+  provider during the first client render with the store's plan as context, and wraps
+  `OpenFeatureProvider` with suspense off so the nav never suspends. The analytics nav link uses
+  `useBooleanFlagValue`; the analytics page uses the server SDK and renders an upsell when off.
+- **Dashboard KPIs** cover the trailing 30 days versus the 30 before. Conversion has no session
+  data behind it, so it is checkout conversion: orders ÷ (orders + carts still holding the
+  store's products). The tile says so.
+- **Product form.** One form, two Server Actions: `saveProduct` keeps a published product
+  published (its button reads "Save changes") and otherwise saves a draft; `publishProduct`
+  saves and publishes. Both redirect to the edit page with `?saved=1` / `?published=1`.
+  `archiveProduct` is a separate form in the sidebar. Variants are shown but not edited; new
+  products start without variants and use the category card art.
+- **Prices in the form are dollars** (`24.50`) and stored as cents.
+- **Orders list filters** live in the URL (`?status=&from=&to=`) and are parsed leniently by
+  `lib/admin/order-filters.ts`; the CSV export route handler reads the same query string so the
+  download matches the table. Dates are inclusive UTC days.
+- **Order status transitions.** Fulfill is allowed from `placed` or `paid` and stamps
+  `fulfilledAt` plus an optional tracking number; refund is allowed from any status but
+  `refunded`. Customer refund requests (notes) are called out above the order.
+- **Customers** are derived, not stored: shopper users and guest emails joined to the store's
+  orders. Guest customer ids are `guest-<base64url email>` so the detail route works for them.
+- **Promos.** Codes are unique across stores (the storefront looks codes up globally). Percent
+  promos store the percentage, fixed promos store cents, free shipping stores 0. The list toggle
+  flips `isActive`; the detail form handles everything else and `new` is a valid id.
+- **Settings.** Four sections under `/admin/settings/[section]`; `/admin/settings` redirects to
+  `store`. The slug is shown read-only so storefront links stay stable. Invites, plan changes, and
+  payout edits are owner-only (SPEC §15 allows owner vs staff); staff see disabled controls.
+  Payouts keep only the last four digits of the account number.
+- **Analytics** renders a CSS bar chart of daily revenue, top products, and median fulfillment
+  time for a 7 / 30 / 90 day range chosen with `analytics-date-range`.

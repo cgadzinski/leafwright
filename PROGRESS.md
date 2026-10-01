@@ -242,16 +242,84 @@ Running 3 tests using 2 workers
 
 ## 5. Admin
 
-- [ ] Dashboard KPIs from seed orders
-- [ ] Products CRUD with draft / publish / archive
-- [ ] Orders with status filter, date range, CSV export route handler
-- [ ] Fulfill / refund / notes
-- [ ] Customers
-- [ ] Promos
-- [ ] Settings sections
-- [ ] `merchant-analytics` OpenFeature flag, `pro` stores on
-- [ ] Smoke: merchant sign-in → new product → publish → open order → fulfill
-- [ ] Gates passed and quoted
+- [x] Dashboard KPIs from seed orders (revenue, orders, AOV, checkout conversion; 30-day window vs prior)
+- [x] Products CRUD with draft / publish / archive
+- [x] Orders with status filter, date range, CSV export route handler
+- [x] Fulfill / refund / notes
+- [x] Customers (users and guest emails joined to the store's orders)
+- [x] Promos (list with toggles, detail form, `new` id)
+- [x] Settings sections (store, team, billing, payouts)
+- [x] `merchant-analytics` OpenFeature flag, `pro` stores on (web, React, and server SDKs)
+- [x] Smoke: merchant sign-in → new product → publish → open order → fulfill
+- [x] Gates passed and quoted
+
+### Summary
+
+Shipped the merchant admin: guarded layout with store header and flagged nav, dashboard KPIs and
+recent orders, products list / new / edit with save-draft, publish, and archive actions, orders
+list with status and date filters plus a CSV route handler, order detail with fulfill, refund, and
+notes, customers list and detail, promos list with toggles and a detail form, four settings
+sections, and the analytics page behind the `merchant-analytics` flag (Fernhollow, the `pro`
+store, sees it; others get the upsell). Verified the CSV export by hand as a Kiln & Vine owner
+(200, `text/csv`, attachment filename, 13 fulfilled rows) and that anonymous requests redirect.
+Open question: dashboard "conversion" is checkout conversion from orders and open carts because
+there is no session data (see `DECISIONS.md`).
+
+```
+$ pnpm typecheck
+Generating route types...
+✓ Types generated successfully
+
+$ pnpm lint
+(no output: 0 problems)
+
+$ pnpm test
+ Test Files  17 passed (17)
+      Tests  73 passed (73)
+
+$ pnpm build
+✓ Compiled successfully in 1576ms
+  Finished TypeScript in 2.6s ...
+Route (app)
+┌ ƒ /
+├ ○ /_not-found
+├ ƒ /account
+├ ƒ /account/orders
+├ ƒ /account/orders/[orderNumber]
+├ ƒ /admin
+├ ƒ /admin/analytics
+├ ƒ /admin/customers
+├ ƒ /admin/customers/[id]
+├ ƒ /admin/orders
+├ ƒ /admin/orders/[id]
+├ ƒ /admin/orders/export
+├ ƒ /admin/products
+├ ƒ /admin/products/[id]
+├ ƒ /admin/products/new
+├ ƒ /admin/promos
+├ ƒ /admin/promos/[id]
+├ ƒ /admin/settings
+├ ƒ /admin/settings/[section]
+├ ƒ /api/auth/[...nextauth]
+├ ƒ /cart
+├ ƒ /checkout
+├ ƒ /help
+├ ƒ /orders/[orderNumber]/confirmation
+├ ƒ /products
+├ ƒ /products/[slug]
+├ ƒ /promo/[code]
+├ ƒ /sign-in
+└ ƒ /stores/[slug]
+ƒ Proxy (Middleware)
+
+$ pnpm e2e:smoke
+Running 4 tests using 3 workers
+  ✓  3 [smoke] › e2e/smoke/account.spec.ts:3:5 › signed-in shopper updates their profile, adds an address, and reorders (3.2s)
+  ✓  1 [smoke] › e2e/smoke/storefront.spec.ts:3:5 › anonymous shopper browses, adds to cart, and checks out as a guest (3.3s)
+  ✓  2 [smoke] › e2e/smoke/admin.spec.ts:3:5 › merchant creates and publishes a product, then fulfills an order (4.2s)
+  ✓  4 [smoke] › e2e/smoke/storefront.spec.ts:42:5 › promo link applies a code and the cart survives signing in (1.7s)
+  4 passed (7.1s)
+```
 
 ## 6. Chat
 

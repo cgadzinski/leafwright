@@ -165,6 +165,7 @@ export const db = {
   },
 
   carts: {
+    listAll: () => getAdapter().list("carts"),
     getById: (id: string) => getAdapter().get("carts", id),
     getByUserId: async (userId: string) =>
       (await getAdapter().list("carts")).find((cart) => cart.userId === userId),

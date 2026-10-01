@@ -86,13 +86,44 @@ Route (app)
 
 ## 2. Auth
 
-- [ ] Auth.js v5 credentials provider
-- [ ] `jwt` and `session` callbacks, `session.store` nullable
-- [ ] Request guards for `/admin/**` and `/account/**`
-- [ ] `/sign-in` page
-- [ ] Shared demo password from env
-- [ ] Unit tests for the callbacks
-- [ ] Gates passed and quoted
+- [x] Auth.js v5 credentials provider
+- [x] `jwt` and `session` callbacks, `session.store` nullable
+- [x] Request guards for `/admin/**` and `/account/**` (`proxy.ts`)
+- [x] `/sign-in` page
+- [x] Shared demo password from env
+- [x] Unit tests for the callbacks (plus credentials and callback URL)
+- [x] Gates passed and quoted
+
+### Summary
+
+Shipped Auth.js v5 with a Credentials provider over the seeded users, JWT sessions, `session.store`
+for merchants and `null` for shoppers, the `proxy.ts` guard, the `/sign-in` page, and a
+`SessionProvider` in the root layout. Verified live with curl: sign-in sets the session cookie,
+`/api/auth/session` returns the store for a Fernhollow owner, `/admin` and `/account/*` redirect
+to `/sign-in?callbackUrl=…` when signed out.
+
+```
+$ pnpm typecheck
+Generating route types...
+✓ Types generated successfully
+
+$ pnpm lint
+(no output: 0 problems)
+
+$ pnpm test
+ Test Files  9 passed (9)
+      Tests  51 passed (51)
+
+$ pnpm build
+✓ Compiled successfully in 1029ms
+  Finished TypeScript in 1677ms ...
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/auth/[...nextauth]
+└ ƒ /sign-in
+ƒ Proxy (Middleware)
+```
 
 ## 3. Storefront
 

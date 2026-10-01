@@ -70,3 +70,20 @@ Newest at the bottom.
   when variants exist.
 - **Seed distribution.** 48 published / 8 draft / 4 archived products; orders split 60/40/40/20
   across Fernhollow, Dry Creek, Kiln & Vine, Moss Lane; 23 guest orders; 30 with a promo.
+
+## Milestone 2: auth
+
+- **Guard file.** The route guard is `proxy.ts` exporting `proxy = auth(...)` with a matcher for
+  `/admin/:path*` and `/account/:path*`, as Auth.js documents for Next.js 16. Signed-out users
+  are sent to `/sign-in?callbackUrl=…`; signed-in shoppers who hit `/admin` are sent home.
+- **Callbacks as plain functions.** `jwtCallback` and `sessionCallback` live in
+  `lib/auth/callbacks.ts` with injectable dependencies (`stampSignIn`, `loadStore`) so they are
+  unit-tested without Auth.js. `auth.ts` just forwards to them.
+- **Fresh store on every session read.** The `session` callback loads the store by id each time
+  rather than copying plan/trial onto the token, so a plan change shows up without re-signing in.
+- **`trustHost: true`.** The demo runs on localhost, Vercel previews, and GitHub Actions; host
+  trust is on rather than enumerated.
+- **Sign-in form.** A client component with `useActionState` posting to a Server Action that calls
+  `signIn("credentials", …)` and maps `AuthError` to one generic message. Only same-origin paths
+  are honored as `callbackUrl` (`lib/auth/callback-url.ts`).
+- **Local env.** `.env.local` (gitignored) holds `AUTH_SECRET` and `DEMO_PASSWORD` for `pnpm dev`.

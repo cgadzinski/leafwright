@@ -1,0 +1,12 @@
+node_modules
+.next
+out
+build
+coverage
+pnpm-lock.yaml
+seed/*.json
+test-results
+playwright-report
+SPEC.md
+KICKOFF.md
+NOVA-*.md

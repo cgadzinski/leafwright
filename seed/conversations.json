@@ -1,0 +1,525 @@
+[
+  {
+    "id": "conv_01",
+    "persona": "shopper",
+    "userId": "user_0015",
+    "messages": [
+      {
+        "id": "msg_0001_1",
+        "role": "user",
+        "content": "Low-light plant for a bedroom",
+        "createdAt": "2026-08-09T07:19:04.259Z"
+      },
+      {
+        "id": "msg_0001_2",
+        "role": "assistant",
+        "content": "For a bedroom with little direct sun, a Snake Plant Laurentii or ZZ Plant will be happiest. Both tolerate low light and only need water every two to three weeks. If you want something leafier, the Heartleaf Philodendron handles shade well too.",
+        "createdAt": "2026-08-09T07:19:08.259Z"
+      }
+    ],
+    "ratings": [
+      {
+        "messageId": "msg_0001_2",
+        "value": "up",
+        "createdAt": "2026-08-09T07:19:19.259Z"
+      }
+    ],
+    "source": "seed",
+    "createdAt": "2026-08-09T07:19:04.259Z"
+  },
+  {
+    "id": "conv_02",
+    "persona": "shopper",
+    "messages": [
+      {
+        "id": "msg_0002_1",
+        "role": "user",
+        "content": "Something dramatic for a bright living room",
+        "createdAt": "2026-08-25T23:20:30.149Z"
+      },
+      {
+        "id": "msg_0002_2",
+        "role": "assistant",
+        "content": "A Bird of Paradise or Fiddle Leaf Fig fills a bright room quickly. Both want a few hours of direct sun and consistent watering once the top inch of soil dries.",
+        "createdAt": "2026-08-25T23:20:34.149Z"
+      }
+    ],
+    "ratings": [
+      {
+        "messageId": "msg_0002_2",
+        "value": "down",
+        "createdAt": "2026-08-25T23:20:45.149Z"
+      }
+    ],
+    "source": "seed",
+    "createdAt": "2026-08-25T23:20:30.149Z"
+  },
+  {
+    "id": "conv_03",
+    "persona": "shopper",
+    "messages": [
+      {
+        "id": "msg_0003_1",
+        "role": "user",
+        "content": "Low-light plant for a bedroom",
+        "createdAt": "2026-08-08T08:46:52.179Z"
+      },
+      {
+        "id": "msg_0003_2",
+        "role": "assistant",
+        "content": "For a bedroom with little direct sun, a Snake Plant Laurentii or ZZ Plant will be happiest. Both tolerate low light and only need water every two to three weeks. If you want something leafier, the Heartleaf Philodendron handles shade well too.",
+        "createdAt": "2026-08-08T08:46:56.179Z"
+      }
+    ],
+    "ratings": [
+      {
+        "messageId": "msg_0003_2",
+        "value": "up",
+        "createdAt": "2026-08-08T08:47:07.179Z"
+      }
+    ],
+    "source": "seed",
+    "createdAt": "2026-08-08T08:46:52.179Z"
+  },
+  {
+    "id": "conv_04",
+    "persona": "shopper",
+    "userId": "user_0022",
+    "messages": [
+      {
+        "id": "msg_0004_1",
+        "role": "user",
+        "content": "Do succulents need special soil?",
+        "createdAt": "2026-09-26T06:45:25.755Z"
+      },
+      {
+        "id": "msg_0004_2",
+        "role": "assistant",
+        "content": "Yes, a fast-draining mix. Blend our Indoor Potting Mix with Horticultural Perlite about two to one, and pick a pot with a drainage hole like the Classic Terracotta Pot.",
+        "createdAt": "2026-09-26T06:45:29.755Z"
+      }
+    ],
+    "ratings": [],
+    "source": "seed",
+    "createdAt": "2026-09-26T06:45:25.755Z"
+  },
+  {
+    "id": "conv_05",
+    "persona": "shopper",
+    "messages": [
+      {
+        "id": "msg_0005_1",
+        "role": "user",
+        "content": "Pet-safe under $30",
+        "createdAt": "2026-09-12T19:21:00.837Z"
+      },
+      {
+        "id": "msg_0005_2",
+        "role": "assistant",
+        "content": "Pet-safe picks under $30 include the Haworthia Zebra and the Hen and Chicks from Dry Creek, and the Peperomia-style trailing options from Moss Lane. Avoid pothos and philodendron if your cat likes to chew.",
+        "createdAt": "2026-09-12T19:21:04.837Z"
+      }
+    ],
+    "ratings": [],
+    "source": "seed",
+    "createdAt": "2026-09-12T19:21:00.837Z"
+  },
+  {
+    "id": "conv_06",
+    "persona": "shopper",
+    "userId": "user_0041",
+    "messages": [
+      {
+        "id": "msg_0006_1",
+        "role": "user",
+        "content": "Pet-safe under $30",
+        "createdAt": "2026-09-26T12:41:01.866Z"
+      },
+      {
+        "id": "msg_0006_2",
+        "role": "assistant",
+        "content": "Pet-safe picks under $30 include the Haworthia Zebra and the Hen and Chicks from Dry Creek, and the Peperomia-style trailing options from Moss Lane. Avoid pothos and philodendron if your cat likes to chew.",
+        "createdAt": "2026-09-26T12:41:05.866Z"
+      }
+    ],
+    "ratings": [
+      {
+        "messageId": "msg_0006_2",
+        "value": "up",
+        "createdAt": "2026-09-26T12:41:16.866Z"
+      }
+    ],
+    "source": "seed",
+    "createdAt": "2026-09-26T12:41:01.866Z"
+  },
+  {
+    "id": "conv_07",
+    "persona": "shopper",
+    "messages": [
+      {
+        "id": "msg_0007_1",
+        "role": "user",
+        "content": "Something dramatic for a bright living room",
+        "createdAt": "2026-08-25T01:51:21.482Z"
+      },
+      {
+        "id": "msg_0007_2",
+        "role": "assistant",
+        "content": "A Bird of Paradise or Fiddle Leaf Fig fills a bright room quickly. Both want a few hours of direct sun and consistent watering once the top inch of soil dries.",
+        "createdAt": "2026-08-25T01:51:25.482Z"
+      }
+    ],
+    "ratings": [
+      {
+        "messageId": "msg_0007_2",
+        "value": "down",
+        "createdAt": "2026-08-25T01:51:36.482Z"
+      }
+    ],
+    "source": "seed",
+    "createdAt": "2026-08-25T01:51:21.482Z"
+  },
+  {
+    "id": "conv_08",
+    "persona": "shopper",
+    "messages": [
+      {
+        "id": "msg_0008_1",
+        "role": "user",
+        "content": "Low-light plant for a bedroom",
+        "createdAt": "2026-09-28T10:23:38.233Z"
+      },
+      {
+        "id": "msg_0008_2",
+        "role": "assistant",
+        "content": "For a bedroom with little direct sun, a Snake Plant Laurentii or ZZ Plant will be happiest. Both tolerate low light and only need water every two to three weeks. If you want something leafier, the Heartleaf Philodendron handles shade well too.",
+        "createdAt": "2026-09-28T10:23:42.233Z"
+      }
+    ],
+    "ratings": [],
+    "source": "seed",
+    "createdAt": "2026-09-28T10:23:38.233Z"
+  },
+  {
+    "id": "conv_09",
+    "persona": "shopper",
+    "userId": "user_0038",
+    "messages": [
+      {
+        "id": "msg_0009_1",
+        "role": "user",
+        "content": "Gift for a beginner",
+        "createdAt": "2026-09-27T14:31:17.311Z"
+      },
+      {
+        "id": "msg_0009_2",
+        "role": "assistant",
+        "content": "A Golden Pothos in a Glazed Stoneware Planter is a classic beginner gift: forgiving, fast-growing, and good-looking. Add the Soil Moisture Meter so they know when to water.",
+        "createdAt": "2026-09-27T14:31:21.311Z"
+      }
+    ],
+    "ratings": [],
+    "source": "seed",
+    "createdAt": "2026-09-27T14:31:17.311Z"
+  },
+  {
+    "id": "conv_10",
+    "persona": "shopper",
+    "userId": "user_0039",
+    "messages": [
+      {
+        "id": "msg_0010_1",
+        "role": "user",
+        "content": "Do succulents need special soil?",
+        "createdAt": "2026-09-12T03:36:45.424Z"
+      },
+      {
+        "id": "msg_0010_2",
+        "role": "assistant",
+        "content": "Yes, a fast-draining mix. Blend our Indoor Potting Mix with Horticultural Perlite about two to one, and pick a pot with a drainage hole like the Classic Terracotta Pot.",
+        "createdAt": "2026-09-12T03:36:49.424Z"
+      }
+    ],
+    "ratings": [
+      {
+        "messageId": "msg_0010_2",
+        "value": "down",
+        "createdAt": "2026-09-12T03:37:00.424Z"
+      }
+    ],
+    "source": "seed",
+    "createdAt": "2026-09-12T03:36:45.424Z"
+  },
+  {
+    "id": "conv_11",
+    "persona": "shopper",
+    "userId": "user_0037",
+    "messages": [
+      {
+        "id": "msg_0011_1",
+        "role": "user",
+        "content": "Do succulents need special soil?",
+        "createdAt": "2026-09-11T17:27:42.567Z"
+      },
+      {
+        "id": "msg_0011_2",
+        "role": "assistant",
+        "content": "Yes, a fast-draining mix. Blend our Indoor Potting Mix with Horticultural Perlite about two to one, and pick a pot with a drainage hole like the Classic Terracotta Pot.",
+        "createdAt": "2026-09-11T17:27:46.567Z"
+      }
+    ],
+    "ratings": [
+      {
+        "messageId": "msg_0011_2",
+        "value": "down",
+        "createdAt": "2026-09-11T17:27:57.567Z"
+      }
+    ],
+    "source": "seed",
+    "createdAt": "2026-09-11T17:27:42.567Z"
+  },
+  {
+    "id": "conv_12",
+    "persona": "shopper",
+    "messages": [
+      {
+        "id": "msg_0012_1",
+        "role": "user",
+        "content": "Low-light plant for a bedroom",
+        "createdAt": "2026-08-22T15:40:58.339Z"
+      },
+      {
+        "id": "msg_0012_2",
+        "role": "assistant",
+        "content": "For a bedroom with little direct sun, a Snake Plant Laurentii or ZZ Plant will be happiest. Both tolerate low light and only need water every two to three weeks. If you want something leafier, the Heartleaf Philodendron handles shade well too.",
+        "createdAt": "2026-08-22T15:41:02.339Z"
+      }
+    ],
+    "ratings": [
+      {
+        "messageId": "msg_0012_2",
+        "value": "down",
+        "createdAt": "2026-08-22T15:41:13.339Z"
+      }
+    ],
+    "source": "seed",
+    "createdAt": "2026-08-22T15:40:58.339Z"
+  },
+  {
+    "id": "conv_13",
+    "persona": "shopper",
+    "messages": [
+      {
+        "id": "msg_0013_1",
+        "role": "user",
+        "content": "Pet-safe under $30",
+        "createdAt": "2026-09-19T02:07:10.202Z"
+      },
+      {
+        "id": "msg_0013_2",
+        "role": "assistant",
+        "content": "Pet-safe picks under $30 include the Haworthia Zebra and the Hen and Chicks from Dry Creek, and the Peperomia-style trailing options from Moss Lane. Avoid pothos and philodendron if your cat likes to chew.",
+        "createdAt": "2026-09-19T02:07:14.202Z"
+      }
+    ],
+    "ratings": [
+      {
+        "messageId": "msg_0013_2",
+        "value": "up",
+        "createdAt": "2026-09-19T02:07:25.202Z"
+      }
+    ],
+    "source": "seed",
+    "createdAt": "2026-09-19T02:07:10.202Z"
+  },
+  {
+    "id": "conv_14",
+    "persona": "shopper",
+    "userId": "user_0021",
+    "messages": [
+      {
+        "id": "msg_0014_1",
+        "role": "user",
+        "content": "Low-light plant for a bedroom",
+        "createdAt": "2026-08-15T15:38:29.245Z"
+      },
+      {
+        "id": "msg_0014_2",
+        "role": "assistant",
+        "content": "For a bedroom with little direct sun, a Snake Plant Laurentii or ZZ Plant will be happiest. Both tolerate low light and only need water every two to three weeks. If you want something leafier, the Heartleaf Philodendron handles shade well too.",
+        "createdAt": "2026-08-15T15:38:33.245Z"
+      }
+    ],
+    "ratings": [
+      {
+        "messageId": "msg_0014_2",
+        "value": "up",
+        "createdAt": "2026-08-15T15:38:44.245Z"
+      }
+    ],
+    "source": "seed",
+    "createdAt": "2026-08-15T15:38:29.245Z"
+  },
+  {
+    "id": "conv_15",
+    "persona": "merchant",
+    "userId": "user_0008",
+    "storeId": "store_kiln",
+    "messages": [
+      {
+        "id": "msg_0015_1",
+        "role": "user",
+        "content": "What should I restock?",
+        "createdAt": "2026-08-23T22:04:45.756Z"
+      },
+      {
+        "id": "msg_0015_2",
+        "role": "assistant",
+        "content": "Your three fastest sellers over the last 30 days are running low: Monstera Deliciosa (6\" pot), Golden Pothos, and the Speckled Ceramic Pot in medium. Each has under five units left at the current sell-through rate.",
+        "createdAt": "2026-08-23T22:04:49.756Z"
+      }
+    ],
+    "ratings": [],
+    "source": "seed",
+    "createdAt": "2026-08-23T22:04:45.756Z"
+  },
+  {
+    "id": "conv_16",
+    "persona": "merchant",
+    "userId": "user_0002",
+    "storeId": "store_fernhollow",
+    "messages": [
+      {
+        "id": "msg_0016_1",
+        "role": "user",
+        "content": "What should I restock?",
+        "createdAt": "2026-08-27T04:50:25.798Z"
+      },
+      {
+        "id": "msg_0016_2",
+        "role": "assistant",
+        "content": "Your three fastest sellers over the last 30 days are running low: Monstera Deliciosa (6\" pot), Golden Pothos, and the Speckled Ceramic Pot in medium. Each has under five units left at the current sell-through rate.",
+        "createdAt": "2026-08-27T04:50:29.798Z"
+      }
+    ],
+    "ratings": [
+      {
+        "messageId": "msg_0016_2",
+        "value": "up",
+        "createdAt": "2026-08-27T04:50:40.798Z"
+      }
+    ],
+    "source": "seed",
+    "createdAt": "2026-08-27T04:50:25.798Z"
+  },
+  {
+    "id": "conv_17",
+    "persona": "merchant",
+    "userId": "user_0003",
+    "storeId": "store_fernhollow",
+    "messages": [
+      {
+        "id": "msg_0017_1",
+        "role": "user",
+        "content": "What should I restock?",
+        "createdAt": "2026-08-25T13:31:37.431Z"
+      },
+      {
+        "id": "msg_0017_2",
+        "role": "assistant",
+        "content": "Your three fastest sellers over the last 30 days are running low: Monstera Deliciosa (6\" pot), Golden Pothos, and the Speckled Ceramic Pot in medium. Each has under five units left at the current sell-through rate.",
+        "createdAt": "2026-08-25T13:31:41.431Z"
+      }
+    ],
+    "ratings": [
+      {
+        "messageId": "msg_0017_2",
+        "value": "up",
+        "createdAt": "2026-08-25T13:31:52.431Z"
+      }
+    ],
+    "source": "seed",
+    "createdAt": "2026-08-25T13:31:37.431Z"
+  },
+  {
+    "id": "conv_18",
+    "persona": "merchant",
+    "userId": "user_0003",
+    "storeId": "store_fernhollow",
+    "messages": [
+      {
+        "id": "msg_0018_1",
+        "role": "user",
+        "content": "Why were sales down last week?",
+        "createdAt": "2026-08-21T06:21:50.356Z"
+      },
+      {
+        "id": "msg_0018_2",
+        "role": "assistant",
+        "content": "Revenue dipped about 12% week over week. Order count held steady, but average order value fell because two of your higher-priced rare plants went out of stock mid-week. Restocking those should recover most of the gap.",
+        "createdAt": "2026-08-21T06:21:54.356Z"
+      }
+    ],
+    "ratings": [],
+    "source": "seed",
+    "createdAt": "2026-08-21T06:21:50.356Z"
+  },
+  {
+    "id": "conv_19",
+    "persona": "merchant",
+    "userId": "user_0005",
+    "storeId": "store_dry",
+    "messages": [
+      {
+        "id": "msg_0019_1",
+        "role": "user",
+        "content": "Why were sales down last week?",
+        "createdAt": "2026-09-02T12:03:25.910Z"
+      },
+      {
+        "id": "msg_0019_2",
+        "role": "assistant",
+        "content": "Revenue dipped about 12% week over week. Order count held steady, but average order value fell because two of your higher-priced rare plants went out of stock mid-week. Restocking those should recover most of the gap.",
+        "createdAt": "2026-09-02T12:03:29.910Z"
+      }
+    ],
+    "ratings": [
+      {
+        "messageId": "msg_0019_2",
+        "value": "up",
+        "createdAt": "2026-09-02T12:03:40.910Z"
+      }
+    ],
+    "source": "seed",
+    "createdAt": "2026-09-02T12:03:25.910Z"
+  },
+  {
+    "id": "conv_20",
+    "persona": "merchant",
+    "userId": "user_0009",
+    "storeId": "store_kiln",
+    "messages": [
+      {
+        "id": "msg_0020_1",
+        "role": "user",
+        "content": "Why were sales down last week?",
+        "createdAt": "2026-08-21T17:12:51.931Z"
+      },
+      {
+        "id": "msg_0020_2",
+        "role": "assistant",
+        "content": "Revenue dipped about 12% week over week. Order count held steady, but average order value fell because two of your higher-priced rare plants went out of stock mid-week. Restocking those should recover most of the gap.",
+        "createdAt": "2026-08-21T17:12:55.931Z"
+      }
+    ],
+    "ratings": [
+      {
+        "messageId": "msg_0020_2",
+        "value": "up",
+        "createdAt": "2026-08-21T17:13:06.931Z"
+      }
+    ],
+    "source": "seed",
+    "createdAt": "2026-08-21T17:12:51.931Z"
+  }
+]

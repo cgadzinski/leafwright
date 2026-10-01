@@ -46,13 +46,43 @@ Route (app)
 
 ## 1. Data layer and seed
 
-- [ ] `lib/db/schema.ts` with every entity in SPEC §9
-- [ ] Repository API in `lib/db/index.ts`
-- [ ] Memory adapter
-- [ ] `scripts/seed.ts` with a fixed faker seed
-- [ ] Committed `seed/*.json` at SPEC §9 counts
-- [ ] Unit tests: cart totals, promo rules, order number generation
-- [ ] Gates passed and quoted
+- [x] `lib/db/schema.ts` with every entity in SPEC §9
+- [x] Repository API in `lib/db/index.ts`
+- [x] Memory adapter
+- [x] `scripts/seed.ts` with a fixed faker seed
+- [x] Committed `seed/*.json` at SPEC §9 counts (4 / 60 / 12+40 / 160 / 8 / 20)
+- [x] Unit tests: cart totals, promo rules, order number generation (plus password and repository)
+- [x] Gates passed and quoted
+
+### Summary
+
+Shipped Zod entity schemas, the repository over a generic adapter, the memory adapter with
+hot-reload-safe tables, pricing and promo rules, order numbering, scrypt password hashing, the
+seed generator, and committed seed JSON. Open question: product photos were skipped in favor of
+category SVG art only (see `DECISIONS.md`).
+
+```
+$ pnpm typecheck
+Generating route types...
+✓ Types generated successfully
+
+$ pnpm lint
+(no output: 0 problems)
+
+$ pnpm test
+ Test Files  6 passed (6)
+      Tests  39 passed (39)
+
+$ pnpm build
+✓ Compiled successfully in 359ms
+  Finished TypeScript in 1295ms ...
+  Generating static pages using 4 workers (0/3) ...
+✓ Generating static pages using 4 workers (3/3) in 165ms
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+○  (Static)  prerendered as static content
+```
 
 ## 2. Auth
 

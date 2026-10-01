@@ -1,0 +1,630 @@
+[
+  {
+    "id": "user_0001",
+    "email": "amari.rohan@fernhollow-nursery.example.com",
+    "name": "Amari Rohan",
+    "role": "owner",
+    "storeId": "store_fernhollow",
+    "passwordHash": "scrypt$6f4Dc6FDBde6AF7d7Bb6BdBeAB286bba$6b52a68c51853d4264c57992f301a51cd2151caad5e8adbcf61f19fde4b31983",
+    "followedStoreIds": [],
+    "createdAt": "2025-04-06T13:59:39.005Z",
+    "lastSignInAt": "2026-09-13T16:34:52.114Z"
+  },
+  {
+    "id": "user_0002",
+    "email": "clay.kihn@fernhollow-nursery.example.com",
+    "name": "Clay Kihn",
+    "role": "staff",
+    "storeId": "store_fernhollow",
+    "passwordHash": "scrypt$ca30e6e7CBAC18AF4cE853cd33Af2ffF$9f4b1f17e52f46ba4189c9f8ee6efa98bf80297914bee1f8d7773afc006e7ac2",
+    "phone": "(779) 797-0719",
+    "followedStoreIds": [],
+    "createdAt": "2025-04-16T00:14:35.294Z",
+    "lastSignInAt": "2026-09-29T00:35:21.442Z"
+  },
+  {
+    "id": "user_0003",
+    "email": "ozella.conroy@fernhollow-nursery.example.com",
+    "name": "Ozella Conroy",
+    "role": "staff",
+    "storeId": "store_fernhollow",
+    "passwordHash": "scrypt$375741D70B6c95bcF49750CEecAeaB1A$d1266ae012048d2b07d50a31923dc47a34edb9c7ba7012f8fbf763b2d201839b",
+    "phone": "(771) 361-1453",
+    "followedStoreIds": [],
+    "createdAt": "2026-05-22T08:41:10.845Z",
+    "lastSignInAt": "2026-09-24T18:53:26.049Z"
+  },
+  {
+    "id": "user_0004",
+    "email": "patricia.schamberger@dry-creek-succulents.example.com",
+    "name": "Patricia Schamberger",
+    "role": "owner",
+    "storeId": "store_dry",
+    "passwordHash": "scrypt$3efC4DB6ffdDAaC55d2d46C2E55aE5aA$87c2e536b2b1456e9123de2fa6d959f2365bd1e7db4d1bab5c960492ab86ca9d",
+    "phone": "(785) 755-3540",
+    "followedStoreIds": [],
+    "createdAt": "2026-06-06T22:01:04.493Z",
+    "lastSignInAt": "2026-09-23T21:05:45.069Z"
+  },
+  {
+    "id": "user_0005",
+    "email": "prudence.tillman@dry-creek-succulents.example.com",
+    "name": "Prudence Tillman",
+    "role": "staff",
+    "storeId": "store_dry",
+    "passwordHash": "scrypt$B13D3bcB5AF29114dbeD3969944c602a$9db005718aa3b4c16d6460bc6d7572bd44080e17b4774e38bafb0f727bdc58c2",
+    "followedStoreIds": [],
+    "createdAt": "2025-04-09T21:24:14.687Z",
+    "lastSignInAt": "2026-09-16T02:42:28.100Z"
+  },
+  {
+    "id": "user_0006",
+    "email": "effie.waters@dry-creek-succulents.example.com",
+    "name": "Effie Waters",
+    "role": "staff",
+    "storeId": "store_dry",
+    "passwordHash": "scrypt$CAeecc7bfa32D7c9dC1CcaFDfD43a9D8$c578dbcd043458f0ca25762c2e7066d179fbc0168331d600a050744f96f93f40",
+    "phone": "(981) 500-2000",
+    "followedStoreIds": [],
+    "createdAt": "2025-03-16T06:28:37.508Z",
+    "lastSignInAt": "2026-09-23T02:55:38.682Z"
+  },
+  {
+    "id": "user_0007",
+    "email": "toney.kiehn@kiln-and-vine.example.com",
+    "name": "Toney Kiehn",
+    "role": "owner",
+    "storeId": "store_kiln",
+    "passwordHash": "scrypt$e57F2Dcfe86ec8d152DEe3df5aC48bAd$3b51ff5c2e9798c4c0c97f31f7d638042549ee2862deb5dd3c6854c0fd786adc",
+    "phone": "(626) 258-6174",
+    "followedStoreIds": [],
+    "createdAt": "2024-10-07T08:38:26.937Z",
+    "lastSignInAt": "2026-09-24T17:45:56.434Z"
+  },
+  {
+    "id": "user_0008",
+    "email": "caden.balistreri@kiln-and-vine.example.com",
+    "name": "Caden Balistreri",
+    "role": "staff",
+    "storeId": "store_kiln",
+    "passwordHash": "scrypt$ABb4475E76F5C2BeA0a111F1E6cE1894$24b268b9c5bdb86a990f67b4c4c6a25223e81af0bcea5754a09898b14f1db391",
+    "phone": "(859) 533-3955",
+    "followedStoreIds": [],
+    "createdAt": "2025-06-23T15:56:57.141Z",
+    "lastSignInAt": "2026-09-15T00:20:59.555Z"
+  },
+  {
+    "id": "user_0009",
+    "email": "cary.rosenbaum@kiln-and-vine.example.com",
+    "name": "Cary Rosenbaum",
+    "role": "staff",
+    "storeId": "store_kiln",
+    "passwordHash": "scrypt$855aAACf41d07BD660fba8dB65392A36$2b9d872f230d1ede0417a702c7f5227e9b8968f4e48b1eb3a066a4dfdb669d73",
+    "followedStoreIds": [],
+    "createdAt": "2025-04-10T06:27:29.626Z",
+    "lastSignInAt": "2026-09-29T17:32:27.453Z"
+  },
+  {
+    "id": "user_0010",
+    "email": "dell.ward@moss-lane.example.com",
+    "name": "Dell Ward",
+    "role": "owner",
+    "storeId": "store_moss",
+    "passwordHash": "scrypt$aC6E182cbC5bdC7c4dbC2514cd4e9C4e$a26bc5efa2c69109ef33267aa98168c7d159a34cfd05a293b224665d5279fc71",
+    "phone": "(271) 409-6351",
+    "followedStoreIds": [],
+    "createdAt": "2026-06-27T13:34:23.011Z",
+    "lastSignInAt": "2026-09-08T19:12:01.242Z"
+  },
+  {
+    "id": "user_0011",
+    "email": "andy.ritchie@moss-lane.example.com",
+    "name": "Andy Ritchie",
+    "role": "staff",
+    "storeId": "store_moss",
+    "passwordHash": "scrypt$BDd09c0AdE9076FfFFEAdC07183789bc$c548175fd7697d3ed7534f802ed074a8a73b1d576169c8bc3dc54bd67404c02b",
+    "followedStoreIds": [],
+    "createdAt": "2025-02-10T11:47:00.762Z",
+    "lastSignInAt": "2026-09-28T06:17:24.585Z"
+  },
+  {
+    "id": "user_0012",
+    "email": "bria.stiedemann-lowe@moss-lane.example.com",
+    "name": "Bria Stiedemann-Lowe",
+    "role": "staff",
+    "storeId": "store_moss",
+    "passwordHash": "scrypt$6aa5a2C3e35DCBd2aA9F21ba5f5BBAf7$d8be4b2880c4e4f2d94b804afea11024d5141969d42d7787f323624d1a3035ed",
+    "followedStoreIds": [],
+    "createdAt": "2025-03-26T08:03:53.300Z",
+    "lastSignInAt": "2026-09-30T16:46:32.641Z"
+  },
+  {
+    "id": "user_0013",
+    "email": "zelda.corwin@example.com",
+    "name": "Zelda Corwin",
+    "role": "shopper",
+    "passwordHash": "scrypt$AEC6C3Ce2f50bcfb84cE07d14B8a6edB$a26423b5be8e0ef6d179504c4b191e20bc246c33338c0f81113b453cf4c5049a",
+    "followedStoreIds": [
+      "store_moss",
+      "store_kiln"
+    ],
+    "createdAt": "2026-07-06T23:45:34.705Z",
+    "lastSignInAt": "2026-09-28T01:46:09.141Z"
+  },
+  {
+    "id": "user_0014",
+    "email": "hayden.welch@example.com",
+    "name": "Hayden Welch",
+    "role": "shopper",
+    "passwordHash": "scrypt$c25863A00Ebb84cD86BA748AD9CeEeba$15f32eb5a2054891f4b3653254a5f35fc380a4457967d6b059e291b61b0a2b6e",
+    "phone": "(720) 514-9067",
+    "followedStoreIds": [
+      "store_kiln",
+      "store_moss"
+    ],
+    "createdAt": "2025-07-06T14:17:56.426Z",
+    "lastSignInAt": "2026-09-02T22:54:38.559Z"
+  },
+  {
+    "id": "user_0015",
+    "email": "trinity.murphy@example.com",
+    "name": "Trinity Murphy",
+    "role": "shopper",
+    "passwordHash": "scrypt$0CfAA7dFdA7ABB31ccC76708cA22Ca1a$87e41b4ac111ef3cbe5889a10f1ff209343721c9ded874f7869f9358215c045b",
+    "phone": "(867) 795-9260",
+    "followedStoreIds": [
+      "store_kiln",
+      "store_dry"
+    ],
+    "createdAt": "2026-02-16T22:16:43.108Z",
+    "lastSignInAt": "2026-09-19T09:34:27.555Z"
+  },
+  {
+    "id": "user_0016",
+    "email": "shana.hickle@example.com",
+    "name": "Shana Hickle",
+    "role": "shopper",
+    "passwordHash": "scrypt$7e3f7DF748fDae7fCB8dABbDab7fBeA9$e7d115d81b3c157f92833373ce8989498209d806cb70748593429d63d51cdb8d",
+    "phone": "(964) 652-0320",
+    "followedStoreIds": [
+      "store_kiln"
+    ],
+    "createdAt": "2025-08-28T21:04:32.378Z",
+    "lastSignInAt": "2026-09-26T20:27:45.814Z"
+  },
+  {
+    "id": "user_0017",
+    "email": "fletcher.kuvalis@example.com",
+    "name": "Fletcher Kuvalis",
+    "role": "shopper",
+    "passwordHash": "scrypt$7BbfCc8ffef5de6780f2C10B4BBA12eA$7b4405121afa34dd774042cdfaef71782603cd6790b4b13ad5f687e95f5df0a9",
+    "followedStoreIds": [],
+    "createdAt": "2024-12-09T18:50:18.525Z",
+    "lastSignInAt": "2026-09-08T10:24:32.038Z"
+  },
+  {
+    "id": "user_0018",
+    "email": "latoya.herzog@example.com",
+    "name": "Latoya Herzog",
+    "role": "shopper",
+    "passwordHash": "scrypt$c7a4BdBd4AC3c4c0Fed6d639b92969BA$0a884da897b03c111615dd4829c4fc6c1126860d6c60cb7608e5a03df121bdef",
+    "followedStoreIds": [
+      "store_moss"
+    ],
+    "createdAt": "2025-11-10T13:03:56.236Z",
+    "lastSignInAt": "2026-09-21T23:11:13.962Z"
+  },
+  {
+    "id": "user_0019",
+    "email": "mathias.franecki@example.com",
+    "name": "Mathias Franecki",
+    "role": "shopper",
+    "passwordHash": "scrypt$ED20C0D1e37000eE2bADFBD4Bd2837dC$bdbfbf12fe55b7995f9dee1d374d6c0014ccb14070c64432511b165e54c4c688",
+    "phone": "(360) 466-5709",
+    "followedStoreIds": [],
+    "createdAt": "2025-09-06T10:01:06.967Z",
+    "lastSignInAt": "2026-09-11T03:36:33.991Z"
+  },
+  {
+    "id": "user_0020",
+    "email": "gene.wiegand@example.com",
+    "name": "Gene Wiegand",
+    "role": "shopper",
+    "passwordHash": "scrypt$d032061BAEF04114Fb45eabe1af5E7aE$399023c668983ff831a17c07248684044b195eb984df3a1ad60586b89bf13b4f",
+    "followedStoreIds": [
+      "store_moss",
+      "store_fernhollow"
+    ],
+    "createdAt": "2026-01-01T08:25:28.570Z",
+    "lastSignInAt": "2026-09-27T21:55:46.517Z"
+  },
+  {
+    "id": "user_0021",
+    "email": "ottis.breitenberg@example.com",
+    "name": "Ottis Breitenberg",
+    "role": "shopper",
+    "passwordHash": "scrypt$9fE81bdC962E2B90Fc7c33c5c56df82A$695ff308533933dc0da373d2d865019b9b7e93724d6205cdd64a6dbee6f070ac",
+    "phone": "(826) 913-6959",
+    "followedStoreIds": [],
+    "createdAt": "2025-06-13T14:07:29.273Z",
+    "lastSignInAt": "2026-09-28T01:01:16.532Z"
+  },
+  {
+    "id": "user_0022",
+    "email": "earline.okuneva@example.com",
+    "name": "Earline Okuneva",
+    "role": "shopper",
+    "passwordHash": "scrypt$FBBc4DBCEDc6931Ef2Bb3c105f57bB05$530ae61edf4034aa19c32edb201e4ec1fef348fbeaa8ae3f551c227bc09634f3",
+    "phone": "(224) 849-4574",
+    "followedStoreIds": [],
+    "createdAt": "2026-03-07T03:08:06.104Z",
+    "lastSignInAt": "2026-09-10T10:56:30.208Z"
+  },
+  {
+    "id": "user_0023",
+    "email": "kaylin.torphy@example.com",
+    "name": "Kaylin Torphy",
+    "role": "shopper",
+    "passwordHash": "scrypt$1AEc5Fdd59f26a3dfee18E7A6eEBCf1a$220ff127fd8eee42ae5e3e6af14364d476ac9d05299595d118317e17cdcbacc8",
+    "phone": "(217) 937-6153",
+    "followedStoreIds": [
+      "store_moss"
+    ],
+    "createdAt": "2026-04-24T01:21:03.708Z",
+    "lastSignInAt": "2026-09-10T13:27:25.047Z"
+  },
+  {
+    "id": "user_0024",
+    "email": "napoleon.predovic@example.com",
+    "name": "Napoleon Predovic",
+    "role": "shopper",
+    "passwordHash": "scrypt$dc64462DFdA7De5234ECCFd0Cc2c789b$ff4fa8cfd60896595d39c33207744fdc983697772860dd2aa31e9fd2f441c636",
+    "followedStoreIds": [
+      "store_kiln"
+    ],
+    "createdAt": "2026-07-28T21:22:58.434Z",
+    "lastSignInAt": "2026-09-24T01:30:31.692Z"
+  },
+  {
+    "id": "user_0025",
+    "email": "nikita.prohaska@example.com",
+    "name": "Nikita Prohaska",
+    "role": "shopper",
+    "passwordHash": "scrypt$37FF48Bc62e6CdbE6073a7aEEAf678ae$9795763af39960e3ff9091167f7d48f32b25f884e1b216f7976c56bc1a9d6b48",
+    "phone": "(756) 827-5298",
+    "followedStoreIds": [
+      "store_dry",
+      "store_fernhollow"
+    ],
+    "createdAt": "2025-11-14T12:24:15.021Z",
+    "lastSignInAt": "2026-09-25T19:14:59.258Z"
+  },
+  {
+    "id": "user_0026",
+    "email": "reva.parker@example.com",
+    "name": "Reva Parker",
+    "role": "shopper",
+    "passwordHash": "scrypt$aebF76cCE97e21cC70eD8a697C7b8bc0$1326055b74f004b014d1319755a00eece678832fedf5a08cbeb6cad56ec6023b",
+    "followedStoreIds": [],
+    "createdAt": "2025-11-21T04:08:53.673Z",
+    "lastSignInAt": "2026-09-08T01:13:32.387Z"
+  },
+  {
+    "id": "user_0027",
+    "email": "declan.breitenberg@example.com",
+    "name": "Declan Breitenberg",
+    "role": "shopper",
+    "passwordHash": "scrypt$ff1e96F92a5aFFD63A2D0dA9330A2BA6$2f2f85390c84e4c227d4eef2df2976fa4db11f89828b711ba282de9811905af8",
+    "phone": "(936) 800-1796",
+    "followedStoreIds": [
+      "store_fernhollow"
+    ],
+    "createdAt": "2025-07-07T19:02:52.391Z",
+    "lastSignInAt": "2026-09-09T20:00:12.906Z"
+  },
+  {
+    "id": "user_0028",
+    "email": "gus.koch@example.com",
+    "name": "Gus Koch",
+    "role": "shopper",
+    "passwordHash": "scrypt$39BB245fdb1024D2d5C57dfD24cACaD0$a9af83b5644c81248d9567173994780fd1a05e6f731c8e006ffe42a0e1b1e964",
+    "followedStoreIds": [],
+    "createdAt": "2025-11-18T21:43:18.256Z",
+    "lastSignInAt": "2026-09-15T01:02:41.335Z"
+  },
+  {
+    "id": "user_0029",
+    "email": "shelley.buckridge@example.com",
+    "name": "Shelley Buckridge",
+    "role": "shopper",
+    "passwordHash": "scrypt$FeAE9BDC3Af0C263e3ab48CB383cF866$594b7064adfe737c9decf9bc3e2813c7b032f11ae19d3bddf9c27e9d3798ddc6",
+    "phone": "(472) 893-1160",
+    "followedStoreIds": [
+      "store_dry",
+      "store_moss"
+    ],
+    "createdAt": "2025-02-24T13:54:01.187Z",
+    "lastSignInAt": "2026-09-23T07:01:25.566Z"
+  },
+  {
+    "id": "user_0030",
+    "email": "breanne.renner@example.com",
+    "name": "Breanne Renner",
+    "role": "shopper",
+    "passwordHash": "scrypt$20fa9D69A232A5Cc39Dcbeb3feCFf59b$62417e51b1101ef8b876ae649331b5bc91128d12222b54666e16402b985cfc51",
+    "phone": "(816) 729-2188",
+    "followedStoreIds": [
+      "store_moss"
+    ],
+    "createdAt": "2025-03-23T14:52:00.581Z",
+    "lastSignInAt": "2026-09-24T02:42:30.283Z"
+  },
+  {
+    "id": "user_0031",
+    "email": "howard.streich@example.com",
+    "name": "Howard Streich",
+    "role": "shopper",
+    "passwordHash": "scrypt$B965ca3425Aec2b6838Ce0BcF8431848$9fe4549a817135d27d9c470469276b02a2cc0a3605dcff30dc7ba5d22577c2ed",
+    "followedStoreIds": [
+      "store_fernhollow"
+    ],
+    "createdAt": "2024-12-18T21:49:02.174Z",
+    "lastSignInAt": "2026-09-22T12:48:55.292Z"
+  },
+  {
+    "id": "user_0032",
+    "email": "clint.ortiz@example.com",
+    "name": "Clint Ortiz",
+    "role": "shopper",
+    "passwordHash": "scrypt$8034db78B7eFFBd5CEcD4ef89effBA8f$c5737dc53353f80b3076acc9b193a014cb2c9892382fd7df491d8eee25313fc0",
+    "phone": "(707) 295-1910",
+    "followedStoreIds": [
+      "store_moss",
+      "store_kiln"
+    ],
+    "createdAt": "2025-03-16T06:29:23.250Z",
+    "lastSignInAt": "2026-09-10T01:28:15.581Z"
+  },
+  {
+    "id": "user_0033",
+    "email": "mohammad.ebert@example.com",
+    "name": "Mohammad Ebert",
+    "role": "shopper",
+    "passwordHash": "scrypt$Ea7B5ada06D9ce8120EE1bcE3abeDd0a$046e4e7611d94af0025cfead17dc341fe25f1e4367563ff57e75969366688183",
+    "followedStoreIds": [
+      "store_fernhollow",
+      "store_moss"
+    ],
+    "createdAt": "2025-08-07T09:21:17.702Z",
+    "lastSignInAt": "2026-09-21T13:14:04.942Z"
+  },
+  {
+    "id": "user_0034",
+    "email": "sadie.legros@example.com",
+    "name": "Sadie Legros",
+    "role": "shopper",
+    "passwordHash": "scrypt$aeF35BCDe384Fa37beEEF3BaDf0CF6af$4a19271fae39894bf9f38d87e995c7fd90f918894ab90b9adf8a5a53fc968215",
+    "followedStoreIds": [
+      "store_fernhollow",
+      "store_kiln"
+    ],
+    "createdAt": "2026-05-07T08:27:29.780Z",
+    "lastSignInAt": "2026-09-19T10:45:23.825Z"
+  },
+  {
+    "id": "user_0035",
+    "email": "justyn.roob@example.com",
+    "name": "Justyn Roob",
+    "role": "shopper",
+    "passwordHash": "scrypt$5FadADa09DC30d48AAEedEd72ecae5a3$dc1ed6df2e5dcdb1f5799445bd0fa4dc3bba24fb32649596d4a1fa333ca347bb",
+    "followedStoreIds": [
+      "store_dry"
+    ],
+    "createdAt": "2025-07-30T01:45:58.436Z",
+    "lastSignInAt": "2026-09-06T22:28:11.561Z"
+  },
+  {
+    "id": "user_0036",
+    "email": "brook.bayer@example.com",
+    "name": "Brook Bayer",
+    "role": "shopper",
+    "passwordHash": "scrypt$700B0f67A681bEe17d8b7324f60e25c7$f6700938dffa64c9fbdd4fe25c1c177cfcd668dce74003c0a6151c474ca37922",
+    "followedStoreIds": [
+      "store_moss",
+      "store_dry"
+    ],
+    "createdAt": "2025-03-05T04:54:50.380Z",
+    "lastSignInAt": "2026-09-16T03:54:26.610Z"
+  },
+  {
+    "id": "user_0037",
+    "email": "esperanza.kuhic@example.com",
+    "name": "Esperanza Kuhic",
+    "role": "shopper",
+    "passwordHash": "scrypt$65f85e0DCE3d256ed044067c5DEFf675$792fdd53bb00e15e0c0c517b931e7cf75d73261d529e34beaddf2061eb44169b",
+    "phone": "(535) 794-1571",
+    "followedStoreIds": [],
+    "createdAt": "2025-08-26T13:37:39.291Z",
+    "lastSignInAt": "2026-09-10T17:02:56.584Z"
+  },
+  {
+    "id": "user_0038",
+    "email": "marlene.ernser@example.com",
+    "name": "Marlene Ernser",
+    "role": "shopper",
+    "passwordHash": "scrypt$Eb6A67eFe0bb79C6Cfb10c5B7578c591$8dc1801e8c380a1120d71eb0b2598c3fd29d16c9015668b510f9b603bfd2b13c",
+    "phone": "(738) 245-6530",
+    "followedStoreIds": [],
+    "createdAt": "2025-10-24T22:38:39.790Z",
+    "lastSignInAt": "2026-09-11T10:23:26.478Z"
+  },
+  {
+    "id": "user_0039",
+    "email": "pearlie.kub@example.com",
+    "name": "Pearlie Kub",
+    "role": "shopper",
+    "passwordHash": "scrypt$a7dBEEFEddEA7cEA2BCDFf89CccA1783$8bca2e94e07011ecc3279a4bddfb0faa59349a2d809871f322db9263069f0cda",
+    "phone": "(916) 477-9248",
+    "followedStoreIds": [],
+    "createdAt": "2026-04-06T11:16:08.969Z",
+    "lastSignInAt": "2026-09-08T13:19:36.113Z"
+  },
+  {
+    "id": "user_0040",
+    "email": "suzanne.brakus@example.com",
+    "name": "Suzanne Brakus",
+    "role": "shopper",
+    "passwordHash": "scrypt$163c0f9F9b2aBF951FbFbfD1cd7835e3$2efea2d863cbd5d13ada726ef43e5284ef8a2c8adb97e797418c974910b281bc",
+    "phone": "(227) 325-6151",
+    "followedStoreIds": [
+      "store_dry"
+    ],
+    "createdAt": "2024-10-09T18:59:08.911Z",
+    "lastSignInAt": "2026-09-14T22:06:14.623Z"
+  },
+  {
+    "id": "user_0041",
+    "email": "cole.vonrueden@example.com",
+    "name": "Cole VonRueden",
+    "role": "shopper",
+    "passwordHash": "scrypt$aEeDF9b7d0bDABCc1cBAf05AABE35C27$e9fe951d8814beaba5a9874b9e65a23cfaf7ac4ca8f3733ddfab3870148fbe87",
+    "phone": "(708) 444-8155",
+    "followedStoreIds": [
+      "store_dry"
+    ],
+    "createdAt": "2026-07-02T21:04:25.172Z",
+    "lastSignInAt": "2026-09-02T15:04:56.492Z"
+  },
+  {
+    "id": "user_0042",
+    "email": "nathanael.damore@example.com",
+    "name": "Nathanael D'Amore",
+    "role": "shopper",
+    "passwordHash": "scrypt$66d762FEdDaC4bc28b9A3106d7DaeF17$ef511382c45bcef22f476a7d598dbf5b699df49eb9e2fcc4ce6ff18e622f3fe9",
+    "followedStoreIds": [
+      "store_fernhollow"
+    ],
+    "createdAt": "2025-06-28T09:20:43.454Z",
+    "lastSignInAt": "2026-09-02T05:22:47.465Z"
+  },
+  {
+    "id": "user_0043",
+    "email": "fredrick.klein@example.com",
+    "name": "Fredrick Klein",
+    "role": "shopper",
+    "passwordHash": "scrypt$21B945cAccFffEbAaE8EF803Eb04DfEb$7c4f271f834b6b778245c7d1cff2891a88c5078a40d5db2e5d64853149c3b7da",
+    "phone": "(427) 717-3813",
+    "followedStoreIds": [
+      "store_moss"
+    ],
+    "createdAt": "2026-03-04T16:14:01.930Z",
+    "lastSignInAt": "2026-09-27T09:49:07.251Z"
+  },
+  {
+    "id": "user_0044",
+    "email": "trever.pfannerstill@example.com",
+    "name": "Trever Pfannerstill",
+    "role": "shopper",
+    "passwordHash": "scrypt$f7dAEEAA4fBBD76bB83eC10265EA2E62$e776f4631587a96db52c8caee8015bec0a5be7c93c683181e253294f10f79eb9",
+    "followedStoreIds": [
+      "store_dry"
+    ],
+    "createdAt": "2025-03-05T22:26:42.095Z",
+    "lastSignInAt": "2026-09-26T19:36:38.018Z"
+  },
+  {
+    "id": "user_0045",
+    "email": "cayla.funk@example.com",
+    "name": "Cayla Funk",
+    "role": "shopper",
+    "passwordHash": "scrypt$B9e503bCCD6AD6Dbc25CB1A3D3ba947a$91da6c024730c7e0243e39a795e6b3223f09d3c8330b82953d3f61162db5c66f",
+    "followedStoreIds": [
+      "store_dry"
+    ],
+    "createdAt": "2026-07-22T08:01:12.218Z",
+    "lastSignInAt": "2026-10-01T03:42:42.942Z"
+  },
+  {
+    "id": "user_0046",
+    "email": "gilbert.renner@example.com",
+    "name": "Gilbert Renner",
+    "role": "shopper",
+    "passwordHash": "scrypt$4fF5d18bCDAbFb7abf25dB31edBde9CA$b26ae9116f00e1e0893f6631ce28ddcdd97ca599ed9d63d769ad986f2a75e1e5",
+    "phone": "(297) 480-1208",
+    "followedStoreIds": [
+      "store_kiln"
+    ],
+    "createdAt": "2024-10-19T14:09:22.376Z",
+    "lastSignInAt": "2026-09-30T04:10:11.246Z"
+  },
+  {
+    "id": "user_0047",
+    "email": "opal.herman@example.com",
+    "name": "Opal Herman",
+    "role": "shopper",
+    "passwordHash": "scrypt$11ecb17c7C4A0f3320acBE6CfBF042C6$f1ed3e2f3022d3ee994525edd27b67740cbd98c2ed7f342d9b5bd1bd97107eca",
+    "phone": "(773) 918-8391",
+    "followedStoreIds": [
+      "store_dry",
+      "store_moss"
+    ],
+    "createdAt": "2025-12-03T21:55:15.149Z",
+    "lastSignInAt": "2026-09-03T00:36:42.597Z"
+  },
+  {
+    "id": "user_0048",
+    "email": "bertrand.ebert@example.com",
+    "name": "Bertrand Ebert",
+    "role": "shopper",
+    "passwordHash": "scrypt$F49b5a1a1A9bb3deda7bFbf58cEBfAEc$08a45f7566d6ef1c742070d7888caa0ea257999c52b1f7d46d35b5008beacf40",
+    "phone": "(586) 546-7786",
+    "followedStoreIds": [
+      "store_moss"
+    ],
+    "createdAt": "2025-08-13T11:00:32.246Z",
+    "lastSignInAt": "2026-09-05T03:35:46.497Z"
+  },
+  {
+    "id": "user_0049",
+    "email": "rita.kling@example.com",
+    "name": "Rita Kling",
+    "role": "shopper",
+    "passwordHash": "scrypt$b75Ce3Cf8BebF73e7f50d19F9D1AbbD0$b96772f61227b08be030756622900b9feb63675b1486b22fbcc3a497499c342e",
+    "followedStoreIds": [
+      "store_fernhollow"
+    ],
+    "createdAt": "2026-06-27T02:55:02.563Z",
+    "lastSignInAt": "2026-09-21T23:58:06.056Z"
+  },
+  {
+    "id": "user_0050",
+    "email": "oliver.macejkovic@example.com",
+    "name": "Oliver Macejkovic",
+    "role": "shopper",
+    "passwordHash": "scrypt$eBfAC5FBB8eEf21b3D5B022aAFF8fBe2$db4636217940468f8d70f12a8bfb89f3810dc642ea0f92505fba3d3e5815e798",
+    "followedStoreIds": [],
+    "createdAt": "2026-07-30T18:02:47.782Z",
+    "lastSignInAt": "2026-09-26T14:52:31.542Z"
+  },
+  {
+    "id": "user_0051",
+    "email": "kristine.stanton@example.com",
+    "name": "Kristine Stanton",
+    "role": "shopper",
+    "passwordHash": "scrypt$b6b3Db5AD8AF8CD8F4C9F4bd5F9BE0cC$70e0ee78d06928e4d08794ce9d876303fa8195a125a26568576c4a217ccb95d1",
+    "followedStoreIds": [],
+    "createdAt": "2026-04-28T20:08:23.209Z",
+    "lastSignInAt": "2026-09-26T01:32:23.639Z"
+  },
+  {
+    "id": "user_0052",
+    "email": "ansley.howe@example.com",
+    "name": "Ansley Howe",
+    "role": "shopper",
+    "passwordHash": "scrypt$3629EfCc604cdac94524d1246deE166c$e74bb239c5aa3b87ce3e149db3a02c94d55c7a7671e5b35b05c92b54aee5d631",
+    "phone": "(910) 992-0688",
+    "followedStoreIds": [],
+    "createdAt": "2026-02-09T22:30:28.736Z",
+    "lastSignInAt": "2026-09-12T20:16:57.363Z"
+  }
+]

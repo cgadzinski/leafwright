@@ -26,3 +26,47 @@ Newest at the bottom.
 - **pnpm.** `minimumReleaseAge` is set to 0 in `pnpm-workspace.yaml` so freshly released
   framework patches install without the loose-mode warnings pnpm 11 prints otherwise. Build
   scripts are allowed for `esbuild` and `sharp` only.
+
+## Milestone 1: data layer and seed
+
+- **Money as integer cents.** Every price, total, and fixed promo value is an integer number of
+  cents. `formatMoney` in `lib/commerce/cart.ts` renders it.
+- **Dates as ISO strings.** Entities store timestamps as ISO 8601 strings (`z.iso.datetime()`)
+  so the JSON seed and the KV adapter round-trip without conversion.
+- **Ids.** Seed ids are readable and sequential (`store_fernhollow`, `prod_0042`, `order_0160`).
+  App-created records use `newId(prefix)` from `lib/db/ids.ts` (prefix plus 16 hex chars).
+- **`source` field.** `Product`, `Order`, and `Conversation` carry `source: "seed" | "app" |
+"bot"` (default `app`). SPEC §12 needs `source: "bot"` on bot-created records; the repository
+  gives bot records a 14-day TTL on write so the KV adapter can expire them (SPEC §9).
+- **One order per store.** A cart can hold products from several stores, but `Order.storeId` is
+  singular, so checkout creates one order per store in the cart. Pricing in `priceCart` groups
+  lines by store; shipping and tax are computed per group and a promo only discounts the lines
+  of the store that issued it. The confirmation page shows the first order and links to siblings.
+- **Pricing rules.** Standard shipping is $7.99 per store, free when that store's discounted
+  subtotal reaches $75; express is $14.99. Tax is a flat 8% of the discounted subtotal. Percent
+  promos round to the nearest cent and are capped at the subtotal; fixed promos are capped at the
+  subtotal; `free_shipping` zeroes that store's shipping.
+- **One cart line per product.** Adding a product that is already in the cart increments its
+  quantity and, if a pot size was chosen, switches the line to that size. This keeps
+  `cart-qty-{slug}` and `cart-remove-{slug}` unique per page as SPEC §4 requires.
+- **Cart merge.** Anonymous lines are added to the user's cart (quantities summed); the user's
+  promo code wins, otherwise the anonymous code carries over.
+- **Passwords.** `passwordHash` is `scrypt$<salt>$<key>` from `lib/auth/password.ts`. Seeded
+  hashes are of `leafwright-demo`; `DEMO_PASSWORD` (SPEC §10 "overridable by env") is also
+  accepted for every seeded user at sign-in.
+- **Repository shape.** `lib/db/index.ts` exports a `db` object with per-collection methods
+  (`list`, `getById`, `getBySlug`, `create`, `update`, …) over an `Adapter` with four generic
+  operations (`get`, `list`, `put`, `remove`). Writes are re-validated through the entity schema.
+  The memory adapter keeps its tables on `globalThis` so dev hot reloads keep mutations.
+- **Product search.** Catalog search matches name, description, and category, case-insensitive.
+  Sort options are `featured` (name), `newest`, `price-asc`, `price-desc`.
+- **Seed reference date.** The generator uses a fixed "now" of 2026-10-01T12:00Z and faker seed
+  `20261001`. Orders span the 90 days before it. Moss Lane's trial ends 11 days after it.
+- **Images.** Each category has one self-hosted SVG card art in `public/products/`. The spec's
+  "few public-domain photos" were skipped so the repo has no third-party assets to attribute;
+  products reference the category art.
+- **Variants.** Tropicals and rare plants ship in 4"/6"/8" pots, succulents in 2"/4", planters in
+  Small/Medium/Large, tools have no variants. Product `inventory` is the sum of variant inventory
+  when variants exist.
+- **Seed distribution.** 48 published / 8 draft / 4 archived products; orders split 60/40/40/20
+  across Fernhollow, Dry Creek, Kiln & Vine, Moss Lane; 23 guest orders; 30 with a promo.

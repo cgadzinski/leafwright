@@ -1,0 +1,2280 @@
+[
+  {
+    "id": "prod_0001",
+    "storeId": "store_fernhollow",
+    "slug": "monstera-deliciosa",
+    "name": "Monstera Deliciosa",
+    "description": "Lush, fast-growing foliage that fills a bright corner in a season. A forgiving tropical that tolerates the occasional missed watering.",
+    "category": "tropicals",
+    "price": 3599,
+    "status": "published",
+    "inventory": 22,
+    "images": [
+      "/products/tropicals.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0001_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 7
+      },
+      {
+        "id": "var_0001_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 9
+      },
+      {
+        "id": "var_0001_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 6
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "high",
+      "petSafe": false,
+      "difficulty": "moderate"
+    },
+    "source": "seed",
+    "createdAt": "2026-04-15T17:34:31.534Z",
+    "publishedAt": "2026-04-16T07:24:15.661Z"
+  },
+  {
+    "id": "prod_0002",
+    "storeId": "store_fernhollow",
+    "slug": "fiddle-leaf-fig",
+    "name": "Fiddle Leaf Fig",
+    "description": "Lush, fast-growing foliage that fills a bright corner in a season. A forgiving tropical that tolerates the occasional missed watering.",
+    "category": "tropicals",
+    "price": 5499,
+    "status": "archived",
+    "inventory": 18,
+    "images": [
+      "/products/tropicals.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0002_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 10
+      },
+      {
+        "id": "var_0002_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 3
+      },
+      {
+        "id": "var_0002_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 5
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "medium",
+      "petSafe": false,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2025-11-24T18:40:43.144Z"
+  },
+  {
+    "id": "prod_0003",
+    "storeId": "store_fernhollow",
+    "slug": "bird-of-paradise",
+    "name": "Bird of Paradise",
+    "description": "Glossy leaves and an upright habit that suits shelves and plant stands. Glossy leaves and an upright habit that suits shelves and plant stands.",
+    "category": "tropicals",
+    "price": 4099,
+    "status": "published",
+    "inventory": 14,
+    "images": [
+      "/products/tropicals.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0003_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 3
+      },
+      {
+        "id": "var_0003_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 8
+      },
+      {
+        "id": "var_0003_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 3
+      }
+    ],
+    "care": {
+      "light": "low",
+      "water": "low",
+      "petSafe": false,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2025-12-06T16:24:42.135Z",
+    "publishedAt": "2025-12-09T18:49:49.938Z"
+  },
+  {
+    "id": "prod_0004",
+    "storeId": "store_fernhollow",
+    "slug": "echeveria-perle-von-nurnberg",
+    "name": "Echeveria Perle von Nurnberg",
+    "description": "Grown slow and hard in desert sun, so it arrives compact and colorful. Grown slow and hard in desert sun, so it arrives compact and colorful.",
+    "category": "succulents",
+    "price": 2699,
+    "status": "published",
+    "inventory": 51,
+    "images": [
+      "/products/succulents.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0004_2in",
+        "label": "2\" pot",
+        "priceDelta": 0,
+        "inventory": 32
+      },
+      {
+        "id": "var_0004_4in",
+        "label": "4\" pot",
+        "priceDelta": 600,
+        "inventory": 19
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": false,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-02-03T17:51:04.139Z",
+    "publishedAt": "2026-02-08T06:55:25.985Z"
+  },
+  {
+    "id": "prod_0005",
+    "storeId": "store_fernhollow",
+    "slug": "jade-plant",
+    "name": "Jade Plant",
+    "description": "Store-and-forget watering: let the soil dry completely between drinks. Store-and-forget watering: let the soil dry completely between drinks.",
+    "category": "succulents",
+    "price": 2799,
+    "status": "published",
+    "inventory": 47,
+    "images": [
+      "/products/succulents.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0005_2in",
+        "label": "2\" pot",
+        "priceDelta": 0,
+        "inventory": 36
+      },
+      {
+        "id": "var_0005_4in",
+        "label": "4\" pot",
+        "priceDelta": 600,
+        "inventory": 11
+      }
+    ],
+    "care": {
+      "light": "bright",
+      "water": "low",
+      "petSafe": false,
+      "difficulty": "moderate"
+    },
+    "source": "seed",
+    "createdAt": "2026-06-17T22:22:58.102Z",
+    "publishedAt": "2026-06-20T18:16:36.643Z"
+  },
+  {
+    "id": "prod_0006",
+    "storeId": "store_fernhollow",
+    "slug": "aloe-vera",
+    "name": "Aloe Vera",
+    "description": "A tidy rosette that stays small on a windowsill for years. Store-and-forget watering: let the soil dry completely between drinks.",
+    "category": "succulents",
+    "price": 1899,
+    "status": "published",
+    "inventory": 29,
+    "images": [
+      "/products/succulents.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0006_2in",
+        "label": "2\" pot",
+        "priceDelta": 0,
+        "inventory": 23
+      },
+      {
+        "id": "var_0006_4in",
+        "label": "4\" pot",
+        "priceDelta": 600,
+        "inventory": 6
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-02-16T02:55:30.494Z",
+    "publishedAt": "2026-02-18T15:04:32.388Z"
+  },
+  {
+    "id": "prod_0007",
+    "storeId": "store_fernhollow",
+    "slug": "classic-terracotta-pot",
+    "name": "Classic Terracotta Pot",
+    "description": "Drainage hole and matching saucer included. Fired stoneware that won't wick moisture away from roots.",
+    "category": "planters",
+    "price": 1999,
+    "status": "draft",
+    "inventory": 40,
+    "images": [
+      "/products/planters.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0007_small",
+        "label": "Small",
+        "priceDelta": 0,
+        "inventory": 14
+      },
+      {
+        "id": "var_0007_medium",
+        "label": "Medium",
+        "priceDelta": 900,
+        "inventory": 19
+      },
+      {
+        "id": "var_0007_large",
+        "label": "Large",
+        "priceDelta": 2200,
+        "inventory": 7
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-01-07T10:11:26.381Z"
+  },
+  {
+    "id": "prod_0008",
+    "storeId": "store_fernhollow",
+    "slug": "glazed-stoneware-planter",
+    "name": "Glazed Stoneware Planter",
+    "description": "Drainage hole and matching saucer included. Wheel-thrown and glazed by hand; every piece is slightly different.",
+    "category": "planters",
+    "price": 6199,
+    "status": "published",
+    "inventory": 20,
+    "images": [
+      "/products/planters.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0008_small",
+        "label": "Small",
+        "priceDelta": 0,
+        "inventory": 3
+      },
+      {
+        "id": "var_0008_medium",
+        "label": "Medium",
+        "priceDelta": 900,
+        "inventory": 8
+      },
+      {
+        "id": "var_0008_large",
+        "label": "Large",
+        "priceDelta": 2200,
+        "inventory": 9
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2025-12-02T03:06:16.657Z",
+    "publishedAt": "2025-12-05T12:40:40.072Z"
+  },
+  {
+    "id": "prod_0009",
+    "storeId": "store_fernhollow",
+    "slug": "speckled-ceramic-pot",
+    "name": "Speckled Ceramic Pot",
+    "description": "Fired stoneware that won't wick moisture away from roots. Fired stoneware that won't wick moisture away from roots.",
+    "category": "planters",
+    "price": 3099,
+    "status": "published",
+    "inventory": 37,
+    "images": [
+      "/products/planters.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0009_small",
+        "label": "Small",
+        "priceDelta": 0,
+        "inventory": 20
+      },
+      {
+        "id": "var_0009_medium",
+        "label": "Medium",
+        "priceDelta": 900,
+        "inventory": 7
+      },
+      {
+        "id": "var_0009_large",
+        "label": "Large",
+        "priceDelta": 2200,
+        "inventory": 10
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-01-23T04:20:19.561Z",
+    "publishedAt": "2026-01-27T01:52:21.999Z"
+  },
+  {
+    "id": "prod_0010",
+    "storeId": "store_fernhollow",
+    "slug": "pruning-snips",
+    "name": "Pruning Snips",
+    "description": "Makes routine care faster so it actually happens. Makes routine care faster so it actually happens.",
+    "category": "tools",
+    "price": 3299,
+    "status": "draft",
+    "inventory": 4,
+    "images": [
+      "/products/tools.svg"
+    ],
+    "variants": [],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-04-06T15:14:58.291Z"
+  },
+  {
+    "id": "prod_0011",
+    "storeId": "store_fernhollow",
+    "slug": "soil-moisture-meter",
+    "name": "Soil Moisture Meter",
+    "description": "Makes routine care faster so it actually happens. The one tool we reach for every week in the greenhouse.",
+    "category": "tools",
+    "price": 3499,
+    "status": "published",
+    "inventory": 52,
+    "images": [
+      "/products/tools.svg"
+    ],
+    "variants": [],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-02-12T07:02:37.269Z",
+    "publishedAt": "2026-02-15T19:21:44.960Z"
+  },
+  {
+    "id": "prod_0012",
+    "storeId": "store_fernhollow",
+    "slug": "brass-plant-mister",
+    "name": "Brass Plant Mister",
+    "description": "The one tool we reach for every week in the greenhouse. Simple, durable, and sized for houseplants rather than the garden.",
+    "category": "tools",
+    "price": 2499,
+    "status": "published",
+    "inventory": 29,
+    "images": [
+      "/products/tools.svg"
+    ],
+    "variants": [],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-05-24T00:22:58.870Z",
+    "publishedAt": "2026-05-28T22:14:57.151Z"
+  },
+  {
+    "id": "prod_0013",
+    "storeId": "store_fernhollow",
+    "slug": "variegated-monstera-albo",
+    "name": "Variegated Monstera Albo",
+    "description": "Collector-grade variegation, photographed before shipping. Propagated in-house from our own mother plants, never tissue culture.",
+    "category": "rare",
+    "price": 6899,
+    "status": "published",
+    "inventory": 28,
+    "images": [
+      "/products/rare.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0013_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 13
+      },
+      {
+        "id": "var_0013_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 11
+      },
+      {
+        "id": "var_0013_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 4
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "expert"
+    },
+    "source": "seed",
+    "createdAt": "2025-10-09T01:58:48.118Z",
+    "publishedAt": "2025-10-10T15:28:04.075Z"
+  },
+  {
+    "id": "prod_0014",
+    "storeId": "store_fernhollow",
+    "slug": "philodendron-pink-princess",
+    "name": "Philodendron Pink Princess",
+    "description": "Propagated in-house from our own mother plants, never tissue culture. Collector-grade variegation, photographed before shipping.",
+    "category": "rare",
+    "price": 16799,
+    "status": "published",
+    "inventory": 11,
+    "images": [
+      "/products/rare.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0014_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 6
+      },
+      {
+        "id": "var_0014_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 2
+      },
+      {
+        "id": "var_0014_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 3
+      }
+    ],
+    "care": {
+      "light": "low",
+      "water": "medium",
+      "petSafe": true,
+      "difficulty": "expert"
+    },
+    "source": "seed",
+    "createdAt": "2026-01-26T20:13:15.214Z",
+    "publishedAt": "2026-01-30T18:00:17.972Z"
+  },
+  {
+    "id": "prod_0015",
+    "storeId": "store_fernhollow",
+    "slug": "anthurium-clarinervium",
+    "name": "Anthurium Clarinervium",
+    "description": "Collector-grade variegation, photographed before shipping. Ships potted and acclimated with a care card for the first month.",
+    "category": "rare",
+    "price": 12199,
+    "status": "published",
+    "inventory": 22,
+    "images": [
+      "/products/rare.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0015_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 5
+      },
+      {
+        "id": "var_0015_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 12
+      },
+      {
+        "id": "var_0015_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 5
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "medium",
+      "petSafe": false,
+      "difficulty": "expert"
+    },
+    "source": "seed",
+    "createdAt": "2025-12-28T14:27:23.413Z",
+    "publishedAt": "2025-12-31T13:17:39.553Z"
+  },
+  {
+    "id": "prod_0016",
+    "storeId": "store_dry",
+    "slug": "golden-pothos",
+    "name": "Golden Pothos",
+    "description": "Lush, fast-growing foliage that fills a bright corner in a season. A forgiving tropical that tolerates the occasional missed watering.",
+    "category": "tropicals",
+    "price": 2699,
+    "status": "published",
+    "inventory": 22,
+    "images": [
+      "/products/tropicals.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0016_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 18
+      },
+      {
+        "id": "var_0016_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 3
+      },
+      {
+        "id": "var_0016_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 1
+      }
+    ],
+    "care": {
+      "light": "bright",
+      "water": "high",
+      "petSafe": true,
+      "difficulty": "moderate"
+    },
+    "source": "seed",
+    "createdAt": "2026-06-14T00:40:54.522Z",
+    "publishedAt": "2026-06-16T12:59:01.378Z"
+  },
+  {
+    "id": "prod_0017",
+    "storeId": "store_dry",
+    "slug": "philodendron-brasil",
+    "name": "Philodendron Brasil",
+    "description": "A forgiving tropical that tolerates the occasional missed watering. Glossy leaves and an upright habit that suits shelves and plant stands.",
+    "category": "tropicals",
+    "price": 3099,
+    "status": "published",
+    "inventory": 19,
+    "images": [
+      "/products/tropicals.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0017_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 8
+      },
+      {
+        "id": "var_0017_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 6
+      },
+      {
+        "id": "var_0017_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 5
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "moderate"
+    },
+    "source": "seed",
+    "createdAt": "2025-09-22T04:08:01.773Z",
+    "publishedAt": "2025-09-22T05:22:07.638Z"
+  },
+  {
+    "id": "prod_0018",
+    "storeId": "store_dry",
+    "slug": "rubber-plant-burgundy",
+    "name": "Rubber Plant Burgundy",
+    "description": "Glossy leaves and an upright habit that suits shelves and plant stands. A forgiving tropical that tolerates the occasional missed watering.",
+    "category": "tropicals",
+    "price": 3399,
+    "status": "published",
+    "inventory": 14,
+    "images": [
+      "/products/tropicals.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0018_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 5
+      },
+      {
+        "id": "var_0018_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 7
+      },
+      {
+        "id": "var_0018_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 2
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "high",
+      "petSafe": false,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2025-06-10T18:35:25.013Z",
+    "publishedAt": "2025-06-13T12:07:01.840Z"
+  },
+  {
+    "id": "prod_0019",
+    "storeId": "store_dry",
+    "slug": "burros-tail",
+    "name": "Burro's Tail",
+    "description": "Grown slow and hard in desert sun, so it arrives compact and colorful. A tidy rosette that stays small on a windowsill for years.",
+    "category": "succulents",
+    "price": 2999,
+    "status": "published",
+    "inventory": 43,
+    "images": [
+      "/products/succulents.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0019_2in",
+        "label": "2\" pot",
+        "priceDelta": 0,
+        "inventory": 35
+      },
+      {
+        "id": "var_0019_4in",
+        "label": "4\" pot",
+        "priceDelta": 600,
+        "inventory": 8
+      }
+    ],
+    "care": {
+      "light": "bright",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "moderate"
+    },
+    "source": "seed",
+    "createdAt": "2026-09-08T00:38:34.536Z",
+    "publishedAt": "2026-09-09T03:27:26.618Z"
+  },
+  {
+    "id": "prod_0020",
+    "storeId": "store_dry",
+    "slug": "haworthia-zebra",
+    "name": "Haworthia Zebra",
+    "description": "Store-and-forget watering: let the soil dry completely between drinks. A tidy rosette that stays small on a windowsill for years.",
+    "category": "succulents",
+    "price": 2299,
+    "status": "draft",
+    "inventory": 19,
+    "images": [
+      "/products/succulents.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0020_2in",
+        "label": "2\" pot",
+        "priceDelta": 0,
+        "inventory": 14
+      },
+      {
+        "id": "var_0020_4in",
+        "label": "4\" pot",
+        "priceDelta": 600,
+        "inventory": 5
+      }
+    ],
+    "care": {
+      "light": "bright",
+      "water": "low",
+      "petSafe": false,
+      "difficulty": "moderate"
+    },
+    "source": "seed",
+    "createdAt": "2026-06-17T11:24:58.074Z"
+  },
+  {
+    "id": "prod_0021",
+    "storeId": "store_dry",
+    "slug": "string-of-pearls",
+    "name": "String of Pearls",
+    "description": "Grown slow and hard in desert sun, so it arrives compact and colorful. Store-and-forget watering: let the soil dry completely between drinks.",
+    "category": "succulents",
+    "price": 2299,
+    "status": "published",
+    "inventory": 34,
+    "images": [
+      "/products/succulents.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0021_2in",
+        "label": "2\" pot",
+        "priceDelta": 0,
+        "inventory": 24
+      },
+      {
+        "id": "var_0021_4in",
+        "label": "4\" pot",
+        "priceDelta": 600,
+        "inventory": 10
+      }
+    ],
+    "care": {
+      "light": "bright",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-02-20T07:32:28.523Z",
+    "publishedAt": "2026-02-21T22:38:46.265Z"
+  },
+  {
+    "id": "prod_0022",
+    "storeId": "store_dry",
+    "slug": "matte-black-cylinder",
+    "name": "Matte Black Cylinder",
+    "description": "Fired stoneware that won't wick moisture away from roots. Fired stoneware that won't wick moisture away from roots.",
+    "category": "planters",
+    "price": 8399,
+    "status": "archived",
+    "inventory": 42,
+    "images": [
+      "/products/planters.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0022_small",
+        "label": "Small",
+        "priceDelta": 0,
+        "inventory": 24
+      },
+      {
+        "id": "var_0022_medium",
+        "label": "Medium",
+        "priceDelta": 900,
+        "inventory": 15
+      },
+      {
+        "id": "var_0022_large",
+        "label": "Large",
+        "priceDelta": 2200,
+        "inventory": 3
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-04-30T06:37:49.188Z"
+  },
+  {
+    "id": "prod_0023",
+    "storeId": "store_dry",
+    "slug": "hanging-macrame-planter",
+    "name": "Hanging Macrame Planter",
+    "description": "Wheel-thrown and glazed by hand; every piece is slightly different. Fired stoneware that won't wick moisture away from roots.",
+    "category": "planters",
+    "price": 2599,
+    "status": "published",
+    "inventory": 30,
+    "images": [
+      "/products/planters.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0023_small",
+        "label": "Small",
+        "priceDelta": 0,
+        "inventory": 11
+      },
+      {
+        "id": "var_0023_medium",
+        "label": "Medium",
+        "priceDelta": 900,
+        "inventory": 18
+      },
+      {
+        "id": "var_0023_large",
+        "label": "Large",
+        "priceDelta": 2200,
+        "inventory": 1
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2025-06-05T13:28:48.233Z",
+    "publishedAt": "2025-06-06T06:16:09.389Z"
+  },
+  {
+    "id": "prod_0024",
+    "storeId": "store_dry",
+    "slug": "self-watering-planter",
+    "name": "Self-Watering Planter",
+    "description": "Drainage hole and matching saucer included. Drainage hole and matching saucer included.",
+    "category": "planters",
+    "price": 5199,
+    "status": "published",
+    "inventory": 20,
+    "images": [
+      "/products/planters.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0024_small",
+        "label": "Small",
+        "priceDelta": 0,
+        "inventory": 4
+      },
+      {
+        "id": "var_0024_medium",
+        "label": "Medium",
+        "priceDelta": 900,
+        "inventory": 11
+      },
+      {
+        "id": "var_0024_large",
+        "label": "Large",
+        "priceDelta": 2200,
+        "inventory": 5
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-06-20T15:04:42.598Z",
+    "publishedAt": "2026-06-24T02:50:39.961Z"
+  },
+  {
+    "id": "prod_0025",
+    "storeId": "store_dry",
+    "slug": "long-spout-watering-can",
+    "name": "Long-Spout Watering Can",
+    "description": "Simple, durable, and sized for houseplants rather than the garden. The one tool we reach for every week in the greenhouse.",
+    "category": "tools",
+    "price": 1999,
+    "compareAtPrice": 2499,
+    "status": "published",
+    "inventory": 16,
+    "images": [
+      "/products/tools.svg"
+    ],
+    "variants": [],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-07-13T04:35:02.724Z",
+    "publishedAt": "2026-07-17T17:51:35.455Z"
+  },
+  {
+    "id": "prod_0026",
+    "storeId": "store_dry",
+    "slug": "indoor-potting-mix",
+    "name": "Indoor Potting Mix",
+    "description": "Makes routine care faster so it actually happens. Makes routine care faster so it actually happens.",
+    "category": "tools",
+    "price": 1599,
+    "status": "published",
+    "inventory": 59,
+    "images": [
+      "/products/tools.svg"
+    ],
+    "variants": [],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-05-26T14:55:38.051Z",
+    "publishedAt": "2026-05-31T08:39:13.003Z"
+  },
+  {
+    "id": "prod_0027",
+    "storeId": "store_dry",
+    "slug": "horticultural-perlite",
+    "name": "Horticultural Perlite",
+    "description": "Simple, durable, and sized for houseplants rather than the garden. Simple, durable, and sized for houseplants rather than the garden.",
+    "category": "tools",
+    "price": 999,
+    "status": "published",
+    "inventory": 6,
+    "images": [
+      "/products/tools.svg"
+    ],
+    "variants": [],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-08-07T14:26:27.402Z",
+    "publishedAt": "2026-08-11T16:27:57.942Z"
+  },
+  {
+    "id": "prod_0028",
+    "storeId": "store_dry",
+    "slug": "monstera-thai-constellation",
+    "name": "Monstera Thai Constellation",
+    "description": "Collector-grade variegation, photographed before shipping. Collector-grade variegation, photographed before shipping.",
+    "category": "rare",
+    "price": 17999,
+    "status": "published",
+    "inventory": 36,
+    "images": [
+      "/products/rare.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0028_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 20
+      },
+      {
+        "id": "var_0028_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 12
+      },
+      {
+        "id": "var_0028_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 4
+      }
+    ],
+    "care": {
+      "light": "low",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "expert"
+    },
+    "source": "seed",
+    "createdAt": "2026-03-09T23:56:12.569Z",
+    "publishedAt": "2026-03-11T06:10:43.170Z"
+  },
+  {
+    "id": "prod_0029",
+    "storeId": "store_dry",
+    "slug": "alocasia-dragon-scale",
+    "name": "Alocasia Dragon Scale",
+    "description": "Collector-grade variegation, photographed before shipping. Propagated in-house from our own mother plants, never tissue culture.",
+    "category": "rare",
+    "price": 20099,
+    "status": "published",
+    "inventory": 17,
+    "images": [
+      "/products/rare.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0029_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 3
+      },
+      {
+        "id": "var_0029_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 10
+      },
+      {
+        "id": "var_0029_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 4
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "medium",
+      "petSafe": true,
+      "difficulty": "expert"
+    },
+    "source": "seed",
+    "createdAt": "2025-11-26T14:44:24.601Z",
+    "publishedAt": "2025-11-28T03:27:21.531Z"
+  },
+  {
+    "id": "prod_0030",
+    "storeId": "store_dry",
+    "slug": "hoya-kerrii-variegata",
+    "name": "Hoya Kerrii Variegata",
+    "description": "Propagated in-house from our own mother plants, never tissue culture. Propagated in-house from our own mother plants, never tissue culture.",
+    "category": "rare",
+    "price": 5399,
+    "status": "draft",
+    "inventory": 13,
+    "images": [
+      "/products/rare.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0030_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 8
+      },
+      {
+        "id": "var_0030_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 1
+      },
+      {
+        "id": "var_0030_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 4
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "high",
+      "petSafe": false,
+      "difficulty": "moderate"
+    },
+    "source": "seed",
+    "createdAt": "2025-07-21T11:48:29.685Z"
+  },
+  {
+    "id": "prod_0031",
+    "storeId": "store_kiln",
+    "slug": "calathea-orbifolia",
+    "name": "Calathea Orbifolia",
+    "description": "Lush, fast-growing foliage that fills a bright corner in a season. Lush, fast-growing foliage that fills a bright corner in a season.",
+    "category": "tropicals",
+    "price": 2999,
+    "status": "published",
+    "inventory": 31,
+    "images": [
+      "/products/tropicals.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0031_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 16
+      },
+      {
+        "id": "var_0031_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 12
+      },
+      {
+        "id": "var_0031_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 3
+      }
+    ],
+    "care": {
+      "light": "low",
+      "water": "medium",
+      "petSafe": false,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-02-04T15:02:04.151Z",
+    "publishedAt": "2026-02-08T18:10:05.409Z"
+  },
+  {
+    "id": "prod_0032",
+    "storeId": "store_kiln",
+    "slug": "peace-lily",
+    "name": "Peace Lily",
+    "description": "Lush, fast-growing foliage that fills a bright corner in a season. Lush, fast-growing foliage that fills a bright corner in a season.",
+    "category": "tropicals",
+    "price": 6199,
+    "status": "published",
+    "inventory": 17,
+    "images": [
+      "/products/tropicals.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0032_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 10
+      },
+      {
+        "id": "var_0032_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 4
+      },
+      {
+        "id": "var_0032_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 3
+      }
+    ],
+    "care": {
+      "light": "bright",
+      "water": "medium",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-02-05T19:00:49.725Z",
+    "publishedAt": "2026-02-10T05:03:14.613Z"
+  },
+  {
+    "id": "prod_0033",
+    "storeId": "store_kiln",
+    "slug": "alocasia-polly",
+    "name": "Alocasia Polly",
+    "description": "A forgiving tropical that tolerates the occasional missed watering. Lush, fast-growing foliage that fills a bright corner in a season.",
+    "category": "tropicals",
+    "price": 5999,
+    "status": "published",
+    "inventory": 22,
+    "images": [
+      "/products/tropicals.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0033_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 11
+      },
+      {
+        "id": "var_0033_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 10
+      },
+      {
+        "id": "var_0033_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 1
+      }
+    ],
+    "care": {
+      "light": "bright",
+      "water": "medium",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2025-04-28T05:51:05.475Z",
+    "publishedAt": "2025-04-29T11:40:44.153Z"
+  },
+  {
+    "id": "prod_0034",
+    "storeId": "store_kiln",
+    "slug": "panda-plant",
+    "name": "Panda Plant",
+    "description": "Grown slow and hard in desert sun, so it arrives compact and colorful. A tidy rosette that stays small on a windowsill for years.",
+    "category": "succulents",
+    "price": 2799,
+    "status": "published",
+    "inventory": 22,
+    "images": [
+      "/products/succulents.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0034_2in",
+        "label": "2\" pot",
+        "priceDelta": 0,
+        "inventory": 13
+      },
+      {
+        "id": "var_0034_4in",
+        "label": "4\" pot",
+        "priceDelta": 600,
+        "inventory": 9
+      }
+    ],
+    "care": {
+      "light": "bright",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-03-12T09:21:33.382Z",
+    "publishedAt": "2026-03-17T08:52:30.019Z"
+  },
+  {
+    "id": "prod_0035",
+    "storeId": "store_kiln",
+    "slug": "golden-barrel-cactus",
+    "name": "Golden Barrel Cactus",
+    "description": "Grown slow and hard in desert sun, so it arrives compact and colorful. Grown slow and hard in desert sun, so it arrives compact and colorful.",
+    "category": "succulents",
+    "price": 1699,
+    "status": "draft",
+    "inventory": 38,
+    "images": [
+      "/products/succulents.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0035_2in",
+        "label": "2\" pot",
+        "priceDelta": 0,
+        "inventory": 27
+      },
+      {
+        "id": "var_0035_4in",
+        "label": "4\" pot",
+        "priceDelta": 600,
+        "inventory": 11
+      }
+    ],
+    "care": {
+      "light": "bright",
+      "water": "low",
+      "petSafe": false,
+      "difficulty": "moderate"
+    },
+    "source": "seed",
+    "createdAt": "2025-12-20T17:49:29.174Z"
+  },
+  {
+    "id": "prod_0036",
+    "storeId": "store_kiln",
+    "slug": "bunny-ear-cactus",
+    "name": "Bunny Ear Cactus",
+    "description": "Store-and-forget watering: let the soil dry completely between drinks. Grown slow and hard in desert sun, so it arrives compact and colorful.",
+    "category": "succulents",
+    "price": 1799,
+    "status": "archived",
+    "inventory": 16,
+    "images": [
+      "/products/succulents.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0036_2in",
+        "label": "2\" pot",
+        "priceDelta": 0,
+        "inventory": 9
+      },
+      {
+        "id": "var_0036_4in",
+        "label": "4\" pot",
+        "priceDelta": 600,
+        "inventory": 7
+      }
+    ],
+    "care": {
+      "light": "bright",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "moderate"
+    },
+    "source": "seed",
+    "createdAt": "2026-03-03T23:13:51.940Z"
+  },
+  {
+    "id": "prod_0037",
+    "storeId": "store_kiln",
+    "slug": "fluted-clay-pot",
+    "name": "Fluted Clay Pot",
+    "description": "Fired stoneware that won't wick moisture away from roots. Fired stoneware that won't wick moisture away from roots.",
+    "category": "planters",
+    "price": 5399,
+    "compareAtPrice": 5899,
+    "status": "draft",
+    "inventory": 45,
+    "images": [
+      "/products/planters.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0037_small",
+        "label": "Small",
+        "priceDelta": 0,
+        "inventory": 21
+      },
+      {
+        "id": "var_0037_medium",
+        "label": "Medium",
+        "priceDelta": 900,
+        "inventory": 20
+      },
+      {
+        "id": "var_0037_large",
+        "label": "Large",
+        "priceDelta": 2200,
+        "inventory": 4
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2025-11-28T12:26:57.357Z"
+  },
+  {
+    "id": "prod_0038",
+    "storeId": "store_kiln",
+    "slug": "concrete-minimalist-planter",
+    "name": "Concrete Minimalist Planter",
+    "description": "Drainage hole and matching saucer included. Fired stoneware that won't wick moisture away from roots.",
+    "category": "planters",
+    "price": 8399,
+    "compareAtPrice": 8899,
+    "status": "published",
+    "inventory": 13,
+    "images": [
+      "/products/planters.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0038_small",
+        "label": "Small",
+        "priceDelta": 0,
+        "inventory": 8
+      },
+      {
+        "id": "var_0038_medium",
+        "label": "Medium",
+        "priceDelta": 900,
+        "inventory": 3
+      },
+      {
+        "id": "var_0038_large",
+        "label": "Large",
+        "priceDelta": 2200,
+        "inventory": 2
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-09-10T23:40:23.936Z",
+    "publishedAt": "2026-09-12T16:48:11.190Z"
+  },
+  {
+    "id": "prod_0039",
+    "storeId": "store_kiln",
+    "slug": "woven-seagrass-basket",
+    "name": "Woven Seagrass Basket",
+    "description": "Wheel-thrown and glazed by hand; every piece is slightly different. Drainage hole and matching saucer included.",
+    "category": "planters",
+    "price": 4699,
+    "status": "published",
+    "inventory": 9,
+    "images": [
+      "/products/planters.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0039_small",
+        "label": "Small",
+        "priceDelta": 0,
+        "inventory": 3
+      },
+      {
+        "id": "var_0039_medium",
+        "label": "Medium",
+        "priceDelta": 900,
+        "inventory": 5
+      },
+      {
+        "id": "var_0039_large",
+        "label": "Large",
+        "priceDelta": 2200,
+        "inventory": 1
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-05-18T18:47:17.153Z",
+    "publishedAt": "2026-05-19T13:52:01.725Z"
+  },
+  {
+    "id": "prod_0040",
+    "storeId": "store_kiln",
+    "slug": "bamboo-stake-set",
+    "name": "Bamboo Stake Set",
+    "description": "The one tool we reach for every week in the greenhouse. The one tool we reach for every week in the greenhouse.",
+    "category": "tools",
+    "price": 3699,
+    "status": "published",
+    "inventory": 34,
+    "images": [
+      "/products/tools.svg"
+    ],
+    "variants": [],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2025-12-28T15:52:23.531Z",
+    "publishedAt": "2025-12-29T16:31:01.882Z"
+  },
+  {
+    "id": "prod_0041",
+    "storeId": "store_kiln",
+    "slug": "leaf-shine-cloths",
+    "name": "Leaf Shine Cloths",
+    "description": "Simple, durable, and sized for houseplants rather than the garden. Makes routine care faster so it actually happens.",
+    "category": "tools",
+    "price": 1299,
+    "compareAtPrice": 1799,
+    "status": "published",
+    "inventory": 47,
+    "images": [
+      "/products/tools.svg"
+    ],
+    "variants": [],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2025-08-06T14:10:51.122Z",
+    "publishedAt": "2025-08-11T11:17:07.554Z"
+  },
+  {
+    "id": "prod_0042",
+    "storeId": "store_kiln",
+    "slug": "pebble-humidity-tray",
+    "name": "Pebble Humidity Tray",
+    "description": "Simple, durable, and sized for houseplants rather than the garden. Simple, durable, and sized for houseplants rather than the garden.",
+    "category": "tools",
+    "price": 2599,
+    "compareAtPrice": 3099,
+    "status": "published",
+    "inventory": 35,
+    "images": [
+      "/products/tools.svg"
+    ],
+    "variants": [],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-04-30T04:34:23.055Z",
+    "publishedAt": "2026-05-03T20:51:07.682Z"
+  },
+  {
+    "id": "prod_0043",
+    "storeId": "store_kiln",
+    "slug": "philodendron-gloriosum",
+    "name": "Philodendron Gloriosum",
+    "description": "Ships potted and acclimated with a care card for the first month. Collector-grade variegation, photographed before shipping.",
+    "category": "rare",
+    "price": 5399,
+    "compareAtPrice": 5899,
+    "status": "published",
+    "inventory": 31,
+    "images": [
+      "/products/rare.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0043_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 15
+      },
+      {
+        "id": "var_0043_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 10
+      },
+      {
+        "id": "var_0043_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 6
+      }
+    ],
+    "care": {
+      "light": "low",
+      "water": "medium",
+      "petSafe": false,
+      "difficulty": "expert"
+    },
+    "source": "seed",
+    "createdAt": "2026-01-31T08:50:47.832Z",
+    "publishedAt": "2026-02-01T04:10:45.827Z"
+  },
+  {
+    "id": "prod_0044",
+    "storeId": "store_kiln",
+    "slug": "begonia-maculata",
+    "name": "Begonia Maculata",
+    "description": "Ships potted and acclimated with a care card for the first month. Collector-grade variegation, photographed before shipping.",
+    "category": "rare",
+    "price": 10499,
+    "status": "published",
+    "inventory": 32,
+    "images": [
+      "/products/rare.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0044_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 15
+      },
+      {
+        "id": "var_0044_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 11
+      },
+      {
+        "id": "var_0044_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 6
+      }
+    ],
+    "care": {
+      "light": "low",
+      "water": "medium",
+      "petSafe": false,
+      "difficulty": "expert"
+    },
+    "source": "seed",
+    "createdAt": "2026-01-19T09:54:30.315Z",
+    "publishedAt": "2026-01-20T21:44:42.623Z"
+  },
+  {
+    "id": "prod_0045",
+    "storeId": "store_kiln",
+    "slug": "syngonium-albo",
+    "name": "Syngonium Albo",
+    "description": "Collector-grade variegation, photographed before shipping. Propagated in-house from our own mother plants, never tissue culture.",
+    "category": "rare",
+    "price": 6399,
+    "status": "published",
+    "inventory": 11,
+    "images": [
+      "/products/rare.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0045_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 2
+      },
+      {
+        "id": "var_0045_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 3
+      },
+      {
+        "id": "var_0045_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 6
+      }
+    ],
+    "care": {
+      "light": "low",
+      "water": "medium",
+      "petSafe": false,
+      "difficulty": "expert"
+    },
+    "source": "seed",
+    "createdAt": "2025-12-13T05:50:30.884Z",
+    "publishedAt": "2025-12-15T06:53:40.290Z"
+  },
+  {
+    "id": "prod_0046",
+    "storeId": "store_moss",
+    "slug": "heartleaf-philodendron",
+    "name": "Heartleaf Philodendron",
+    "description": "Lush, fast-growing foliage that fills a bright corner in a season. Glossy leaves and an upright habit that suits shelves and plant stands.",
+    "category": "tropicals",
+    "price": 2899,
+    "compareAtPrice": 3399,
+    "status": "published",
+    "inventory": 14,
+    "images": [
+      "/products/tropicals.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0046_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 2
+      },
+      {
+        "id": "var_0046_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 7
+      },
+      {
+        "id": "var_0046_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 5
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-09-28T12:01:00.000Z",
+    "publishedAt": "2026-09-29T05:11:12.013Z"
+  },
+  {
+    "id": "prod_0047",
+    "storeId": "store_moss",
+    "slug": "snake-plant-laurentii",
+    "name": "Snake Plant Laurentii",
+    "description": "Glossy leaves and an upright habit that suits shelves and plant stands. Lush, fast-growing foliage that fills a bright corner in a season.",
+    "category": "tropicals",
+    "price": 3599,
+    "status": "draft",
+    "inventory": 27,
+    "images": [
+      "/products/tropicals.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0047_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 12
+      },
+      {
+        "id": "var_0047_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 11
+      },
+      {
+        "id": "var_0047_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 4
+      }
+    ],
+    "care": {
+      "light": "low",
+      "water": "medium",
+      "petSafe": false,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-09-28T12:01:00.000Z"
+  },
+  {
+    "id": "prod_0048",
+    "storeId": "store_moss",
+    "slug": "zz-plant",
+    "name": "ZZ Plant",
+    "description": "Glossy leaves and an upright habit that suits shelves and plant stands. Lush, fast-growing foliage that fills a bright corner in a season.",
+    "category": "tropicals",
+    "price": 4099,
+    "status": "published",
+    "inventory": 30,
+    "images": [
+      "/products/tropicals.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0048_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 18
+      },
+      {
+        "id": "var_0048_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 10
+      },
+      {
+        "id": "var_0048_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 2
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "medium",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-09-28T12:01:00.000Z",
+    "publishedAt": "2026-09-28T22:28:41.289Z"
+  },
+  {
+    "id": "prod_0049",
+    "storeId": "store_moss",
+    "slug": "ghost-plant",
+    "name": "Ghost Plant",
+    "description": "A tidy rosette that stays small on a windowsill for years. Store-and-forget watering: let the soil dry completely between drinks.",
+    "category": "succulents",
+    "price": 1799,
+    "compareAtPrice": 2299,
+    "status": "published",
+    "inventory": 38,
+    "images": [
+      "/products/succulents.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0049_2in",
+        "label": "2\" pot",
+        "priceDelta": 0,
+        "inventory": 23
+      },
+      {
+        "id": "var_0049_4in",
+        "label": "4\" pot",
+        "priceDelta": 600,
+        "inventory": 15
+      }
+    ],
+    "care": {
+      "light": "low",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-09-28T12:01:00.000Z",
+    "publishedAt": "2026-10-02T19:54:39.374Z"
+  },
+  {
+    "id": "prod_0050",
+    "storeId": "store_moss",
+    "slug": "lithops-trio",
+    "name": "Lithops Trio",
+    "description": "Store-and-forget watering: let the soil dry completely between drinks. Store-and-forget watering: let the soil dry completely between drinks.",
+    "category": "succulents",
+    "price": 1699,
+    "status": "published",
+    "inventory": 24,
+    "images": [
+      "/products/succulents.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0050_2in",
+        "label": "2\" pot",
+        "priceDelta": 0,
+        "inventory": 16
+      },
+      {
+        "id": "var_0050_4in",
+        "label": "4\" pot",
+        "priceDelta": 600,
+        "inventory": 8
+      }
+    ],
+    "care": {
+      "light": "low",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-09-28T12:01:00.000Z",
+    "publishedAt": "2026-09-28T14:46:11.969Z"
+  },
+  {
+    "id": "prod_0051",
+    "storeId": "store_moss",
+    "slug": "hen-and-chicks",
+    "name": "Hen and Chicks",
+    "description": "A tidy rosette that stays small on a windowsill for years. Store-and-forget watering: let the soil dry completely between drinks.",
+    "category": "succulents",
+    "price": 999,
+    "status": "published",
+    "inventory": 20,
+    "images": [
+      "/products/succulents.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0051_2in",
+        "label": "2\" pot",
+        "priceDelta": 0,
+        "inventory": 17
+      },
+      {
+        "id": "var_0051_4in",
+        "label": "4\" pot",
+        "priceDelta": 600,
+        "inventory": 3
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": false,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-09-28T12:01:00.000Z",
+    "publishedAt": "2026-09-30T11:00:20.053Z"
+  },
+  {
+    "id": "prod_0052",
+    "storeId": "store_moss",
+    "slug": "footed-ceramic-bowl",
+    "name": "Footed Ceramic Bowl",
+    "description": "Drainage hole and matching saucer included. Fired stoneware that won't wick moisture away from roots.",
+    "category": "planters",
+    "price": 7999,
+    "status": "archived",
+    "inventory": 35,
+    "images": [
+      "/products/planters.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0052_small",
+        "label": "Small",
+        "priceDelta": 0,
+        "inventory": 12
+      },
+      {
+        "id": "var_0052_medium",
+        "label": "Medium",
+        "priceDelta": 900,
+        "inventory": 20
+      },
+      {
+        "id": "var_0052_large",
+        "label": "Large",
+        "priceDelta": 2200,
+        "inventory": 3
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-09-28T12:01:00.000Z"
+  },
+  {
+    "id": "prod_0053",
+    "storeId": "store_moss",
+    "slug": "terracotta-saucer-set",
+    "name": "Terracotta Saucer Set",
+    "description": "Wheel-thrown and glazed by hand; every piece is slightly different. Wheel-thrown and glazed by hand; every piece is slightly different.",
+    "category": "planters",
+    "price": 8299,
+    "status": "published",
+    "inventory": 21,
+    "images": [
+      "/products/planters.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0053_small",
+        "label": "Small",
+        "priceDelta": 0,
+        "inventory": 5
+      },
+      {
+        "id": "var_0053_medium",
+        "label": "Medium",
+        "priceDelta": 900,
+        "inventory": 11
+      },
+      {
+        "id": "var_0053_large",
+        "label": "Large",
+        "priceDelta": 2200,
+        "inventory": 5
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-09-28T12:01:00.000Z",
+    "publishedAt": "2026-10-01T22:14:05.217Z"
+  },
+  {
+    "id": "prod_0054",
+    "storeId": "store_moss",
+    "slug": "tall-ribbed-planter",
+    "name": "Tall Ribbed Planter",
+    "description": "Fired stoneware that won't wick moisture away from roots. Wheel-thrown and glazed by hand; every piece is slightly different.",
+    "category": "planters",
+    "price": 4799,
+    "status": "published",
+    "inventory": 28,
+    "images": [
+      "/products/planters.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0054_small",
+        "label": "Small",
+        "priceDelta": 0,
+        "inventory": 11
+      },
+      {
+        "id": "var_0054_medium",
+        "label": "Medium",
+        "priceDelta": 900,
+        "inventory": 8
+      },
+      {
+        "id": "var_0054_large",
+        "label": "Large",
+        "priceDelta": 2200,
+        "inventory": 9
+      }
+    ],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-09-28T12:01:00.000Z",
+    "publishedAt": "2026-09-28T23:04:45.392Z"
+  },
+  {
+    "id": "prod_0055",
+    "storeId": "store_moss",
+    "slug": "neem-oil-concentrate",
+    "name": "Neem Oil Concentrate",
+    "description": "Simple, durable, and sized for houseplants rather than the garden. Makes routine care faster so it actually happens.",
+    "category": "tools",
+    "price": 2999,
+    "compareAtPrice": 3499,
+    "status": "published",
+    "inventory": 60,
+    "images": [
+      "/products/tools.svg"
+    ],
+    "variants": [],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-09-28T12:01:00.000Z",
+    "publishedAt": "2026-09-28T13:21:36.759Z"
+  },
+  {
+    "id": "prod_0056",
+    "storeId": "store_moss",
+    "slug": "hand-trowel",
+    "name": "Hand Trowel",
+    "description": "The one tool we reach for every week in the greenhouse. Simple, durable, and sized for houseplants rather than the garden.",
+    "category": "tools",
+    "price": 899,
+    "status": "draft",
+    "inventory": 37,
+    "images": [
+      "/products/tools.svg"
+    ],
+    "variants": [],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-09-28T12:01:00.000Z"
+  },
+  {
+    "id": "prod_0057",
+    "storeId": "store_moss",
+    "slug": "full-spectrum-grow-bulb",
+    "name": "Full-Spectrum Grow Bulb",
+    "description": "Simple, durable, and sized for houseplants rather than the garden. The one tool we reach for every week in the greenhouse.",
+    "category": "tools",
+    "price": 1899,
+    "status": "published",
+    "inventory": 5,
+    "images": [
+      "/products/tools.svg"
+    ],
+    "variants": [],
+    "care": {
+      "light": "medium",
+      "water": "low",
+      "petSafe": true,
+      "difficulty": "easy"
+    },
+    "source": "seed",
+    "createdAt": "2026-09-28T12:01:00.000Z",
+    "publishedAt": "2026-10-03T01:14:53.908Z"
+  },
+  {
+    "id": "prod_0058",
+    "storeId": "store_moss",
+    "slug": "scindapsus-treubii-moonlight",
+    "name": "Scindapsus Treubii Moonlight",
+    "description": "Ships potted and acclimated with a care card for the first month. Ships potted and acclimated with a care card for the first month.",
+    "category": "rare",
+    "price": 4699,
+    "compareAtPrice": 5199,
+    "status": "published",
+    "inventory": 9,
+    "images": [
+      "/products/rare.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0058_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 7
+      },
+      {
+        "id": "var_0058_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 2
+      },
+      {
+        "id": "var_0058_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 0
+      }
+    ],
+    "care": {
+      "light": "bright",
+      "water": "medium",
+      "petSafe": true,
+      "difficulty": "expert"
+    },
+    "source": "seed",
+    "createdAt": "2026-09-28T12:01:00.000Z",
+    "publishedAt": "2026-10-02T13:56:01.032Z"
+  },
+  {
+    "id": "prod_0059",
+    "storeId": "store_moss",
+    "slug": "calathea-white-fusion",
+    "name": "Calathea White Fusion",
+    "description": "Collector-grade variegation, photographed before shipping. Collector-grade variegation, photographed before shipping.",
+    "category": "rare",
+    "price": 5499,
+    "status": "published",
+    "inventory": 23,
+    "images": [
+      "/products/rare.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0059_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 13
+      },
+      {
+        "id": "var_0059_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 6
+      },
+      {
+        "id": "var_0059_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 4
+      }
+    ],
+    "care": {
+      "light": "low",
+      "water": "medium",
+      "petSafe": false,
+      "difficulty": "moderate"
+    },
+    "source": "seed",
+    "createdAt": "2026-09-28T12:01:00.000Z",
+    "publishedAt": "2026-09-29T03:19:30.623Z"
+  },
+  {
+    "id": "prod_0060",
+    "storeId": "store_moss",
+    "slug": "variegated-string-of-hearts",
+    "name": "Variegated String of Hearts",
+    "description": "Ships potted and acclimated with a care card for the first month. Propagated in-house from our own mother plants, never tissue culture.",
+    "category": "rare",
+    "price": 9199,
+    "status": "published",
+    "inventory": 23,
+    "images": [
+      "/products/rare.svg"
+    ],
+    "variants": [
+      {
+        "id": "var_0060_4in",
+        "label": "4\" pot",
+        "priceDelta": 0,
+        "inventory": 20
+      },
+      {
+        "id": "var_0060_6in",
+        "label": "6\" pot",
+        "priceDelta": 1200,
+        "inventory": 1
+      },
+      {
+        "id": "var_0060_8in",
+        "label": "8\" pot",
+        "priceDelta": 2800,
+        "inventory": 2
+      }
+    ],
+    "care": {
+      "light": "low",
+      "water": "high",
+      "petSafe": false,
+      "difficulty": "expert"
+    },
+    "source": "seed",
+    "createdAt": "2026-09-28T12:01:00.000Z",
+    "publishedAt": "2026-09-29T06:09:34.480Z"
+  }
+]

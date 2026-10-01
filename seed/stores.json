@@ -1,0 +1,42 @@
+[
+  {
+    "id": "store_fernhollow",
+    "slug": "fernhollow-nursery",
+    "name": "Fernhollow Nursery",
+    "description": "A family-run greenhouse in the Willamette Valley growing tropicals and rare aroids since 1998.",
+    "plan": "pro",
+    "region": "Portland, OR",
+    "payoutAccountLast4": "4821",
+    "createdAt": "2025-08-27T12:00:00.000Z"
+  },
+  {
+    "id": "store_dry",
+    "slug": "dry-creek-succulents",
+    "name": "Dry Creek Succulents",
+    "description": "Desert-grown succulents and cacti, shipped bare-root from the Sonoran foothills.",
+    "plan": "growth",
+    "region": "Tucson, AZ",
+    "payoutAccountLast4": "9037",
+    "createdAt": "2025-05-29T12:00:00.000Z"
+  },
+  {
+    "id": "store_kiln",
+    "slug": "kiln-and-vine",
+    "name": "Kiln & Vine",
+    "description": "Small-batch ceramic planters thrown in the Blue Ridge, paired with hardy houseplants.",
+    "plan": "growth",
+    "region": "Asheville, NC",
+    "payoutAccountLast4": "2264",
+    "createdAt": "2025-02-28T12:00:00.000Z"
+  },
+  {
+    "id": "store_moss",
+    "slug": "moss-lane",
+    "name": "Moss Lane",
+    "description": "A new corner nursery in Vermont focused on beginner-friendly plants and care kits.",
+    "plan": "starter",
+    "trialEndsAt": "2026-10-12T12:00:00.000Z",
+    "region": "Burlington, VT",
+    "createdAt": "2026-09-28T12:00:00.000Z"
+  }
+]

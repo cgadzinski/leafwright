@@ -53,7 +53,15 @@ export function UserMenu({
           </DropdownMenuItem>
         ) : null}
         <DropdownMenuSeparator />
-        <DropdownMenuItem onSelect={() => signOut({ callbackUrl: "/" })} data-testid="nav-sign-out">
+        <DropdownMenuItem
+          onSelect={() => {
+            void signOut({ callbackUrl: "/" });
+            // signOut() reloads the page once it resolves; clear now so the next visit starts
+            // anonymous.
+            window.pendo?.clearSession?.();
+          }}
+          data-testid="nav-sign-out"
+        >
           <LogOut /> Sign out
         </DropdownMenuItem>
       </DropdownMenuContent>

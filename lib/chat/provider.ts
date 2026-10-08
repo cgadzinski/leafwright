@@ -24,6 +24,7 @@ export interface ChatRequest {
 
 export interface ChatProvider {
   readonly name: "claude" | "scripted";
+  readonly model: string;
   stream(request: ChatRequest): AsyncIterable<string>;
 }
 
@@ -68,6 +69,7 @@ function buildTools(persona: Persona, context: ToolContext) {
 export function createClaudeProvider(client: Anthropic = new Anthropic()): ChatProvider {
   return {
     name: "claude",
+    model: MODEL,
     async *stream({ persona, messages, context, onIncomplete }) {
       const runner = client.beta.messages.toolRunner({
         model: MODEL,
@@ -107,6 +109,7 @@ export function createClaudeProvider(client: Anthropic = new Anthropic()): ChatP
 export function createScriptedProvider(delayMs = 18): ChatProvider {
   return {
     name: "scripted",
+    model: "scripted",
     async *stream({ persona, messages, context }) {
       const last = [...messages].reverse().find((message) => message.role === "user");
       const reply = await scriptedReply(persona, last?.content ?? "", context);

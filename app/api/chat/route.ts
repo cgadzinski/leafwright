@@ -4,6 +4,7 @@ import {
   CONVERSATION_HEADER,
   ChatRequestSchema,
   MESSAGE_HEADER,
+  MODEL_HEADER,
   PROVIDER_HEADER,
 } from "@/lib/chat/conversation";
 import { getChatProvider } from "@/lib/chat/provider";
@@ -138,6 +139,7 @@ export async function POST(request: Request): Promise<Response> {
       "Cache-Control": "no-store",
       [CONVERSATION_HEADER]: conversation.id,
       [MESSAGE_HEADER]: assistantId,
+      [MODEL_HEADER]: provider.model,
       [PROVIDER_HEADER]: provider.name,
     },
   });

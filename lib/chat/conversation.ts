@@ -29,3 +29,5 @@ export const CONVERSATION_HEADER = "x-conversation-id";
 export const MESSAGE_HEADER = "x-message-id";
 /** Which provider answered: "claude" or "scripted". */
 export const PROVIDER_HEADER = "x-assistant-provider";
+/** Response header naming the model that wrote the reply. */
+export const MODEL_HEADER = "x-assistant-model";

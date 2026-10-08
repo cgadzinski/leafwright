@@ -13,18 +13,7 @@ interface AgentOptions {
   account?: AgentMetadata;
 }
 
-interface PendoAgent {
-  track(event: string, properties?: TrackEventProperties): void;
-  updateOptions(options: AgentOptions): void;
-}
-
-declare global {
-  interface Window {
-    pendo?: Partial<PendoAgent>;
-  }
-}
-
-function agent(): Partial<PendoAgent> | undefined {
+function agent(): Window["pendo"] {
   return typeof window === "undefined" ? undefined : window.pendo;
 }
 
@@ -32,7 +21,7 @@ export const pendo = {
   /** Records a Track Event for the current visitor and account. */
   track(event: string, properties: TrackEventProperties = {}): void {
     try {
-      agent()?.track?.(event, properties);
+      agent()?.track(event, properties);
     } catch (error) {
       console.error(`Track Event "${event}" failed`, error);
     }
@@ -41,7 +30,7 @@ export const pendo = {
   /** Updates visitor or account metadata the agent holds, such as a store's plan. */
   updateOptions(options: AgentOptions): void {
     try {
-      agent()?.updateOptions?.(options);
+      agent()?.updateOptions(options);
     } catch (error) {
       console.error("Updating visitor or account metadata failed", error);
     }

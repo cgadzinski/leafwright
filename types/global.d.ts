@@ -9,12 +9,14 @@ export interface IdentifyOptions {
 declare global {
   interface Window {
     /**
-     * Set up by the inline script in `app/layout.tsx`. `initialize` and `identify` are queued
-     * until the agent loads; `clearSession` only exists once it has.
+     * Set up by the inline script in `app/layout.tsx`. `initialize`, `identify`, `updateOptions`,
+     * and `track` are queued until the agent loads; `clearSession` only exists once it has.
      */
     pendo?: {
       initialize(options: IdentifyOptions): void;
       identify(options: IdentifyOptions): void;
+      updateOptions(options: Partial<IdentifyOptions>): void;
+      track(event: string, properties?: Record<string, MetadataValue>): void;
       clearSession?(): void;
     };
   }

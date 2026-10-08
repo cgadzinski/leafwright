@@ -1,7 +1,12 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import { CONVERSATION_HEADER, MESSAGE_HEADER, PROVIDER_HEADER } from "@/lib/chat/conversation";
+import {
+  CONVERSATION_HEADER,
+  MESSAGE_HEADER,
+  MODEL_HEADER,
+  PROVIDER_HEADER,
+} from "@/lib/chat/conversation";
 import { SUGGESTED_PROMPTS } from "@/lib/chat/prompts";
 import type { Persona } from "@/lib/db/schema";
 import { pendo } from "@/lib/pendo";
@@ -24,6 +29,12 @@ interface SendOrigin {
 
 /** Product links in a reply: the bare `/products/{slug}` paths the panel turns into links. */
 const PRODUCT_LINK = /\/products\/[a-z0-9-]+/g;
+
+/** Agent id each persona's assistant is reported under in conversation analytics. */
+const AGENT_IDS: Record<Persona, string> = {
+  shopper: "qYoUvIRmEpbwmljGvkMkCEPrbDw",
+  merchant: "bgDRE-DIBkzhrYlalmQHO9L7Uqg",
+};
 
 function localId(prefix: string): string {
   return `${prefix}_${Math.random().toString(36).slice(2, 10)}${Date.now().toString(36)}`;
@@ -82,6 +93,16 @@ export function useChat(persona: Persona) {
           ),
         );
 
+        if (question && conversationId.current && origin.inputMethod !== "retry") {
+          pendo.trackAgent("prompt", {
+            agentId: AGENT_IDS[persona],
+            conversationId: conversationId.current,
+            messageId: question.id,
+            content: question.content,
+            suggestedPrompt: origin.inputMethod === "suggestion",
+          });
+        }
+
         const reader = response.body.getReader();
         const decoder = new TextDecoder();
         let text = "";
@@ -97,6 +118,15 @@ export function useChat(persona: Persona) {
           );
         }
         setStatus("idle");
+        if (conversationId.current) {
+          pendo.trackAgent("agent_response", {
+            agentId: AGENT_IDS[persona],
+            conversationId: conversationId.current,
+            messageId: assistantId,
+            content: text,
+            modelUsed: response.headers.get(MODEL_HEADER) ?? undefined,
+          });
+        }
         pendo.track("Assistant Message Sent", {
           persona,
           conversationId: conversationId.current,
@@ -159,6 +189,14 @@ export function useChat(persona: Persona) {
       if (index === -1) return;
       const history = messages.slice(0, index).filter((message) => !message.failed);
       if (!history.some((message) => message.role === "user")) return;
+      if (conversationId.current && !messages[index].failed) {
+        pendo.trackAgent("user_reaction", {
+          agentId: AGENT_IDS[persona],
+          conversationId: conversationId.current,
+          messageId,
+          content: "retry",
+        });
+      }
       pendo.track("Assistant Response Retried", {
         persona,
         conversationId: conversationId.current,
@@ -183,6 +221,14 @@ export function useChat(persona: Persona) {
       );
       // Clicking the rating a reply already has changes nothing, so it isn't reported again.
       if (index !== -1 && previousRating !== value) {
+        if (!messages[index].failed) {
+          pendo.trackAgent("user_reaction", {
+            agentId: AGENT_IDS[persona],
+            conversationId: conversationId.current,
+            messageId,
+            content: value === "up" ? "positive" : "negative",
+          });
+        }
         pendo.track("Assistant Response Rated", {
           persona,
           conversationId: conversationId.current,

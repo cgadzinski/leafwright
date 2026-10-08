@@ -6,9 +6,11 @@ import { auth } from "@/auth";
 import { clearCart, getCart, priceStoredCart } from "@/lib/cart/server";
 import { db } from "@/lib/db";
 import { newId } from "@/lib/db/ids";
-import type { Order, OrderLine } from "@/lib/db/schema";
+import { ShippingMethodSchema, type Order, type OrderLine } from "@/lib/db/schema";
 import { rememberGuestOrders } from "@/lib/orders/access";
 import { fieldErrors, formValue, PlaceOrderSchema, saveAddress } from "@/lib/orders/checkout";
+import type { TrackEventProperties } from "@/lib/pendo";
+import { sessionIdentity, trackServerEvent } from "@/lib/pendo.server";
 import { getRecordSource } from "@/lib/request-source";
 
 export interface CheckoutState {
@@ -17,6 +19,13 @@ export interface CheckoutState {
 }
 
 export async function placeOrder(_prev: CheckoutState, formData: FormData): Promise<CheckoutState> {
+  const session = await auth();
+  const identity = sessionIdentity(session);
+  const isGuest = !session?.user;
+  // Field names and counts only; never the values shoppers typed.
+  const checkoutFailed = (properties: TrackEventProperties) =>
+    trackServerEvent("Checkout Failed", identity, { ...properties, isGuest });
+
   const parsed = PlaceOrderSchema.safeParse({
     email: formValue(formData, "email"),
     name: formValue(formData, "name"),
@@ -33,19 +42,36 @@ export async function placeOrder(_prev: CheckoutState, formData: FormData): Prom
     cardCvc: formValue(formData, "cardCvc"),
   });
   if (!parsed.success) {
-    return { error: "Check the highlighted fields.", fieldErrors: fieldErrors(parsed.error) };
+    const errors = fieldErrors(parsed.error);
+    checkoutFailed({
+      reason: "validation_error",
+      invalidFields: Object.keys(errors).join(","),
+      shippingMethod: ShippingMethodSchema.safeParse(
+        formValue(formData, "shippingMethod") ?? "standard",
+      ).data,
+    });
+    return { error: "Check the highlighted fields.", fieldErrors: errors };
   }
   const input = parsed.data;
 
-  const session = await auth();
   const cart = await getCart();
   const { totals, promo } = await priceStoredCart(cart, input.shippingMethod);
-  if (totals.itemCount === 0) return { error: "Your cart is empty." };
+  if (totals.itemCount === 0) {
+    checkoutFailed({ reason: "empty_cart", shippingMethod: input.shippingMethod });
+    return { error: "Your cart is empty." };
+  }
 
   for (const group of totals.groups) {
     for (const { product, variant, line } of group.lines) {
       const available = variant ? variant.inventory : product.inventory;
       if (available < line.quantity) {
+        checkoutFailed({
+          reason: "out_of_stock",
+          productId: product.id,
+          availableQuantity: available,
+          requestedQuantity: line.quantity,
+          shippingMethod: input.shippingMethod,
+        });
         return { error: `Only ${available} of ${product.name} left in stock.` };
       }
     }
@@ -115,11 +141,29 @@ export async function placeOrder(_prev: CheckoutState, formData: FormData): Prom
   }
 
   if (customerId && input.saveAddress) {
-    await saveAddress(customerId, { ...input, label: "Home" });
+    await saveAddress(customerId, { ...input, label: "Home" }, "checkout");
   }
 
   await clearCart(cart);
   if (!customerId) await rememberGuestOrders(created.map((order) => order.number));
+
+  // One event per checkout, however many nurseries (orders) it was split across.
+  trackServerEvent("Order Placed", identity, {
+    orderNumbers: created.map((order) => order.number).join(","),
+    orderCount: created.length,
+    storeIds: created.map((order) => order.storeId).join(","),
+    itemCount: totals.itemCount,
+    subtotal: totals.subtotal,
+    discount: totals.discount,
+    shipping: totals.shipping,
+    tax: totals.tax,
+    total: totals.total,
+    shippingMethod: input.shippingMethod,
+    promoCode: created.find((order) => order.promoCode)?.promoCode,
+    checkoutType: customerId ? "signed_in" : "guest",
+    addressSaved: Boolean(customerId && input.saveAddress),
+    recordSource: source,
+  });
 
   revalidatePath("/", "layout");
   redirect(`/orders/${created[0].number}/confirmation`);

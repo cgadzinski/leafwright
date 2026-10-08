@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { ProductCard } from "@/components/storefront/product-card";
 import { Label } from "@/components/ui/label";
 import {
@@ -12,12 +12,36 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CATEGORY_LIST, SORT_OPTIONS, type SortValue } from "@/lib/catalog";
-import { CategorySchema, type Product, type Store } from "@/lib/db/schema";
+import { CategorySchema, type Category, type Product, type Store } from "@/lib/db/schema";
+import { pendo } from "@/lib/pendo";
 
 const ALL = "all";
 
+/** The last search reported. Module scope, so coming back to the same results doesn't repeat it. */
+let reportedSearch = "";
+
 function isSort(value: string | null): value is SortValue {
   return SORT_OPTIONS.some((option) => option.value === value);
+}
+
+function readCategory(params: Pick<URLSearchParams, "get">): Category | undefined {
+  const parsed = CategorySchema.safeParse(params.get("category"));
+  return parsed.success ? parsed.data : undefined;
+}
+
+function readSort(params: Pick<URLSearchParams, "get">): SortValue {
+  const value = params.get("sort");
+  return isSort(value) ? value : "featured";
+}
+
+function matches(product: Product, category: Category | undefined, query: string): boolean {
+  return (
+    (!category || product.category === category) &&
+    (!query ||
+      product.name.toLowerCase().includes(query) ||
+      product.description.toLowerCase().includes(query) ||
+      product.category.includes(query))
+  );
 }
 
 export function CatalogView({
@@ -33,24 +57,14 @@ export function CatalogView({
   const pathname = usePathname();
   const params = useSearchParams();
 
-  const categoryParam = CategorySchema.safeParse(params.get("category"));
-  const category = categoryParam.success ? categoryParam.data : undefined;
-  const sort: SortValue = isSort(params.get("sort"))
-    ? (params.get("sort") as SortValue)
-    : "featured";
+  const category = readCategory(params);
+  const sort = readSort(params);
   const query = params.get("q")?.trim().toLowerCase() ?? "";
 
   const storeName = useMemo(() => new Map(stores.map((store) => [store.id, store.name])), [stores]);
 
   const visible = useMemo(() => {
-    const filtered = products.filter(
-      (product) =>
-        (!category || product.category === category) &&
-        (!query ||
-          product.name.toLowerCase().includes(query) ||
-          product.description.toLowerCase().includes(query) ||
-          product.category.includes(query)),
-    );
+    const filtered = products.filter((product) => matches(product, category, query));
     switch (sort) {
       case "newest":
         return filtered.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
@@ -63,12 +77,40 @@ export function CatalogView({
     }
   }, [products, category, query, sort]);
 
-  function update(key: string, value: string | undefined) {
+  // A search from the header lands here; report it once, with how many products it found.
+  useEffect(() => {
+    if (!query) {
+      reportedSearch = "";
+      return;
+    }
+    if (query === reportedSearch) return;
+    reportedSearch = query;
+    pendo.track("Products Searched", {
+      query: query.slice(0, 100),
+      resultsCount: visible.length,
+      hasResults: visible.length > 0,
+      activeCategory: category ?? ALL,
+      sort,
+    });
+  }, [query, visible.length, category, sort]);
+
+  function update(key: "category" | "sort", value: string | undefined) {
     const next = new URLSearchParams(params.toString());
     if (!value || value === ALL) next.delete(key);
     else next.set(key, value);
     const search = next.toString();
     router.replace(search ? `${pathname}?${search}` : pathname, { scroll: false });
+
+    if (search === params.toString()) return;
+    const nextCategory = readCategory(next);
+    pendo.track("Catalog Filtered", {
+      filterType: key,
+      category: nextCategory ?? ALL,
+      sort: readSort(next),
+      query: query ? query.slice(0, 100) : undefined,
+      resultsCount: products.filter((product) => matches(product, nextCategory, query)).length,
+      totalProducts: products.length,
+    });
   }
 
   return (

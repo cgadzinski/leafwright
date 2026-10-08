@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { analytics } from "@/lib/analytics";
+import { pendo } from "@/lib/pendo";
 import { applyPromo, removePromo, type CartActionState } from "./actions";
 
 export function PromoForm({
@@ -17,13 +18,19 @@ export function PromoForm({
   const [state, action, pending] = useActionState<CartActionState, FormData>(
     async (prev, formData) => {
       const result = await applyPromo(prev, formData);
-      if (result.ok)
-        analytics.track("Promo Applied", {
-          code: String(formData.get("code") ?? "")
-            .trim()
-            .toUpperCase(),
+      const code = String(formData.get("code") ?? "")
+        .trim()
+        .toUpperCase();
+      if (result.ok) {
+        analytics.track("Promo Applied", { code, source: "cart" });
+        pendo.track("Promo Applied", { code, ...result.promo, source: "cart" });
+      } else if (result.reason) {
+        pendo.track("Promo Code Rejected", {
+          code: code.slice(0, 32),
+          reason: result.reason,
           source: "cart",
         });
+      }
       return result;
     },
     {},

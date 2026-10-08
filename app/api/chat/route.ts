@@ -1,10 +1,16 @@
 import { auth } from "@/auth";
 import { isMerchant } from "@/lib/auth/callbacks";
-import { CONVERSATION_HEADER, ChatRequestSchema, MESSAGE_HEADER } from "@/lib/chat/conversation";
+import {
+  CONVERSATION_HEADER,
+  ChatRequestSchema,
+  MESSAGE_HEADER,
+  PROVIDER_HEADER,
+} from "@/lib/chat/conversation";
 import { getChatProvider } from "@/lib/chat/provider";
 import { db } from "@/lib/db";
 import { newId } from "@/lib/db/ids";
 import type { ChatMessage, Conversation } from "@/lib/db/schema";
+import { sessionIdentity, trackServerEvent } from "@/lib/pendo.server";
 import { getRecordSource } from "@/lib/request-source";
 
 export async function POST(request: Request): Promise<Response> {
@@ -66,6 +72,14 @@ export async function POST(request: Request): Promise<Response> {
   const provider = getChatProvider();
   const encoder = new TextEncoder();
   let reply = "";
+  // Failures below reach the shopper as an ordinary apology, so they are reported from here.
+  const reportFailure = (errorType: "provider_error" | "refusal" | "truncated") =>
+    trackServerEvent("Assistant Response Failed", sessionIdentity(session), {
+      persona,
+      conversationId: conversation.id,
+      errorType,
+      provider: provider.name,
+    });
 
   // The client may navigate away mid-reply; keep streaming state so the full reply is still stored.
   let closed = false;
@@ -85,11 +99,13 @@ export async function POST(request: Request): Promise<Response> {
           persona,
           messages: conversation.messages.map(({ role, content }) => ({ role, content })),
           context: { storeId },
+          onIncomplete: reportFailure,
         })) {
           push(chunk);
         }
       } catch (error) {
         console.error("chat provider failed", error);
+        reportFailure("provider_error");
         push("Sorry, I lost my train of thought. Try that again in a moment.");
       } finally {
         const latest = (await db.conversations.getById(conversation.id)) ?? conversation;
@@ -122,7 +138,7 @@ export async function POST(request: Request): Promise<Response> {
       "Cache-Control": "no-store",
       [CONVERSATION_HEADER]: conversation.id,
       [MESSAGE_HEADER]: assistantId,
-      "X-Assistant-Provider": provider.name,
+      [PROVIDER_HEADER]: provider.name,
     },
   });
 }

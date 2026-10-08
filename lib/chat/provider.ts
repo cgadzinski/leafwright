@@ -18,6 +18,8 @@ export interface ChatRequest {
   persona: Persona;
   messages: Pick<ChatMessage, "role" | "content">[];
   context: ToolContext;
+  /** Called when the model stops without a usable answer: a refusal or a truncated tool call. */
+  onIncomplete?: (reason: "refusal" | "truncated") => void;
 }
 
 export interface ChatProvider {
@@ -66,7 +68,7 @@ function buildTools(persona: Persona, context: ToolContext) {
 export function createClaudeProvider(client: Anthropic = new Anthropic()): ChatProvider {
   return {
     name: "claude",
-    async *stream({ persona, messages, context }) {
+    async *stream({ persona, messages, context, onIncomplete }) {
       const runner = client.beta.messages.toolRunner({
         model: MODEL,
         max_tokens: 4096,
@@ -85,6 +87,7 @@ export function createClaudeProvider(client: Anthropic = new Anthropic()): ChatP
         }
         const message = await messageStream.finalMessage();
         if (message.stop_reason === "refusal") {
+          onIncomplete?.("refusal");
           yield "\n\nI can't help with that one, but I'm glad to talk plants or sales.";
           return;
         }
@@ -92,6 +95,7 @@ export function createClaudeProvider(client: Anthropic = new Anthropic()): ChatP
           message.stop_reason === "max_tokens" &&
           message.content.some((block) => block.type === "tool_use")
         ) {
+          onIncomplete?.("truncated");
           yield "\n\nThat answer ran long; try asking a narrower question.";
           return;
         }

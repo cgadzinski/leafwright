@@ -3,12 +3,7 @@ import { FULFILL_SHARE, PRODUCT_FORM_ABANDON_SHARE } from "../config";
 import { dwell, typeInto } from "../pacing";
 import type { MerchantSession } from "../plan";
 import { signIn, type SessionRun } from "../session";
-
-const MERCHANT_QUESTIONS = [
-  "Why were sales down last week?",
-  "What should I restock?",
-  "How fast am I shipping?",
-];
+import { converse } from "./chat";
 
 const PRODUCT_NAMES = [
   "Seasonal Fern Mix",
@@ -136,21 +131,8 @@ async function chat(run: SessionRun): Promise<void> {
   await page.getByTestId("admin-ask-assistant").click();
   await expect(page.getByTestId("chat-panel")).toBeVisible();
   await dwell(page, rng, 0.5);
-  if (rng.chance(0.6)) {
-    await page.getByTestId(`chat-suggestion-${rng.int(0, 2)}`).click();
-  } else {
-    await typeInto(page.getByTestId("chat-input"), rng, rng.pick(MERCHANT_QUESTIONS));
-    await page.getByTestId("chat-send").click();
-  }
-  const rateButtons = page.locator('[data-testid^="chat-rate-up-"]');
-  await expect(rateButtons.first()).toBeVisible({ timeout: 30_000 });
-  await dwell(page, rng);
-  const up = rng.chance(0.75);
-  await page
-    .locator(`[data-testid^="chat-rate-${up ? "up" : "down"}-"]`)
-    .last()
-    .click();
-  log(`asked the assistant and rated ${up ? "up" : "down"}`);
+  await converse(run, "merchant");
+  log("talked to the assistant");
 }
 
 async function extra(run: SessionRun, session: MerchantSession): Promise<void> {

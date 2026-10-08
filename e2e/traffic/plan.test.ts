@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { ENTRY_POINTS, SHOPPER_SCENARIOS, VIEWPORTS } from "./config";
+import {
+  CONVERSATION_SESSIONS,
+  ENTRY_POINTS,
+  MERCHANT_SESSIONS,
+  SHOPPER_SESSIONS,
+  SHOPPER_SCENARIOS,
+  VIEWPORTS,
+} from "./config";
 import { activeShoppers, buildPlan, merchantForStore, storeForMerchantSession } from "./plan";
 import { Rng } from "./rng";
 
@@ -59,10 +66,11 @@ describe("buildPlan", () => {
     expect(first).toEqual(second);
     const shoppers = first.filter((s) => s.kind === "shopper");
     const merchants = first.filter((s) => s.kind === "merchant");
-    expect(shoppers.length).toBeGreaterThanOrEqual(10);
-    expect(shoppers.length).toBeLessThanOrEqual(16);
-    expect(merchants.length).toBeGreaterThanOrEqual(3);
-    expect(merchants.length).toBeLessThanOrEqual(5);
+    expect(shoppers.length).toBeGreaterThanOrEqual(SHOPPER_SESSIONS.min);
+    expect(shoppers.length).toBeLessThanOrEqual(SHOPPER_SESSIONS.max + CONVERSATION_SESSIONS.max);
+    expect(merchants.length).toBeGreaterThanOrEqual(MERCHANT_SESSIONS.min);
+    expect(merchants.length).toBeLessThanOrEqual(MERCHANT_SESSIONS.max + CONVERSATION_SESSIONS.max);
+    expect(new Set(first.map((s) => s.id)).size).toBe(first.length);
     expect(merchants.every((m) => m.extra === undefined)).toBe(true);
     for (const session of shoppers) {
       expect(SHOPPER_SCENARIOS.map((s) => s.value)).toContain(session.scenario);
@@ -80,5 +88,26 @@ describe("buildPlan", () => {
     });
     expect(tripled.length).toBeGreaterThan(base.length * 2);
     expect(base.filter((s) => s.kind === "merchant" && s.extra)).toHaveLength(1);
+  });
+});
+
+describe("conversation sessions", () => {
+  it("adds about thirty assistant conversations on a weekday", () => {
+    let conversations = 0;
+    const runsPerWeekday = 9;
+    const days = 20;
+    for (let day = 0; day < days; day += 1) {
+      for (let run = 0; run < runsPerWeekday; run += 1) {
+        const plan = buildPlan({
+          seed: `day-${day}-run-${run}`,
+          runNumber: day * runsPerWeekday + run + 1,
+          date: new Date(Date.UTC(2026, 9, 1 + day, 6 + run * 2)),
+        });
+        conversations += plan.filter((s) => s.scenario === "chat").length;
+      }
+    }
+    const perDay = conversations / days;
+    expect(perDay).toBeGreaterThan(24);
+    expect(perDay).toBeLessThan(38);
   });
 });

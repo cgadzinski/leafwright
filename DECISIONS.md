@@ -265,3 +265,23 @@ $CRON_SECRET`. Without the secret the route only works outside production. `CRON
 - **`vercel.json`** carries only the nightly cron. Next.js needs no other Vercel configuration.
 - **README** documents local setup, every environment variable (including the two added beyond
   SPEC §12: `NEXT_PUBLIC_ANALYTICS_ENDPOINT` and `CRON_SECRET`), deploy steps, and the bot.
+
+## Assistant conversation traffic
+
+- **Why.** The scenario mix gave the assistants one or two single-turn chats per run from three
+  fixed prompts. Conversation analytics needs volume, multi-turn chats, and asks the assistants
+  cannot serve, so the bot now holds about thirty conversations a weekday (SPEC §12 row
+  "Conversations").
+- **Intent bank.** `e2e/traffic/conversations.ts` lists named intents per persona, each tagged
+  `supported`, `unsupported`, or `off-topic`, with openers and follow-ups. Unsupported intents are
+  real requests the assistants have no tool for (order status, refunds, delivery dates, creating
+  promos, editing prices, emailing customers, forecasting, integrations). An intent's first opener
+  matches its suggestion chip when it has one, which a unit test enforces.
+- **Shared driver.** `scenarios/chat.ts` runs a conversation in an open panel for either persona.
+  It detects a finished reply by the newest `chat-rate-up-{id}` control and the input re-enabling,
+  waits up to 90 s per reply for tool-calling model answers, and reads in proportion to reply
+  length. The Playwright timeout for traffic rose from 240 s to 420 s for four-turn chats.
+- **Extra sessions, not a reweighted mix.** Conversations come from 1–2 dedicated chat sessions per
+  run on top of the existing scenario weights, so the shopping and merchant mix is unchanged.
+- **Follow-through.** A shopper follows a recommended product link toward purchase only after an
+  in-scope conversation.

@@ -2,6 +2,7 @@ import { expect } from "@playwright/test";
 import { CHAT_THEN_PURCHASE_SHARE } from "../config";
 import { dwell, maybeBacktrack, typeInto } from "../pacing";
 import type { ShopperSession } from "../plan";
+import { converse } from "./chat";
 import {
   activePromoCodes,
   ADDRESSES,
@@ -10,12 +11,6 @@ import {
   signIn,
   type SessionRun,
 } from "../session";
-
-const SHOPPER_QUESTIONS = [
-  "Low-light plant for a bedroom",
-  "Pet-safe under $30",
-  "Gift for a beginner",
-];
 
 async function enter(run: SessionRun, session: ShopperSession): Promise<void> {
   const { page, rng, log } = run;
@@ -160,27 +155,10 @@ async function chat(run: SessionRun): Promise<boolean> {
   await page.getByTestId("assistant-toggle").click();
   await expect(page.getByTestId("chat-panel")).toBeVisible();
   await dwell(page, rng, 0.5);
-  if (rng.chance(0.6)) {
-    await page.getByTestId(`chat-suggestion-${rng.int(0, 2)}`).click();
-  } else {
-    await typeInto(page.getByTestId("chat-input"), rng, rng.pick(SHOPPER_QUESTIONS));
-    await page.getByTestId("chat-send").click();
-  }
+  const scope = await converse(run, "shopper");
   const reply = page.locator('[data-role="assistant"]').last();
-  await expect(reply).toContainText(/\S/, { timeout: 30_000 });
-  const rateButtons = page.locator(
-    '[data-testid^="chat-rate-up-"], [data-testid^="chat-rate-down-"]',
-  );
-  await expect(rateButtons.first()).toBeVisible({ timeout: 30_000 });
-  await dwell(page, rng);
-  const up = rng.chance(0.8);
-  await page
-    .locator(`[data-testid^="chat-rate-${up ? "up" : "down"}-"]`)
-    .last()
-    .click();
-  log(`chatted and rated ${up ? "up" : "down"}`);
   const link = reply.locator('a[href^="/products/"]').first();
-  if ((await link.count()) > 0 && rng.chance(CHAT_THEN_PURCHASE_SHARE)) {
+  if (scope === "supported" && (await link.count()) > 0 && rng.chance(CHAT_THEN_PURCHASE_SHARE)) {
     const href = await link.getAttribute("href");
     await link.click();
     await page.waitForURL(/\/products\/[a-z0-9-]+$/);

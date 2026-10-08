@@ -11,7 +11,8 @@ export default defineConfig({
   fullyParallel: true,
   workers: Number(process.env.TRAFFIC_WORKERS ?? "4"),
   retries: 0,
-  timeout: 240_000,
+  // Multi-turn conversations with a model behind them run longest.
+  timeout: 420_000,
   reporter: process.env.CI ? [["list"], ["github"]] : "list",
   outputDir: "../../test-results/traffic",
   use: {

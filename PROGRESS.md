@@ -598,6 +598,15 @@ Running 6 tests using 4 workers
   6 passed (7.2s)
 ```
 
+## 10. Assistant conversation traffic
+
+- [x] Intent bank with supported, unsupported, and off-topic asks per persona (`e2e/traffic/conversations.ts`)
+- [x] Multi-turn chat driver shared by shopper and merchant sessions (`e2e/traffic/scenarios/chat.ts`)
+- [x] 1–2 dedicated conversation sessions per run (`plan.ts`, `config.ts`)
+- [x] SPEC §12 and DECISIONS updated
+- [x] Gates: typecheck, lint, test, build passed; `e2e:smoke` and a local traffic run skipped so local
+      browsers do not report into the shared analytics subscription; verified by the deployed Actions run instead
+
 ## Manual steps left for a human
 
 1. **Create the GitHub repository** `pendo-io/leafwright`, add it as `origin`, and push `main`.

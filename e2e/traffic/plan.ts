@@ -2,6 +2,8 @@ import users from "../../seed/users.json";
 import stores from "../../seed/stores.json";
 import {
   ACTIVE_SHOPPERS_PER_DAY,
+  CONVERSATION_MERCHANT_SHARE,
+  CONVERSATION_SESSIONS,
   ENTRY_POINTS,
   MERCHANT_SCENARIOS,
   MERCHANT_SESSIONS,
@@ -164,6 +166,37 @@ export function buildPlan({
           ? TENTH_RUN_EXTRAS[Math.floor(runNumber / 10) % TENTH_RUN_EXTRAS.length]
           : undefined,
     });
+  }
+
+  // Conversation sessions run the chat scenario with the same visitor rotation as the rest.
+  const conversationCount = Math.max(
+    1,
+    Math.round(rng.int(CONVERSATION_SESSIONS.min, CONVERSATION_SESSIONS.max) * scale),
+  );
+  for (let i = 0; i < conversationCount; i += 1) {
+    if (rng.chance(CONVERSATION_MERCHANT_SHARE)) {
+      const index = merchantCount + i;
+      sessions.push({
+        kind: "merchant",
+        id: `merchant-${String(index + 1).padStart(2, "0")}`,
+        seed: rng.int(1, 2 ** 31),
+        scenario: "chat",
+        viewport: rng.weighted(VIEWPORTS).value,
+        visitor: merchantForStore(storeForMerchantSession(runNumber, index), runNumber),
+      });
+    } else {
+      const index = shopperCount + i;
+      const signedIn = rng.chance(SIGNED_IN_SHOPPER_SHARE);
+      sessions.push({
+        kind: "shopper",
+        id: `shopper-${String(index + 1).padStart(2, "0")}`,
+        seed: rng.int(1, 2 ** 31),
+        scenario: "chat",
+        entry: rng.weighted(ENTRY_POINTS).value,
+        viewport: rng.weighted(VIEWPORTS).value,
+        visitor: signedIn ? todaysShoppers[index % todaysShoppers.length] : undefined,
+      });
+    }
   }
 
   return sessions;

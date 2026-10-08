@@ -2,6 +2,13 @@
 
 export const SHOPPER_SESSIONS = { min: 10, max: 16 } as const;
 export const MERCHANT_SESSIONS = { min: 3, max: 5 } as const;
+/**
+ * Extra sessions per run that exist to talk to an assistant, on top of the chat share of the
+ * scenario mix, so the assistants see about thirty conversations a day.
+ */
+export const CONVERSATION_SESSIONS = { min: 1, max: 2 } as const;
+/** Share of those conversation sessions held with the merchant assistant. */
+export const CONVERSATION_MERCHANT_SHARE = 0.4;
 
 /** Roughly this many shoppers are active on any given day; the pool rotates through all 40 weekly. */
 export const ACTIVE_SHOPPERS_PER_DAY = 15;
@@ -71,6 +78,20 @@ export const PACING = {
   dwellMs: { min: 1500, max: 6000 },
   typingDelayMs: { min: 55, max: 140 },
   backNavigationShare: 0.15,
+} as const;
+
+export const CHAT = {
+  /** A model reply with tool calls can take a while; give it room before calling the turn failed. */
+  replyTimeoutMs: 90_000,
+  readMsPerChar: 25,
+  maxReadMs: 12_000,
+  /** Share of replies that get retried when the answer is not what the person wanted. */
+  retryShare: 0.1,
+  /** Share of replies rated: intermediate turns, then the final turn. */
+  rateEachShare: 0.35,
+  rateLastShare: 0.7,
+  /** Chance a rating is thumbs up, by what the turn asked for. */
+  thumbsUpShare: { supported: 0.8, unsupported: 0.25, "off-topic": 0.5 },
 } as const;
 
 export const DEFAULT_PASSWORD = "leafwright-demo";

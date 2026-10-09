@@ -285,3 +285,6 @@ $CRON_SECRET`. Without the secret the route only works outside production. `CRON
   run on top of the existing scenario weights, so the shopping and merchant mix is unchanged.
 - **Follow-through.** A shopper follows a recommended product link toward purchase only after an
   in-scope conversation.
+- **Flush before close.** The page batches analytics events and sends them seconds later, so a
+  context closed right after the last click lost the final reply and rating. `closeSession` asks
+  the page to send its queue and waits `FLUSH_WAIT_MS` (6 s) before closing.

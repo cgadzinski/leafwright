@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { SUGGESTED_PROMPTS } from "../../lib/chat/prompts";
-import { intentsFor, planConversation, type Persona } from "./conversations";
+import { intentRotation, intentsFor, planConversation, type Persona } from "./conversations";
 import { Rng } from "./rng";
 
 const personas: Persona[] = ["shopper", "merchant"];
@@ -51,6 +51,38 @@ describe("planConversation", () => {
         expect(plan.scope).toBe("supported");
         expect(plan.turnScopes.filter((scope) => scope === "unsupported")).toHaveLength(1);
       }
+    }
+  });
+});
+
+describe("fixed intents", () => {
+  it("keeps the requested topic and its scope", () => {
+    const rng = new Rng("fixed");
+    for (let i = 0; i < 50; i += 1) {
+      const plan = planConversation(rng, "merchant", "refund-order");
+      expect(plan.intent).toBe("refund-order");
+      expect(plan.scope).toBe("unsupported");
+    }
+  });
+
+  it("rejects an intent the persona does not have", () => {
+    expect(() => planConversation(new Rng(1), "shopper", "refund-order")).toThrow();
+  });
+
+  it.each(personas)("rotates %s intents through the whole bank and wraps around", (persona) => {
+    const intents = intentsFor(persona);
+    const cycle = intentRotation(persona, 0, intents.length);
+    expect(new Set(cycle)).toEqual(new Set(intents.map((intent) => intent.name)));
+    expect(intentRotation(persona, intents.length, 3)).toEqual(cycle.slice(0, 3));
+  });
+
+  it.each(personas)("mixes scopes within every four consecutive %s conversations", (persona) => {
+    const scopeOf = new Map(intentsFor(persona).map((intent) => [intent.name, intent.scope]));
+    const length = intentsFor(persona).length;
+    for (let start = 0; start < length; start += 1) {
+      const scopes = new Set(intentRotation(persona, start, 4).map((name) => scopeOf.get(name)));
+      expect(scopes.has("unsupported")).toBe(true);
+      expect(scopes.size).toBeGreaterThan(1);
     }
   });
 });

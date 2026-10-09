@@ -122,7 +122,7 @@ async function productForm(run: SessionRun, publish: boolean): Promise<void> {
   await dwell(page, rng, 0.5);
 }
 
-async function chat(run: SessionRun): Promise<void> {
+async function chat(run: SessionRun, intent?: string): Promise<void> {
   const { page, rng, log } = run;
   if (!/\/admin\/?$/.test(new URL(page.url()).pathname)) {
     await page.goto("/admin");
@@ -131,7 +131,7 @@ async function chat(run: SessionRun): Promise<void> {
   await page.getByTestId("admin-ask-assistant").click();
   await expect(page.getByTestId("chat-panel")).toBeVisible();
   await dwell(page, rng, 0.5);
-  await converse(run, "merchant");
+  await converse(run, "merchant", intent);
   log("talked to the assistant");
 }
 
@@ -198,7 +198,7 @@ export async function runMerchantSession(run: SessionRun, session: MerchantSessi
       await productForm(run, false);
       break;
     case "chat":
-      await chat(run);
+      await chat(run, session.intent);
       break;
   }
   if (session.extra) await extra(run, session);

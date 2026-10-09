@@ -401,11 +401,42 @@ export function intentsFor(persona: Persona): readonly Intent[] {
   return persona === "shopper" ? SHOPPER_INTENTS : MERCHANT_INTENTS;
 }
 
-/** Picks what a conversation is about and the messages the person sends, in order. */
-export function planConversation(rng: Rng, persona: Persona): ConversationPlan {
+/**
+ * A persona's intents spread out by scope, so any short stretch of the rotation mixes in-scope,
+ * unsupported, and off-topic asks instead of running through one scope at a time.
+ */
+function interleavedIntents(persona: Persona): Intent[] {
   const intents = intentsFor(persona);
-  const scope = rng.weighted(SCOPE_WEIGHTS).value;
-  const intent = rng.pick(intents.filter((candidate) => candidate.scope === scope));
+  const position = (intent: Intent) => {
+    const sameScope = intents.filter((candidate) => candidate.scope === intent.scope);
+    return (sameScope.indexOf(intent) + 0.5) / sameScope.length;
+  };
+  return [...intents].sort((a, b) => position(a) - position(b));
+}
+
+/**
+ * The intents for the n-th..(n+count)-th conversations of a persona, cycling through the whole
+ * bank so every use case comes up within a few runs.
+ */
+export function intentRotation(persona: Persona, start: number, count: number): string[] {
+  const order = interleavedIntents(persona);
+  return Array.from({ length: count }, (_, i) => order[(start + i) % order.length].name);
+}
+
+/**
+ * Picks what a conversation is about and the messages the person sends, in order. With
+ * `intentName` the topic is fixed and only the wording, length, and drift are random.
+ */
+export function planConversation(
+  rng: Rng,
+  persona: Persona,
+  intentName?: string,
+): ConversationPlan {
+  const intents = intentsFor(persona);
+  const fixed = intentName ? intents.find((candidate) => candidate.name === intentName) : undefined;
+  if (intentName && !fixed) throw new Error(`Unknown ${persona} intent ${intentName}`);
+  const scope = fixed?.scope ?? rng.weighted(SCOPE_WEIGHTS).value;
+  const intent = fixed ?? rng.pick(intents.filter((candidate) => candidate.scope === scope));
   const turnCount = rng.weighted(TURN_WEIGHTS).value;
 
   const suggestion =

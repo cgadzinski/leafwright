@@ -608,6 +608,13 @@ Running 6 tests using 4 workers
 - [x] Gates: typecheck, lint, test, build passed; `e2e:smoke` and a local traffic run skipped so local
       browsers do not report into the shared analytics subscription; verified by the deployed Actions run instead
 
+## 11. Conversations workflow
+
+- [x] `buildConversationPlan` with intent rotation, persona filter, and help-page entry (`plan.ts`, `conversations.ts`)
+- [x] `.github/workflows/conversations.yml`: scheduled plus `workflow_dispatch` with `conversations` and `persona`
+- [x] SPEC §12, DECISIONS updated
+- [x] Gates: typecheck, lint, test (113), build; no local browser runs (they would report into the shared analytics subscription)
+
 ## Manual steps left for a human
 
 1. **Create the GitHub repository** `pendo-io/leafwright`, add it as `origin`, and push `main`.

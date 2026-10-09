@@ -294,3 +294,18 @@ $CRON_SECRET`. Without the secret the route only works outside production. `CRON
 - **`ANTHROPIC_WORKSPACE_ID`** (optional, beyond SPEC §12's env list). Keys that are not scoped to
   a workspace are rejected unless each request carries `anthropic-workspace-id`. The SDK has no
   option for it, so `createAnthropicClient` sends it as a default header when the variable is set.
+
+## Conversations workflow
+
+- **Same project, different plan.** `.github/workflows/conversations.yml` runs `pnpm traffic` with
+  `TRAFFIC_MODE=conversations`, and `traffic.spec.ts` builds `buildConversationPlan` instead of
+  `buildPlan`. Sessions, pacing, the chat driver, flushing, and traces are shared with the
+  traffic bot.
+- **Coverage by rotation.** Each run's topics are the next slice of each persona's intent bank,
+  indexed by the workflow's run number, so every intent comes up within two to four runs. The
+  bank is interleaved by scope so any four consecutive topics include an unsupported ask.
+- **Schedule.** 09:30, 14:30, and 19:30 UTC on weekdays and 15:30 UTC on weekends, offset from the
+  traffic runs on the hour, with its own concurrency group. Eight conversations per run adds
+  about 24 a weekday on top of the traffic bot's 30.
+- **Help entry.** A share of conversation-run shoppers start on `/help`, where the panel opens on
+  arrival; the chat step only clicks `assistant-toggle` when the panel is closed.

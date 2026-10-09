@@ -7,7 +7,14 @@ import {
   SHOPPER_SCENARIOS,
   VIEWPORTS,
 } from "./config";
-import { activeShoppers, buildPlan, merchantForStore, storeForMerchantSession } from "./plan";
+import { intentsFor } from "./conversations";
+import {
+  activeShoppers,
+  buildConversationPlan,
+  buildPlan,
+  merchantForStore,
+  storeForMerchantSession,
+} from "./plan";
 import { Rng } from "./rng";
 
 describe("rng", () => {
@@ -109,5 +116,46 @@ describe("conversation sessions", () => {
     const perDay = conversations / days;
     expect(perDay).toBeGreaterThan(24);
     expect(perDay).toBeLessThan(38);
+  });
+});
+
+describe("buildConversationPlan", () => {
+  const date = new Date("2026-10-09T09:30:00Z");
+
+  it("makes every session a chat, split between the assistants, with no repeated topic", () => {
+    const plan = buildConversationPlan({ seed: "c1", runNumber: 1, count: 8, date });
+    expect(plan).toHaveLength(8);
+    expect(plan.every((session) => session.scenario === "chat" && session.intent)).toBe(true);
+    const shoppers = plan.filter((session) => session.kind === "shopper");
+    const merchants = plan.filter((session) => session.kind === "merchant");
+    expect(shoppers).toHaveLength(4);
+    expect(merchants).toHaveLength(4);
+    expect(new Set(shoppers.map((session) => session.intent)).size).toBe(4);
+    expect(new Set(plan.map((session) => session.id)).size).toBe(plan.length);
+  });
+
+  it("walks through every intent across consecutive runs", () => {
+    for (const persona of ["shopper", "merchant"] as const) {
+      const seen = new Set<string>();
+      const runs = Math.ceil(intentsFor(persona).length / 4);
+      for (let run = 1; run <= runs; run += 1) {
+        for (const session of buildConversationPlan({ seed: `r${run}`, runNumber: run, date })) {
+          if (session.kind === persona && session.intent) seen.add(session.intent);
+        }
+      }
+      expect(seen.size).toBe(intentsFor(persona).length);
+    }
+  });
+
+  it("can talk to one assistant only", () => {
+    const plan = buildConversationPlan({
+      seed: "m",
+      runNumber: 3,
+      count: 5,
+      persona: "merchant",
+      date,
+    });
+    expect(plan).toHaveLength(5);
+    expect(plan.every((session) => session.kind === "merchant")).toBe(true);
   });
 });

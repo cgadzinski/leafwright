@@ -37,9 +37,9 @@ async function read(page: Page, run: SessionRun): Promise<void> {
  * Holds one conversation in an already open panel: sends each planned turn, reads the reply,
  * sometimes rates or retries it. Returns the planned scope so callers can decide what happens next.
  */
-export async function converse(run: SessionRun, persona: Persona): Promise<Scope> {
+export async function converse(run: SessionRun, persona: Persona, intent?: string): Promise<Scope> {
   const { page, rng, log } = run;
-  const plan = planConversation(rng, persona);
+  const plan = planConversation(rng, persona, intent);
   log(`conversation: ${describeConversation(plan)}`);
 
   let previous = await lastReplyId(page);

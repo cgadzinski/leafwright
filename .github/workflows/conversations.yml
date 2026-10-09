@@ -1,0 +1,63 @@
+name: Conversations
+
+on:
+  schedule:
+    # Three times a day on weekdays, offset from the traffic runs.
+    - cron: "30 9,14,19 * * 1-5"
+    # Once a day on weekends.
+    - cron: "30 15 * * 0,6"
+  workflow_dispatch:
+    inputs:
+      conversations:
+        description: "Conversations in this run"
+        required: false
+        default: "8"
+        type: string
+      persona:
+        description: "Which assistant to talk to"
+        required: false
+        default: both
+        type: choice
+        options:
+          - both
+          - shopper
+          - merchant
+
+concurrency:
+  group: conversations
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  converse:
+    name: Assistant conversations
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      BASE_URL: ${{ vars.TRAFFIC_BASE_URL || 'https://leafwright.vercel.app' }}
+      TRAFFIC_MODE: conversations
+      CONVERSATIONS: ${{ inputs.conversations || '8' }}
+      CONVERSATION_PERSONA: ${{ inputs.persona || 'both' }}
+      DEMO_PASSWORD: ${{ secrets.DEMO_PASSWORD }}
+      CI: "true"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Run conversations
+        run: pnpm traffic
+      - name: Upload traces for failed sessions
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: conversation-traces-${{ github.run_number }}
+          path: test-results/traffic
+          if-no-files-found: ignore
+          retention-days: 7

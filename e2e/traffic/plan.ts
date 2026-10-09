@@ -2,7 +2,9 @@ import users from "../../seed/users.json";
 import stores from "../../seed/stores.json";
 import {
   ACTIVE_SHOPPERS_PER_DAY,
+  CONVERSATION_ENTRY_POINTS,
   CONVERSATION_MERCHANT_SHARE,
+  CONVERSATION_RUN,
   CONVERSATION_SESSIONS,
   ENTRY_POINTS,
   MERCHANT_SCENARIOS,
@@ -20,6 +22,7 @@ import {
   type ShopperScenario,
   type ViewportKind,
 } from "./config";
+import { intentRotation, type Persona } from "./conversations";
 import { Rng } from "./rng";
 
 export interface Visitor {
@@ -43,6 +46,8 @@ export interface ShopperSession {
   viewport: ViewportKind;
   /** Set when the session signs in; anonymous sessions have no visitor. */
   visitor?: Visitor;
+  /** Fixed conversation topic for chat sessions in a conversations run. */
+  intent?: string;
 }
 
 export interface MerchantSession {
@@ -53,6 +58,8 @@ export interface MerchantSession {
   viewport: ViewportKind;
   visitor: MerchantVisitor;
   extra?: MerchantExtra;
+  /** Fixed conversation topic for chat sessions in a conversations run. */
+  intent?: string;
 }
 
 export type Session = ShopperSession | MerchantSession;
@@ -202,6 +209,71 @@ export function buildPlan({
   return sessions;
 }
 
+export interface ConversationPlanOptions {
+  seed: string;
+  runNumber: number;
+  /** Conversations in this run; defaults to `CONVERSATION_RUN.sessions`. */
+  count?: number;
+  /** Limit the run to one assistant. */
+  persona?: Persona | "both";
+  date?: Date;
+}
+
+/**
+ * A conversations-only run: every session talks to an assistant. Topics walk through each
+ * persona's intent bank in order across runs so all use cases recur, while wording, length,
+ * ratings, and visitors stay random.
+ */
+export function buildConversationPlan({
+  seed,
+  runNumber,
+  count = CONVERSATION_RUN.sessions,
+  persona = "both",
+  date = new Date(),
+}: ConversationPlanOptions): Session[] {
+  const rng = new Rng(`conversations-${seed}`);
+  const total = Math.max(1, Math.round(count));
+  const merchantTotal =
+    persona === "merchant"
+      ? total
+      : persona === "shopper"
+        ? 0
+        : Math.round(total * CONVERSATION_RUN.merchantShare);
+  const shopperTotal = total - merchantTotal;
+  const todaysShoppers = rng.shuffle(activeShoppers(date));
+  const shopperIntents = intentRotation("shopper", (runNumber - 1) * shopperTotal, shopperTotal);
+  const merchantIntents = intentRotation(
+    "merchant",
+    (runNumber - 1) * merchantTotal,
+    merchantTotal,
+  );
+
+  const sessions: Session[] = shopperIntents.map((intent, i) => ({
+    kind: "shopper",
+    id: `shopper-${String(i + 1).padStart(2, "0")}`,
+    seed: rng.int(1, 2 ** 31),
+    scenario: "chat",
+    entry: rng.weighted(CONVERSATION_ENTRY_POINTS).value,
+    viewport: rng.weighted(VIEWPORTS).value,
+    visitor: rng.chance(SIGNED_IN_SHOPPER_SHARE)
+      ? todaysShoppers[i % todaysShoppers.length]
+      : undefined,
+    intent,
+  }));
+  merchantIntents.forEach((intent, i) => {
+    sessions.push({
+      kind: "merchant",
+      id: `merchant-${String(i + 1).padStart(2, "0")}`,
+      seed: rng.int(1, 2 ** 31),
+      scenario: "chat",
+      viewport: rng.weighted(VIEWPORTS).value,
+      visitor: merchantForStore(storeForMerchantSession(runNumber, i), runNumber + i),
+      intent,
+    });
+  });
+  return sessions;
+}
+
 export function describeSession(session: Session): string {
   const who =
     session.kind === "merchant"
@@ -209,5 +281,6 @@ export function describeSession(session: Session): string {
       : (session.visitor?.email ?? "anonymous");
   const extra = session.kind === "merchant" && session.extra ? ` +${session.extra}` : "";
   const entry = session.kind === "shopper" ? ` via ${session.entry}` : "";
-  return `${session.id} ${session.scenario}${extra} (${session.viewport}${entry}) ${who}`;
+  const intent = session.intent ? ` [${session.intent}]` : "";
+  return `${session.id} ${session.scenario}${intent}${extra} (${session.viewport}${entry}) ${who}`;
 }

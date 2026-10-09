@@ -25,6 +25,9 @@ async function enter(run: SessionRun, session: ShopperSession): Promise<void> {
       await page.goto(`/promo/${rng.pick(activePromoCodes)}`);
       await page.waitForURL(/\/products/, { timeout: 20_000 }).catch(() => undefined);
       break;
+    case "help":
+      await page.goto("/help");
+      break;
     case "store":
       await page.goto(
         `/stores/${rng.pick(["fernhollow-nursery", "dry-creek-succulents", "kiln-and-vine", "moss-lane"])}`,
@@ -150,12 +153,15 @@ async function checkout(
   await payAndPlace(run);
 }
 
-async function chat(run: SessionRun): Promise<boolean> {
+async function chat(run: SessionRun, intent?: string): Promise<boolean> {
   const { page, rng, log } = run;
-  await page.getByTestId("assistant-toggle").click();
+  // The help page opens the panel on arrival; the toggle would close it again.
+  if (!(await page.getByTestId("chat-panel").isVisible())) {
+    await page.getByTestId("assistant-toggle").click();
+  }
   await expect(page.getByTestId("chat-panel")).toBeVisible();
   await dwell(page, rng, 0.5);
-  const scope = await converse(run, "shopper");
+  const scope = await converse(run, "shopper", intent);
   const reply = page.locator('[data-role="assistant"]').last();
   const link = reply.locator('a[href^="/products/"]').first();
   if (scope === "supported" && (await link.count()) > 0 && rng.chance(CHAT_THEN_PURCHASE_SHARE)) {
@@ -222,7 +228,7 @@ export async function runShopperSession(run: SessionRun, session: ShopperSession
       return;
     }
     case "chat": {
-      const continued = await chat(run);
+      const continued = await chat(run, session.intent);
       if (continued && (await addToCart(run))) {
         await checkout(run, session, false);
       }

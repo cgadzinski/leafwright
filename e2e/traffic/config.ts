@@ -9,6 +9,11 @@ export const MERCHANT_SESSIONS = { min: 3, max: 5 } as const;
 export const CONVERSATION_SESSIONS = { min: 1, max: 2 } as const;
 /** Share of those conversation sessions held with the merchant assistant. */
 export const CONVERSATION_MERCHANT_SHARE = 0.4;
+/**
+ * The conversations-only run (`TRAFFIC_MODE=conversations`): every session talks to an
+ * assistant, split evenly between the two, walking through every intent across runs.
+ */
+export const CONVERSATION_RUN = { sessions: 8, merchantShare: 0.5 } as const;
 
 /** Roughly this many shoppers are active on any given day; the pool rotates through all 40 weekly. */
 export const ACTIVE_SHOPPERS_PER_DAY = 15;
@@ -20,7 +25,15 @@ export const ENTRY_POINTS = [
   { value: "promo", weight: 15 },
   { value: "store", weight: 15 },
 ] as const;
-export type EntryPoint = (typeof ENTRY_POINTS)[number]["value"];
+/** Where conversation-run shoppers start; `/help` opens the assistant on arrival. */
+export const CONVERSATION_ENTRY_POINTS = [
+  { value: "help", weight: 30 },
+  { value: "home", weight: 30 },
+  { value: "product", weight: 30 },
+  { value: "store", weight: 10 },
+] as const;
+export type EntryPoint =
+  (typeof ENTRY_POINTS)[number]["value"] | (typeof CONVERSATION_ENTRY_POINTS)[number]["value"];
 
 export const VIEWPORTS = [
   { value: "desktop", weight: 65, size: { width: 1366, height: 860 } },

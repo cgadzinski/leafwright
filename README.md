@@ -54,6 +54,7 @@ Guests can check out with just an email; any Luhn-valid card (for example
 | `AUTH_SECRET`                          | yes                            | Signs Auth.js session JWTs and the cart / order cookies                                  |
 | `DEMO_PASSWORD`                        | no (default `leafwright-demo`) | Password accepted for every seeded user                                                  |
 | `ANTHROPIC_API_KEY`                    | no                             | When set, the assistant answers with Claude; otherwise scripted replies                  |
+| `ANTHROPIC_WORKSPACE_ID`               | no                             | Required only when the API key is not scoped to a workspace                              |
 | `KV_REST_API_URL`, `KV_REST_API_TOKEN` | no                             | Upstash Redis. When both are set, runtime data is stored there instead of process memory |
 | `NEXT_PUBLIC_ANALYTICS_WRITE_KEY`      | no                             | Enables the in-house analytics wrapper                                                   |
 | `NEXT_PUBLIC_ANALYTICS_ENDPOINT`       | no                             | Where the wrapper posts events; without it events are queued and logged                  |

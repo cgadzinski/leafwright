@@ -66,7 +66,17 @@ function buildTools(persona: Persona, context: ToolContext) {
   ];
 }
 
-export function createClaudeProvider(client: Anthropic = new Anthropic()): ChatProvider {
+/**
+ * An API key that is not scoped to a workspace must name the workspace on every request; set
+ * ANTHROPIC_WORKSPACE_ID for those keys. Workspace-scoped keys need nothing extra.
+ */
+export function createAnthropicClient(workspaceId = process.env.ANTHROPIC_WORKSPACE_ID): Anthropic {
+  return new Anthropic(
+    workspaceId ? { defaultHeaders: { "anthropic-workspace-id": workspaceId } } : {},
+  );
+}
+
+export function createClaudeProvider(client: Anthropic = createAnthropicClient()): ChatProvider {
   return {
     name: "claude",
     model: MODEL,

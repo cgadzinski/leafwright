@@ -288,3 +288,9 @@ $CRON_SECRET`. Without the secret the route only works outside production. `CRON
 - **Flush before close.** The page batches analytics events and sends them seconds later, so a
   context closed right after the last click lost the final reply and rating. `closeSession` asks
   the page to send its queue and waits `FLUSH_WAIT_MS` (6 s) before closing.
+
+## Anthropic workspace header
+
+- **`ANTHROPIC_WORKSPACE_ID`** (optional, beyond SPEC §12's env list). Keys that are not scoped to
+  a workspace are rejected unless each request carries `anthropic-workspace-id`. The SDK has no
+  option for it, so `createAnthropicClient` sends it as a default header when the variable is set.
